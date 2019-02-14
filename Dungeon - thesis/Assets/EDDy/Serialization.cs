@@ -9,19 +9,6 @@ using UnityEngine;
 public static class Serialization
 {
 
-  public static T XMLDeserialize<T>(string filePath)
-  {
-    XmlSerializer xmlformat = new XmlSerializer(typeof(T));
-    using (Stream stream = File.Open(filePath, FileMode.Open))
-    {
-      var kuk = stream.Length;
-
-      var s = (T)xmlformat.Deserialize(stream);
-      return s;
-
-    }
-  }
-
   public static T DeserializeXMLFileToObject<T>(string XmlFilename)
   {
     T returnObject = default(T);

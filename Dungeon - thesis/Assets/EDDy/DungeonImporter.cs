@@ -13,38 +13,38 @@ public class DungeonImporter : MonoBehaviour
 
   void Start()
   {
+    //Hard coded path to DungeonTest.
+    string mapPath = Application.dataPath;
+    mapPath = Path.Combine(mapPath, "Maps/DungeonTest.map");
 
-    string rootPath = Application.dataPath;
-    Debug.Log(rootPath);
+    DungeonModel DaDungeon = ImportDungeon(mapPath);
+  }
 
+  /// <summary>
+  /// Returns a Dungeon created from speciefied map/xml file
+  /// </summary>
+  /// <returns>The dungeon.</returns>
+  /// <param name="filePath">File path to map/xml file.</param>
+  public DungeonModel ImportDungeon(string filePath)
+  {
+    FileInfo fileInfo = new FileInfo(filePath);
 
-    //var mapPath = Path.Combine(rootPath, "Maps/simpleTest.map");
-    var mapPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-    mapPath = Path.Combine(mapPath, "EddyMaps/lp.map");
-    Debug.Log(mapPath);
-
-    try
+    if (fileInfo.Exists)
     {
-
-      bool exists = File.Exists(mapPath);
-      if (exists)
-      {
-        SimpleXMLclass test = Serialization.DeserializeXMLFileToObject<SimpleXMLclass>(mapPath);
-        // Serialization.XMLDeserialize<SimpleXMLclass>(mapPath);
-        var lol = test.Test;
-        //DungeonModel dungeon = XMLDeserialize<DungeonModel>(mapPath);
-      }
-      else
-        Debug.LogWarning("Could not fine file at: " + mapPath);
+      DungeonModel dungeon = Serialization.DeserializeXMLFileToObject<DungeonModel>(filePath);
+      Debug.Log("Successfully created a dungeon from: " + fileInfo.Name);
+      return dungeon; 
     }
-    catch (Exception ex)
+    else
     {
-      Debug.LogError(ex.StackTrace);
+      string message = "Could not find map/xml file at: " + filePath;
+      Debug.LogWarning(message);
+      throw new Exception(message);
     }
   }
 
 
- 
+
 
 
 }

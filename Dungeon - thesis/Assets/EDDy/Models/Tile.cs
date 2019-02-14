@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.ComponentModel;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using UnityEngine;
 using System;
 
 [Serializable]
@@ -11,18 +6,15 @@ public class Tile
 {
   public Tile(){}
 
-  public Tile(Vector2 position, bool immutable)
+  public Tile(Vector2 Position, bool Immutable)
   {
-    Position = position;
-    Immutable = immutable;
+    this.Position = Position;
+    this.Immutable = Immutable;
   }
 
-  [XmlElement]
-  public Vector2 Position { get; private set; }
+  public Vector2 Position { get; set; }
 
-  [XmlElement("m_immutable")]
-  public bool Immutable { get; private set; }
+  public bool Immutable { get; set; }
 
-  [XmlElement]
   public TileType Type { get; set; }
 }

@@ -1,15 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.Xml.Serialization;
-using UnityEngine;
 
+[Serializable]
 public class RoomModel
 {
   public RoomModel(){}
 
-  [XmlElement]
+  public RoomModel(Tile[] Tiles, double EntranceSafety)
+  {
+    this.Tiles = Tiles;
+    this.EntranceSafety = EntranceSafety;
+  }
+
+  //Required markup for collections
+  [XmlElement(ElementName = "Tiles")]
   public Tile[] Tiles { get; set; }
 
-  [XmlElement]
   public double EntranceSafety { get; set; }
 }
