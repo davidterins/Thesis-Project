@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEditor;
 
 public class MapBuilderManager : MonoBehaviour
 {
   [SerializeField]
   DungeonImporter DungeonImporter = null;
+
+
+  [SerializeField]
+  GridLayout GridLayout = null;
 
   [SerializeField]
   Tilemap BaseTileLayer = null;
@@ -19,10 +24,15 @@ public class MapBuilderManager : MonoBehaviour
   UnityEngine.Tilemaps.Tile FloorTile = null;
 
   [SerializeField]
+  RuleTile FloorRuleTile = null;
+
+
+  [SerializeField]
   UnityEngine.Tilemaps.Tile WallTile = null;
 
   [SerializeField]
   UnityEngine.Tilemaps.Tile EnemyTile = null;
+
 
   [SerializeField]
   UnityEngine.Tilemaps.Tile DoorTile = null;
@@ -35,6 +45,9 @@ public class MapBuilderManager : MonoBehaviour
 
   [SerializeField]
   GameObject player = null;
+
+  [SerializeField]
+  GameObject Enemy = null;
 
   private DungeonModel dungeon;
 
@@ -69,6 +82,8 @@ public class MapBuilderManager : MonoBehaviour
       {
         case TileType.FLOOR:
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          //RuleTile ruleTile = Instantiate(FloorRuleTile);
+          //BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), ruleTile);
           break;
         case TileType.WALL:
           CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
@@ -77,7 +92,12 @@ public class MapBuilderManager : MonoBehaviour
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(TreasureTile));
           break;
         case TileType.ENEMY:
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(EnemyTile));
+          var floorTile = Instantiate(FloorTile);
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), floorTile);
+
+          var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+          Instantiate(Enemy, centerOfTile, Quaternion.identity);
+
           break;
         case TileType.DOOR:
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorTile));
@@ -86,7 +106,7 @@ public class MapBuilderManager : MonoBehaviour
           var doorTile = Instantiate(DoorTile);
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorEnterTile));
           var s = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
-          Camera.main.GetComponent<SmoothCamera>().target =Instantiate(player, s , Quaternion.identity);
+          Camera.main.GetComponent<SmoothCamera>().target = Instantiate(player, s, Quaternion.identity);
           break;
         case TileType.NONE:
           break;
