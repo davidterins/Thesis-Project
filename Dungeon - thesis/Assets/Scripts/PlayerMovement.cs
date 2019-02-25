@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
   {
     //plStat = GetComponent<CharacterStat>();
 
-    walkSpeed = 2; //(float)(plStat.Speed + (plStat.Agility / 5));
+    walkSpeed = 1; //(float)(plStat.Speed + (plStat.Agility / 5));
     maxSpeed = 4;// walkSpeed + (walkSpeed / 2);
 
   }
