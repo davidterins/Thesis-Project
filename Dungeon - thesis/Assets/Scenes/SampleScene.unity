@@ -143,18 +143,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DungeonImporter: {fileID: 131168173}
-  GridLayout: {fileID: 1510127287}
   BaseTileLayer: {fileID: 656876107}
   CollideLayer: {fileID: 1378491194}
   FloorTile: {fileID: 11400000, guid: 2b5cbf76061b34698b6de1d71dc91145, type: 2}
-  FloorRuleTile: {fileID: 11400000, guid: 2d1ec7888cb794607bf00b2caf1382cf, type: 2}
   WallTile: {fileID: 11400000, guid: d1e73dbdde28242909560091032f5b4a, type: 2}
-  EnemyTile: {fileID: 11400000, guid: c3e698b11aa804395a9ff47feaa36bbe, type: 2}
   DoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
   DoorEnterTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015, type: 2}
-  TreasureTile: {fileID: 11400000, guid: c7924f55e13eb4167ab344a5dc83641a, type: 2}
   player: {fileID: 4410479370439878666, guid: 918f3df9c798a469bb52394c9cfae611, type: 3}
   Enemy: {fileID: 6941359811901229572, guid: 08689aa7fe9d2451a92d9c1916ffa8fa, type: 3}
+  TreasureChest: {fileID: 230931681438736116, guid: 86d25563fcc1840f1b65a2a2c0b7b14d,
+    type: 3}
+  ExitDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
+    type: 3}
 --- !u!114 &131168173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
+  m_BackGroundColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}

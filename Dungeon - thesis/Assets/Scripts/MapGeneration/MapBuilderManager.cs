@@ -39,8 +39,7 @@ public class MapBuilderManager : MonoBehaviour
   [SerializeField]
   GameObject ExitDoor = null;
 
-  private DungeonModel dungeon;
-
+  private DungeonModel importedDungeonModel;
 
   private static MapBuilderManager Instance;
   public static MapBuilderManager Singleton { get { return Instance; } }
@@ -56,17 +55,18 @@ public class MapBuilderManager : MonoBehaviour
     Instance = this;
 
     //Gets the imported map
-    dungeon = DungeonImporter.Dungeon;
+    importedDungeonModel = DungeonImporter.Dungeon;
 
     BuildBaseLayer();
 
   }
 
+  // TODO Här ska den bygga arrayn för pathfinding också sen
   private void BuildBaseLayer()
   {
 
 
-    foreach (Tile tile in dungeon.InitialRoom.Tiles)
+    foreach (Tile tile in importedDungeonModel.InitialRoom.Tiles)
     {
 
       var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
