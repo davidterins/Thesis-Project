@@ -5,117 +5,115 @@ using UnityEngine.Tilemaps;
 using UnityEditor;
 using UnityEngine.Experimental.PlayerLoop;
 
-public class MapBuilderManager : MonoBehaviour
-{
-  [SerializeField]
-  DungeonImporter DungeonImporter = null;
+public class MapBuilderManager : MonoBehaviour {
+    [SerializeField]
+    DungeonImporter DungeonImporter = null;
 
-  [SerializeField]
-  Tilemap BaseTileLayer = null;
+    [SerializeField]
+    Tilemap BaseTileLayer = null;
 
-  [SerializeField]
-  Tilemap CollideLayer = null;
+    [SerializeField]
+    Tilemap CollideLayer = null;
 
-  [SerializeField]
-  UnityEngine.Tilemaps.Tile FloorTile = null;
+    [SerializeField]
+    UnityEngine.Tilemaps.Tile FloorTile = null;
 
-  [SerializeField]
-  UnityEngine.Tilemaps.Tile WallTile = null;
+    [SerializeField]
+    UnityEngine.Tilemaps.Tile WallTile = null;
 
-  [SerializeField]
-  UnityEngine.Tilemaps.Tile DoorTile = null;
+    [SerializeField]
+    UnityEngine.Tilemaps.Tile DoorTile = null;
 
-  [SerializeField]
-  UnityEngine.Tilemaps.Tile DoorEnterTile = null;
+    [SerializeField]
+    UnityEngine.Tilemaps.Tile DoorEnterTile = null;
 
-  [SerializeField]
-  RuleTile RuleTileTest = null;
+    [SerializeField]
+    RuleTile RuleTileTest = null;
 
-  [SerializeField]
-  GameObject player = null;
+    [SerializeField]
+    GameObject player = null;
 
-  [SerializeField]
-  GameObject Enemy = null;
+    [SerializeField]
+    GameObject Enemy = null;
 
-  [SerializeField]
-  GameObject TreasureChest = null;
+    [SerializeField]
+    GameObject TreasureChest = null;
 
-  [SerializeField]
-  GameObject ExitDoor = null;
+    [SerializeField]
+    GameObject ExitDoor = null;
 
-  private DungeonModel importedDungeonModel;
+    private DungeonModel importedDungeonModel;
 
-  private static MapBuilderManager Instance;
-  public static MapBuilderManager Singleton { get { return Instance; } }
+    private Graph graph;
 
-  void Awake()
-  {
-    if (Instance != null)
-    {
-      Destroy(gameObject);
-      return;
+    private static MapBuilderManager Instance;
+    public static MapBuilderManager Singleton { get { return Instance; } }
+
+    void Awake() {
+        if (Instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        //Gets the imported map
+        importedDungeonModel = DungeonImporter.Dungeon;
+
+        BuildBaseLayer();
+        graph = new Graph(10, 10);  // TODO: Fetch actual values from imported map. @David, pass them here if you see this, otherwise I'll find it.
     }
 
-    Instance = this;
+    // TODO Här ska den bygga arrayn för pathfinding också sen
+    private void BuildBaseLayer() {
+        int i = 0;
+        foreach (Tile tile in importedDungeonModel.InitialRoom.Tiles) {
 
-    //Gets the imported map
-    importedDungeonModel = DungeonImporter.Dungeon;
+            var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+            switch (tile.Type) {
+                case TileType.FLOOR:
 
-    BuildBaseLayer();
+                    BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+                    //RuleTile ruleTile = Instantiate(FloorRuleTile);
+                    //BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), ruleTile);
+                    break;
+                case TileType.WALL:
 
-  }
+                    CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
 
-  // TODO Här ska den bygga arrayn för pathfinding också sen
-  private void BuildBaseLayer()
-  {
-    int i = 0;
-    foreach (Tile tile in importedDungeonModel.InitialRoom.Tiles)
-    {
-     
-      var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
-      switch (tile.Type)
-      {
-      case TileType.FLOOR:
+                    break;
+                case TileType.TREASURE:
+                    BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
 
-        BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-        //RuleTile ruleTile = Instantiate(FloorRuleTile);
-        //BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), ruleTile);
-        break;
-      case TileType.WALL:
+                    var center = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+                    Instantiate(TreasureChest, center, Quaternion.identity);
 
-        CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
+                    break;
+                case TileType.ENEMY:
 
-        break;
-      case TileType.TREASURE:
-        BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+                    BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+                    Instantiate(Enemy, centerOfTile, Quaternion.identity);
 
-        var center = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
-        Instantiate(TreasureChest, center, Quaternion.identity);
+                    break;
+                case TileType.DOOR:
 
-        break;
-      case TileType.ENEMY:
-
-        BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-        Instantiate(Enemy, centerOfTile, Quaternion.identity);
-
-        break;
-      case TileType.DOOR:
-
-        BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorTile));
-        Instantiate(ExitDoor, centerOfTile, Quaternion.identity);
-        break;
-      case TileType.DOORENTER:
-
-        BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorEnterTile));
-        Camera.main.GetComponent<SmoothCamera>().target = Instantiate(player, centerOfTile, Quaternion.identity);
-        break;
-      case TileType.NONE:
-        break;
-      default:
-      break;
-      }
-      BaseTileLayer.RefreshAllTiles();
+                    BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorTile));
+                    Instantiate(ExitDoor, centerOfTile, Quaternion.identity);
+                    break;
+                case TileType.DOORENTER:
+                    Vector3Int tilePos = new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0);
+                    //BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorEnterTile));
+                    BaseTileLayer.SetTile(tilePos, Instantiate(DoorEnterTile));
+                    Camera.main.GetComponent<SmoothCamera>().target = Instantiate(player, centerOfTile, Quaternion.identity);
+                    graph.InsertNode(tilePos, tile.Type);
+                    break;
+                case TileType.NONE:
+                    break;
+                default:
+                    break;
+            }
+            BaseTileLayer.RefreshAllTiles();
+        }
     }
-  }
 
 }
