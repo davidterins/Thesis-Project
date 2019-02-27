@@ -1,982 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DungeonModel>
     <InitialPos>
-        <x>6</x>
-        <y>5</y>
+        <x>7</x>
+        <y>6</y>
     </InitialPos>
-    <InitialRoom>
-        <EntranceSafety>0.2063492089509964</EntranceSafety>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>1</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>2</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>8</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>9</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>0</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>DOORENTER</Type>
-            <Position>
-                <x>0</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>TREASURE</Type>
-            <Position>
-                <x>6</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>TREASURE</Type>
-            <Position>
-                <x>9</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>3</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>5</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>2</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>5</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>9</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>DOOR</Type>
-            <Position>
-                <x>0</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>2</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>9</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>1</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>2</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>8</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>9</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>10</y>
-            </Position>
-        </Tiles>
-    </InitialRoom>
+    <InitialRoomID>0</InitialRoomID>
     <Rooms>
-        <EntranceSafety>0.2063492089509964</EntranceSafety>
+        <ConnectingRooms>
+            <StartDoorPosition>
+                <x>0</x>
+                <y>1</y>
+            </StartDoorPosition>
+            <TargetDoorPosition>
+                <x>10</x>
+                <y>3</y>
+            </TargetDoorPosition>
+            <ToRoomID>1</ToRoomID>
+        </ConnectingRooms>
+        <ConnectingRooms>
+            <StartDoorPosition>
+                <x>0</x>
+                <y>7</y>
+            </StartDoorPosition>
+            <TargetDoorPosition>
+                <x>10</x>
+                <y>9</y>
+            </TargetDoorPosition>
+            <ToRoomID>1</ToRoomID>
+        </ConnectingRooms>
+        <EntranceSafety>0.359375</EntranceSafety>
+        <Height>11</Height>
+        <RoomID>0</RoomID>
         <Tiles>
             <Immutable>false</Immutable>
             <Type>WALL</Type>
@@ -1115,456 +169,456 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>6</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>7</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>8</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>9</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>1</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>5</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>6</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>7</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>9</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>1</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>5</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>6</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>7</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>8</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>1</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>5</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>6</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>7</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>9</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>4</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>1</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>4</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>5</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>6</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>7</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>5</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>1</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>5</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>6</x>
+                <y>6</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
             <Type>TREASURE</Type>
             <Position>
-                <x>6</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>TREASURE</Type>
-            <Position>
-                <x>9</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>3</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>5</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>4</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>2</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>5</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>5</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>3</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
                 <x>7</x>
                 <y>6</y>
             </Position>
@@ -1579,7 +633,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>6</y>
@@ -1591,182 +645,6 @@
             <Position>
                 <x>10</x>
                 <y>6</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>8</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
-            <Position>
-                <x>9</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>7</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>0</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>4</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>5</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>6</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>7</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>8</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>WALL</Type>
-            <Position>
-                <x>10</x>
-                <y>8</y>
             </Position>
         </Tiles>
         <Tiles>
@@ -1774,7 +652,7 @@
             <Type>DOOR</Type>
             <Position>
                 <x>0</x>
-                <y>9</y>
+                <y>7</y>
             </Position>
         </Tiles>
         <Tiles>
@@ -1782,15 +660,15 @@
             <Type>FLOOR</Type>
             <Position>
                 <x>1</x>
-                <y>9</y>
+                <y>7</y>
             </Position>
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>ENEMY</Type>
+            <Type>FLOOR</Type>
             <Position>
                 <x>2</x>
-                <y>9</y>
+                <y>7</y>
             </Position>
         </Tiles>
         <Tiles>
@@ -1798,12 +676,188 @@
             <Type>FLOOR</Type>
             <Position>
                 <x>3</x>
-                <y>9</y>
+                <y>7</y>
             </Position>
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
             <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>5</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>6</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>7</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>8</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>7</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>1</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>2</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>5</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>6</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>7</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>8</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>9</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>1</x>
+                <y>9</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>2</x>
+                <y>9</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>3</x>
+                <y>9</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
             <Position>
                 <x>4</x>
                 <y>9</y>
@@ -1819,7 +873,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>9</y>
@@ -1843,7 +897,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>9</y>
@@ -1945,12 +999,37 @@
                 <y>10</y>
             </Position>
         </Tiles>
+        <Width>11</Width>
     </Rooms>
     <Rooms>
-        <EntranceSafety>0.0</EntranceSafety>
+        <ConnectingRooms>
+            <StartDoorPosition>
+                <x>10</x>
+                <y>3</y>
+            </StartDoorPosition>
+            <TargetDoorPosition>
+                <x>0</x>
+                <y>1</y>
+            </TargetDoorPosition>
+            <ToRoomID>0</ToRoomID>
+        </ConnectingRooms>
+        <ConnectingRooms>
+            <StartDoorPosition>
+                <x>10</x>
+                <y>9</y>
+            </StartDoorPosition>
+            <TargetDoorPosition>
+                <x>0</x>
+                <y>7</y>
+            </TargetDoorPosition>
+            <ToRoomID>0</ToRoomID>
+        </ConnectingRooms>
+        <EntranceSafety>0.380952388048172</EntranceSafety>
+        <Height>11</Height>
+        <RoomID>1</RoomID>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>0</y>
@@ -1958,7 +1037,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>0</y>
@@ -1966,7 +1045,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>2</x>
                 <y>0</y>
@@ -1974,7 +1053,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>3</x>
                 <y>0</y>
@@ -1982,7 +1061,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>4</x>
                 <y>0</y>
@@ -1990,7 +1069,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>5</x>
                 <y>0</y>
@@ -1998,7 +1077,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>0</y>
@@ -2006,7 +1085,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>7</x>
                 <y>0</y>
@@ -2014,7 +1093,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>8</x>
                 <y>0</y>
@@ -2022,7 +1101,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>0</y>
@@ -2030,7 +1109,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>0</y>
@@ -2038,7 +1117,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>1</y>
@@ -2046,7 +1125,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>1</y>
@@ -2070,7 +1149,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>4</x>
                 <y>1</y>
@@ -2086,7 +1165,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>1</y>
@@ -2102,7 +1181,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>8</x>
                 <y>1</y>
@@ -2110,10 +1189,186 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>1</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>1</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>2</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>3</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>5</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>6</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>7</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>10</x>
+                <y>2</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>WALL</Type>
+            <Position>
+                <x>0</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>1</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>2</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>ENEMY</Type>
+            <Position>
+                <x>3</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>4</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>5</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>6</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>TREASURE</Type>
+            <Position>
+                <x>7</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>8</x>
+                <y>3</y>
+            </Position>
+        </Tiles>
+        <Tiles>
+            <Immutable>false</Immutable>
+            <Type>FLOOR</Type>
+            <Position>
+                <x>9</x>
+                <y>3</y>
             </Position>
         </Tiles>
         <Tiles>
@@ -2121,188 +1376,12 @@
             <Type>DOORENTER</Type>
             <Position>
                 <x>10</x>
-                <y>1</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>0</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>10</x>
-                <y>2</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>0</x>
                 <y>3</y>
             </Position>
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>1</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>2</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>3</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>4</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>5</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>6</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>7</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>8</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>9</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
-            <Position>
-                <x>10</x>
-                <y>3</y>
-            </Position>
-        </Tiles>
-        <Tiles>
-            <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>4</y>
@@ -2318,7 +1397,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>ENEMY</Type>
             <Position>
                 <x>2</x>
                 <y>4</y>
@@ -2342,7 +1421,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>5</x>
                 <y>4</y>
@@ -2350,7 +1429,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>6</x>
                 <y>4</y>
@@ -2382,7 +1461,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>4</y>
@@ -2390,7 +1469,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>5</y>
@@ -2398,7 +1477,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>5</y>
@@ -2422,7 +1501,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>4</x>
                 <y>5</y>
@@ -2430,7 +1509,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>5</x>
                 <y>5</y>
@@ -2438,7 +1517,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>5</y>
@@ -2462,7 +1541,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>5</y>
@@ -2470,7 +1549,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>5</y>
@@ -2478,7 +1557,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>6</y>
@@ -2486,7 +1565,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>6</y>
@@ -2518,7 +1597,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>5</x>
                 <y>6</y>
@@ -2558,7 +1637,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>6</y>
@@ -2566,7 +1645,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>7</y>
@@ -2574,7 +1653,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>7</y>
@@ -2582,7 +1661,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>2</x>
                 <y>7</y>
@@ -2638,7 +1717,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>7</y>
@@ -2646,7 +1725,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>7</y>
@@ -2654,7 +1733,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>8</y>
@@ -2662,7 +1741,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>1</x>
                 <y>8</y>
@@ -2670,7 +1749,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>2</x>
                 <y>8</y>
@@ -2678,7 +1757,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>3</x>
                 <y>8</y>
@@ -2734,7 +1813,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>8</y>
@@ -2742,7 +1821,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>9</y>
@@ -2750,7 +1829,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>9</y>
@@ -2758,7 +1837,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>TREASURE</Type>
             <Position>
                 <x>2</x>
                 <y>9</y>
@@ -2766,7 +1845,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>3</x>
                 <y>9</y>
@@ -2790,7 +1869,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>9</y>
@@ -2814,7 +1893,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>9</y>
@@ -2830,7 +1909,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>0</x>
                 <y>10</y>
@@ -2838,7 +1917,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>1</x>
                 <y>10</y>
@@ -2846,7 +1925,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>2</x>
                 <y>10</y>
@@ -2854,7 +1933,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>3</x>
                 <y>10</y>
@@ -2862,7 +1941,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>4</x>
                 <y>10</y>
@@ -2870,7 +1949,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>5</x>
                 <y>10</y>
@@ -2878,7 +1957,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>6</x>
                 <y>10</y>
@@ -2886,7 +1965,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>7</x>
                 <y>10</y>
@@ -2894,7 +1973,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>8</x>
                 <y>10</y>
@@ -2902,7 +1981,7 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>9</x>
                 <y>10</y>
@@ -2910,11 +1989,12 @@
         </Tiles>
         <Tiles>
             <Immutable>false</Immutable>
-            <Type>FLOOR</Type>
+            <Type>WALL</Type>
             <Position>
                 <x>10</x>
                 <y>10</y>
             </Position>
         </Tiles>
+        <Width>11</Width>
     </Rooms>
 </DungeonModel>

@@ -16,9 +16,19 @@ public class RoomModel
     this.EntranceSafety = EntranceSafety;
   }
 
+
+  [XmlElement(ElementName = "ConnectingRooms")]
+  public RoomEdgeModel[] ConnectingRoomIDs { get; set; }
+
   //Required markup for collections
   [XmlElement(ElementName = "Tiles")]
   public Tile[] Tiles { get; set; }
+
+  public int RoomID { get; set; }
+
+  public int Width { get; set; }
+
+  public int Height { get; set; }
 
   public double EntranceSafety { get; set; }
 }

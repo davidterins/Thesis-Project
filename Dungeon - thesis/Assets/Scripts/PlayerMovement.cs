@@ -14,13 +14,14 @@ public class PlayerMovement : MonoBehaviour {
 
     //private CharacterStat plStat;
 
-    void Start(Graph pathGraph) {
-        //plStat = GetComponent<CharacterStat>();
-        this.pathGraph = pathGraph;
+    //Tog bort pathgraph parametern i start då start inte får overridas att ta någon parameter.
+    void Start() {
+   
+        //this.pathGraph = pathGraph;
         hasTarget = false;
         interruptPath = false;
-        walkSpeed = 1; //(float)(plStat.Speed + (plStat.Agility / 5));
-        maxSpeed = 4;// walkSpeed + (walkSpeed / 2);
+        walkSpeed = 1;
+        maxSpeed = 4;
 
     }
 
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Acquire path if agent has no target and isn't instructed to change path
         if (!hasTarget || interruptPath) {
-            path = AcquirePath();
+            //path = AcquirePath();
             hasTarget = true;
             interruptPath = false;
         }
@@ -40,8 +41,8 @@ public class PlayerMovement : MonoBehaviour {
         Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f));
     }
 
-    List<Node> AcquirePath() {
-        return pathGraph.FindPath(this.transform.position, null);
-    }
+    //List<Node> AcquirePath() {
+    //    return pathGraph.FindPath(this.transform.position, null);
+    //}
 }
 
