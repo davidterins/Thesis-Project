@@ -6,43 +6,53 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     // Normal Movements Variables
     private float walkSpeed;
-    private float curSpeed;
-    private float maxSpeed;
-    private Graph pathGraph;
+    //private float curSpeed;
+    //private float maxSpeed;
     private bool hasTarget, interruptPath;
+    private bool isBetweenTiles = false;
+    private Graph pathGraph;
     private List<Node> path;
+    //private RoomModel currentRoom;
+    private Tile targetTile;
+    private int pathIndex = 0;
+    private MapBuilderManager mbm;
 
     //private CharacterStat plStat;
-
-    //Tog bort pathgraph parametern i start då start inte får overridas att ta någon parameter.
+    
     void Start() {
-   
-        //this.pathGraph = pathGraph;
+        pathGraph = GameObject.Find("A*").transform.GetComponent<Graph>();
+        //currentRoom = GameObject.Find("MapBuilder").GetComponent<MapBuilderManager>().GetCurrentRoom();
+        mbm = GameObject.Find("MapBuilder").GetComponent<MapBuilderManager>();
         hasTarget = false;
         interruptPath = false;
         walkSpeed = 1;
-        maxSpeed = 4;
-
     }
 
     void FixedUpdate() {
-        curSpeed = walkSpeed;
-        maxSpeed = curSpeed;
+        //curSpeed = walkSpeed;
+        //maxSpeed = curSpeed;
 
         // Acquire path if agent has no target and isn't instructed to change path
-        if (!hasTarget || interruptPath) {
-            //path = AcquirePath();
+        if ((!hasTarget || interruptPath) && !isBetweenTiles) {
+            path = pathGraph.FindPath(mbm.GetBaseLayer().GetTile(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0)), targetTile); // FindPath(startTile, targetTile)
             hasTarget = true;
             interruptPath = false;
         }
 
-        // Move senteces
-        GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
-        Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f));
-    }
+        // Move a tile
+        if (hasTarget && isBetweenTiles)
+            transform.position = Vector3.MoveTowards(transform.position, path[pathIndex].position, walkSpeed);
+        if (Vector3.Distance(transform.position, path[pathIndex].position) < 0.001f) {
+            isBetweenTiles = false;
+            pathIndex++;
+            if (pathIndex > path.Count) {   // >= ?
+                hasTarget = false;
+            }
+        }
 
-    //List<Node> AcquirePath() {
-    //    return pathGraph.FindPath(this.transform.position, null);
-    //}
+        // Move senteces
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
+        //Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f));
+    }
 }
 
