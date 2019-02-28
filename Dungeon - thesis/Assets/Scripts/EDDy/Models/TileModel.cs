@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System;
+using System.Xml.Serialization;
 
 [Serializable]
-public class Tile
+[XmlRoot(ElementName ="Tile")]
+public class TileModel
 {
-  public Tile(){}
+  public TileModel(){}
 
-  public Tile(Vector2 Position, bool Immutable)
+  public TileModel(Vector2 Position, bool Immutable)
   {
     this.Position = Position;
     this.Immutable = Immutable;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class DungeonImporter : MonoBehaviour
 {
   [SerializeField]
-  readonly string mapFileName = "DungeonTest.map";
+  string mapFileName = "DungeonTest.map";
 
   public DungeonModel Dungeon { get { return ImportDungeon(); } }
 

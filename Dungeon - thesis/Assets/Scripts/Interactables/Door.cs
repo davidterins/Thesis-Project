@@ -27,11 +27,10 @@ public class Door : MonoBehaviour
   void DoorEnter(GameObject player)
   {
 
-    var room = MapBuilderManager.Singleton.DungeonRoomLookup[TargetRoomID];
-    var tile = room.Tiles.Where(o => (int)o.Position.x == (int)TargetDoorPosition.x && (int)o.Position.y == (int)TargetDoorPosition.y).FirstOrDefault();
-
+   // var room = RoomBuilder.Singleton.DungeonRoomLookup[TargetRoomID];
+    //var tile = room.Tiles.Where(o => (int)o.Position.x == (int)TargetDoorPosition.x && (int)o.Position.y == (int)TargetDoorPosition.y).FirstOrDefault();
     //Att göra async sen
-    MapBuilderManager.Singleton.BuildRoom(TargetRoomID);
+   // RoomBuilder.Singleton.BuildRoom(TargetRoomID);
     Debug.Log("Collided with Exit Door");
   }
 }
