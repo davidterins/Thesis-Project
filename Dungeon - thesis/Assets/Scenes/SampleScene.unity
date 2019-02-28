@@ -139,15 +139,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 131168171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f04b1e3c5ac246a5af76f9caf9bcd40, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d015256bfc841fe90e8b48d654346e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DungeonImporter: {fileID: 131168173}
   BaseTileLayer: {fileID: 656876107}
   CollideLayer: {fileID: 1378491194}
-  FloorTile: {fileID: 11400000, guid: 2b5cbf76061b34698b6de1d71dc91145, type: 2}
+  FloorTile: {fileID: 11400000, guid: 09294dcba7c6e42c7b8a4c64db44a725, type: 2}
   WallTile: {fileID: 11400000, guid: d1e73dbdde28242909560091032f5b4a, type: 2}
   DoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
   DoorEnterTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015, type: 2}
@@ -170,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b36601f8d8c4f5bb77ac1c036c5b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapFileName: DungeonTest.map
 --- !u!4 &131168174
 Transform:
   m_ObjectHideFlags: 0
@@ -213,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b36601f8d8c4f5bb77ac1c036c5b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapFileName: DungeonTest.map
 --- !u!4 &419876740
 Transform:
   m_ObjectHideFlags: 0
@@ -321,7 +320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -336,6 +335,12 @@ Tilemap:
 --- !u!1839735485 &1378491194 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 5599129751775478033, guid: 992d8de451d84463eb7806181c1ff3c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5599129753149512235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!156049354 &1510127287 stripped
+Grid:
+  m_CorrespondingSourceObject: {fileID: 5599129751908166812, guid: 992d8de451d84463eb7806181c1ff3c4,
     type: 3}
   m_PrefabInstance: {fileID: 5599129753149512235}
   m_PrefabAsset: {fileID: 0}
@@ -392,6 +397,11 @@ PrefabInstance:
     - target: {fileID: 7240405267535533123, guid: 992d8de451d84463eb7806181c1ff3c4,
         type: 3}
       propertyPath: m_Name
+      value: Dungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240405267535533123, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: m_TagString
       value: Dungeon
       objectReference: {fileID: 0}
     - target: {fileID: 1735256197163533581, guid: 992d8de451d84463eb7806181c1ff3c4,
@@ -454,5 +464,20 @@ PrefabInstance:
       propertyPath: DungeonImporter
       value: 
       objectReference: {fileID: 419876739}
+    - target: {fileID: 8560288142746792608, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: worldGrid
+      value: 
+      objectReference: {fileID: 1510127287}
+    - target: {fileID: 5599129751908166812, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599129751908166812, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 992d8de451d84463eb7806181c1ff3c4, type: 3}
