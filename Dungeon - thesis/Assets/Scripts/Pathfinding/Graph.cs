@@ -70,10 +70,10 @@ public class Graph : MonoBehaviour {
                     continue;
                 }
 
-                int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+        float newMovementCostToNeighbour = currentNode.gCost + Vector3.Distance(currentNode.GetFloatPosition(), neighbour.GetFloatPosition());// GetDistance(currentNode, neighbour);
                 if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
                     neighbour.gCost = newMovementCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
+                    neighbour.hCost = Vector3.Distance(currentNode.GetFloatPosition(), neighbour.GetFloatPosition());// GetDistance(neighbour, targetNode);
                     neighbour.parent = currentNode;
 
                     if (!openSet.Contains(neighbour))
@@ -125,7 +125,7 @@ public class Graph : MonoBehaviour {
                 }
             }
         }
-        Debug.Log("Node at [" + node.position.x + "," + node.position.y + "] " + "has " + neighbours.Count + " neighbours");
+        //Debug.Log("Node at [" + node.position.x + "," + node.position.y + "] " + "has " + neighbours.Count + " neighbours");
         return neighbours;
     }
 
@@ -135,10 +135,10 @@ public class Graph : MonoBehaviour {
     /// <param name="nodeA">Node A</param>
     /// <param name="nodeB">Node B</param>
     /// <returns></returns>
-    private int GetDistance(Node nodeA, Node nodeB) {
+    private float GetDistance(Node nodeA, Node nodeB) {
         int distX = nodeA.position.x - nodeB.position.x;
         int distY = nodeB.position.y - nodeB.position.y;
-
+   
         if (distX > distY)
             return 14 * distY + 10 * (distX - distY);
         else

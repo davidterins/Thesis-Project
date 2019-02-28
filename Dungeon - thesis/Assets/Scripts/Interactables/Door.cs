@@ -11,8 +11,6 @@ public class Door : MonoBehaviour
 
   }
 
-  //Vector2 StartDoorPosition { get; set; }
-
   public Vector2 TargetDoorPosition { get; set; }
 
   public int TargetRoomID { get; set; }
@@ -26,11 +24,8 @@ public class Door : MonoBehaviour
 
   void DoorEnter(GameObject player)
   {
+    GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().BuildNewRoom(TargetRoomID);
 
-   // var room = RoomBuilder.Singleton.DungeonRoomLookup[TargetRoomID];
-    //var tile = room.Tiles.Where(o => (int)o.Position.x == (int)TargetDoorPosition.x && (int)o.Position.y == (int)TargetDoorPosition.y).FirstOrDefault();
-    //Att göra async sen
-   // RoomBuilder.Singleton.BuildRoom(TargetRoomID);
     Debug.Log("Collided with Exit Door");
   }
 }

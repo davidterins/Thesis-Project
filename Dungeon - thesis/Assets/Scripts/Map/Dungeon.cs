@@ -41,13 +41,10 @@ public class Dungeon : MonoBehaviour
 
   public void BuildNewRoom(int roomID)
   {
-    //RoomBuilder.Singleton.BuildRoom(RoomLookup[InitialRoomID]);
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
+    var prevRoom = transform.Find("Room " + CurrentRoom.RoomID).gameObject;
+    CurrentRoom = RoomLookup[roomID];
+    RoomBuilder.Singleton.BuildRoom(RoomLookup[roomID]);
+    Destroy(prevRoom);
   }
 
   /// <summary>

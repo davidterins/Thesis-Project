@@ -8,8 +8,8 @@ public class Node {     // TODO: struct istället
     public Vector3Int position;
     public TileType tileType;
     public Node parent;
-    public int gCost, hCost;
-    public int fCost { get { return gCost + hCost; } }
+    public float gCost, hCost;
+    public float fCost { get { return gCost + hCost; } }
 
     public Node(Vector3Int position, TileType tileType) {
         this.position = position;

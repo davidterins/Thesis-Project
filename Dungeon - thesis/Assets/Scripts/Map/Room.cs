@@ -23,13 +23,6 @@ public class Room : MonoBehaviour
 
   public double EntranceSafety { get; private set; }
 
-
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
   /// <summary>
   /// Used as a contructor to build the acutal room from its model.
   /// </summary>
