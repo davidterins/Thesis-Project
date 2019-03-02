@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class TreasureChest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+  bool IsClosed = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  [SerializeField]
+  GameObject[] Loot = null;
 
-  private void OnCollisionEnter2D(Collision2D collision)
+  void Start()
   {
-    Debug.Log("Collided with chest");
+
+  }
+
+  void Open()
+  {
+    foreach(var item in Loot)
+    {
+      Instantiate(item, transform);
+    }
+    IsClosed = false;
+  }
+
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (IsClosed)
+      if (collision.gameObject.CompareTag("Player"))
+      {
+        Open();
+        Debug.Log(" Player collided with chest");
+      }
+
   }
 }

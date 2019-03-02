@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
 
   void TemporaryWalkOnMouseClick()
   {
-
     if (Input.GetMouseButtonDown(0))
     {
       interruptPath = true;
@@ -37,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
       var tile = dungeon.CurrentRoom.Tiles2D[mousePos.x, mousePos.y];
       if (tile != null)
       {
-        Debug.Log(string.Format("Tile is: {0}", tile.Type));
+        //Debug.Log(string.Format("Tile is: {0}", tile.Type));
         // Acquire path if agent has no target and isn't instructed to change path
         if (!hasTarget || interruptPath)
         {

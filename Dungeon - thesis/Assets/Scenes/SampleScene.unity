@@ -563,6 +563,11 @@ PrefabInstance:
       propertyPath: m_MaskInteraction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5599129751775478034, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 992d8de451d84463eb7806181c1ff3c4, type: 3}
 --- !u!1001 &8314118997503103963
