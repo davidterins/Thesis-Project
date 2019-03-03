@@ -11,6 +11,8 @@ public class InformationUpdater : MonoBehaviour {
     }
 
     public void Update() {
-        infoText.text = "Information:\nPlayer pos: " + InfoBox.playerTile + "\nTarget pos: " + InfoBox.targetTile + "\nPath length: " + InfoBox.pathLength + "\nSteps left: " + InfoBox.stepsLeft + "\nHP: " + InfoBox.hp;
+        infoText.text = "Information:\nPlayer pos: " + InfoBox.playerTile + "\nTarget pos: " + 
+                        InfoBox.targetTile + "\nPath length: " + InfoBox.pathLength + "\nSteps left: " + InfoBox.stepsLeft + 
+                        "\nMemory: " + InfoBox.GetMemory() + "\nHP: " + InfoBox.hp;
     }
 }
