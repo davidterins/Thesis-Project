@@ -97,17 +97,25 @@ public class PlayerMovement : MonoBehaviour {
     /// Scan the area around the agent for memorable tiles.
     /// </summary>
     private void Scan() {
-        RaycastHit hitInfo;
-        Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.up) * sightRange);
-        for (int i = 0; i < 360 / scanRotation; i++) {
-            ray = new Ray(transform.position, ray.direction * sightRange);
-            if (Physics.Raycast(ray, out hitInfo, sightRange)) {
-                Debug.DrawLine(ray.origin, hitInfo.point, Color.green);
-            }
-            else
-                Debug.DrawLine(ray.origin, ray.origin + ray.direction * sightRange, Color.red);
-            ray.direction = Quaternion.AngleAxis(scanRotation, Vector3.forward) * ray.direction;
-        }      
+        //RaycastHit hitInfo;
+        //Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.up) * sightRange);
+        //for (int i = 0; i < 360 / scanRotation; i++) {
+        //    ray = new Ray(transform.position, ray.direction * sightRange);
+        //    if (Physics.Raycast(ray, out hitInfo, sightRange)) {
+        //        Debug.DrawLine(ray.origin, hitInfo.point, Color.green);
+        //    }
+        //    else
+        //        Debug.DrawLine(ray.origin, ray.origin + ray.direction * sightRange, Color.red);
+        //    ray.direction = Quaternion.AngleAxis(scanRotation, Vector3.forward) * ray.direction;
+        //}     
+
+
+        // När den försöker fråga TileModel vilken typ den är så fungerar inte det.
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up * 5f/*, LayerMask.GetMask("Wall")*//* * sightRange*/);
+        //for (int i = 0; i < 360 / scanRotation; i++) {
+        if (hitInfo.collider.gameObject.GetComponent<TileModel>().Type == TileType.WALL)
+            Debug.Log("Wall hit");
+        //}
     }
 
     private void RemoveNodeFromMemory(Node node) {
