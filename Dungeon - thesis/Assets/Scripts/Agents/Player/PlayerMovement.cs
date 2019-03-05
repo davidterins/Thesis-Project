@@ -177,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             //när den ska hämtas ur CurrentRoom.Tiles2D, blir fel ibland. Om du kollar Raysen i debug så ser du att ibland
             //blir den avrundad nedåt och då hamnar rayn på en floor tile.
             TileModel tile = dungeon.CurrentRoom.Tiles2D[(int)offSetHitpoint.x, (int)offSetHitpoint.y];
-            Debug.Log("Hit " + tile.Type);
+            //Debug.Log("Hit " + tile.Type);
             Debug.DrawLine(rayOrigin, offSetHitpoint, Color.green);
           }
         }

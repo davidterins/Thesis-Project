@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RangedAttack_Action : Action_Goap
+{
+  public RangedAttack_Action(Action action) : base(action)
+  {
+    ID = ActionID.RangedAttackAction;
+
+    PreConditions = new WorldState[]
+    {
+      WorldState.RangedEquiped,
+      WorldState.TargetInRange
+     };
+
+    Effects = new WorldState[]
+    {
+     WorldState.EnemyDead
+     };
+  }
+}
