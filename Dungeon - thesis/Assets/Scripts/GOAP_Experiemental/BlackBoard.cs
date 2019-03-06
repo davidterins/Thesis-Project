@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public class BlackBoard : MonoBehaviour
 {
-  GameObject dungeonObj;
+
   void Start()
   {
-    dungeonObj= GameObject.FindWithTag("Dungeon");
+
   }
 
   void Update()

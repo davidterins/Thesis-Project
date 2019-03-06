@@ -33,8 +33,7 @@ public class GoapViewController : MonoBehaviour
     PlanText.text = "Plan:";
 
     int index = 1;
-    while (actions.Count > 0)
-      PlanText.text += "\n" + index++ + ". " + actions.Pop();
-
+    foreach(ActionID action in actions)
+      PlanText.text += "\n" + index++ + ". " + action;
   }
 }

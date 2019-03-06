@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class Action_Goap
 {
-  public event EventHandler<ActionFinishedEventArgs> ActionCallback;
+  public virtual event EventHandler<ActionFinishedEventArgs> OnActionFinished;
 
   protected Action action;
 
+  /// <summary>
+  /// Dessa tre måste sättas i konstruktorn i varje action.
+  /// </summary>
   public int cost = 1;
-
   public ActionID ID;
-
   public WorldState[] Effects { get; protected set; }
-
   public WorldState[] PreConditions { get; protected set; }
 
+  /// <summary>
+  /// Action behövs antagligen inte skickas in sen.
+  /// </summary>
+  /// <param name="action">Action.</param>
   public Action_Goap(Action action)
   {
     Effects = new WorldState[0];
@@ -24,19 +28,36 @@ public class Action_Goap
     this.action = action;
   }
 
-  public virtual void ExecuteAction()
+  public virtual void Enter()
   {
-    action.Invoke();
+    Debug.Log("Entered: " + ID);
   }
 
-  public bool ActionCompleted { get; private set; }
+  public virtual void Execute()
+  {
+    //action.Invoke();
+  }
 
+  protected void Interrupted()
+  {
+    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Failed));
+  }
+
+  protected void Successfull()
+  {
+    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Successfull));
+  }
+
+  protected void RunAgain()
+  {
+    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.RunAgain));
+  }
 
   public WorldStateSet ApplyEffects(WorldStateSet worldState)
   {
     WorldStateSet appliedWorldState = (WorldStateSet)worldState.Clone();
 
-    foreach(WorldState effect in Effects)
+    foreach (WorldState effect in Effects)
     {
       appliedWorldState[effect] = true;
     }
@@ -45,11 +66,10 @@ public class Action_Goap
 
   public bool IsValidInWorldState(WorldStateSet worldState)
   {
-    foreach(WorldState precondition in PreConditions)
+    foreach (WorldState precondition in PreConditions)
     {
       if (!worldState[precondition])
         return false;
-
     }
     return true;
   }

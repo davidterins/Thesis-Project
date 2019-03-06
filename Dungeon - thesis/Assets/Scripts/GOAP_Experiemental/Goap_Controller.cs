@@ -5,17 +5,18 @@ using System;
 
 public class Goap_Controller : MonoBehaviour
 {
-  List<Action_Goap> playerActions;
+
   Dictionary<ActionID, Action_Goap> playerActionLookup = new Dictionary<ActionID, Action_Goap>();
-
-  List<Goal_Goap> playerGoals;
-  Planner_Goap planner;
-
   Stack<ActionID> plan;
+
+  List<Action_Goap> playerActions;
+  List<Goal_Goap> playerGoals;
+
   Goal_Goap currentGoal;
   Action_Goap currentAction;
 
   BlackBoard blackBoard;
+  Planner_Goap planner;
 
   // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
@@ -53,9 +54,8 @@ public class Goap_Controller : MonoBehaviour
     foreach (Action_Goap action in playerActions)
     {
       playerActionLookup.Add(action.ID, action);
-      action.ActionCallback += Action_ActionCallback;
+      action.OnActionFinished += Action_ActionCallback;
     }
-
   }
 
   /// <summary>
@@ -69,7 +69,18 @@ public class Goap_Controller : MonoBehaviour
     switch (e.Result)
     {
       case ActionCallback.Successfull:
-        //playerActionLookup[plan.Pop()].ExecuteAction();
+        if(plan.Count > 0)
+        {
+          currentAction = playerActionLookup[plan.Pop()];
+          currentAction.Enter();
+        }
+        else
+        {
+          currentGoal = GetNewGoal();
+          plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+          currentAction = playerActionLookup[plan.Pop()];
+          currentAction.Enter();
+        }
         break;
       case ActionCallback.Failed:
         //currentGoal = GetNewGoal();
@@ -88,19 +99,25 @@ public class Goap_Controller : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.P))
     {
       // planner.CreateActionGraph(playerActionLookup);
-      var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
-      currentGoal = GetNewGoal();
-      viewControl.SetGoal(currentGoal);
 
+      currentGoal = GetNewGoal();
       plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+
+      var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+      viewControl.SetGoal(currentGoal);
       viewControl.SetPlan(plan);
 
-      while (plan.Count > 0)
-      {
-        currentAction = playerActionLookup[plan.Pop()];
-        currentAction.ExecuteAction();
-      }
+      currentAction = playerActionLookup[plan.Pop()];
+      currentAction.Enter();
+      //while (plan.Count > 0)
+      //{
+        
+      //  currentAction = playerActionLookup[plan.Pop()];
+
+      //}
     }
+    if (currentAction != null)
+      currentAction.Execute();
   }
 
   /// <summary>
@@ -130,32 +147,33 @@ public class Goap_Controller : MonoBehaviour
 
   private void DoMeele()
   {
-    Debug.Log("Running Meele action");
+    //Debug.Log("Running Meele action");
+
   }
 
   private void DoRanged()
   {
-    Debug.Log("Running Ranged action");
+    //Debug.Log("Running Ranged action");
   }
 
   private void DoChangeWeapon()
   {
-    Debug.Log("Running Changed weapon");
+    //Debug.Log("Running Changed weapon");
   }
 
   private void NoneAction()
   {
-    Debug.Log("Running action None");
+    //Debug.Log("Running action None");
   }
 
   private void GotoAction()
   {
-    Debug.Log("Running Goto action");
+    //Debug.Log("Running Goto action");
   }
 
   private void PickupMethod()
   {
-    Debug.Log("Running pickup action");
+    //Debug.Log("Running pickup action");
   }
 
   /// <summary>
@@ -165,7 +183,7 @@ public class Goap_Controller : MonoBehaviour
   {
     foreach (var action in playerActions)
     {
-      action.ActionCallback -= Action_ActionCallback;
+      action.OnActionFinished -= Action_ActionCallback;
     }
   }
 }

@@ -20,5 +20,11 @@ public class MeeleAttack_Action : Action_Goap
      WorldState.EnemyDead
      };
   }
+
+  public override void Execute()
+  {
+    base.Execute();
+    Successfull();
+  }
 }
 

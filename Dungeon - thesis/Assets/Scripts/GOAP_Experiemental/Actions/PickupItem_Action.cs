@@ -14,4 +14,10 @@ public class PickupItem_Action : Action_Goap
     Effects = new WorldState[] { WorldState.HasItem };
    
   }
+
+  public override void Execute()
+  {
+    base.Execute();
+    Successfull();
+  }
 }

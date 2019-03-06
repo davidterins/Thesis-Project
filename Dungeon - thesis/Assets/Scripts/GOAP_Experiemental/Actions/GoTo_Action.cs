@@ -2,10 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Go to action.
+/// TODO Skulle behöva en targetManager
+/// </summary>
 public class GoTo_Action : Action_Goap
 {
-  GameObject owner;
+  private readonly GameObject owner;
+  Movement movement;
+
   public GoTo_Action(GameObject owner, Action action) : base(action)
   {
     this.owner = owner;
@@ -20,12 +25,21 @@ public class GoTo_Action : Action_Goap
      };
   }
 
-  public override void ExecuteAction()
+  public override void Enter()
   {
-    //var movement = owner.GetComponent<PlayerMovement>();
+    base.Enter();
+    movement = owner.GetComponent<Movement>();
+    movement.MoveToTarget();
+  }
 
-    //movement.MoveToTarget();
+  public override void Execute()
+  {
 
-    base.ExecuteAction();
+    if(!movement.HasTarget)
+    {
+      Successfull();
+    }
+
+    base.Execute();
   }
 }

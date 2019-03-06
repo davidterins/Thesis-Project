@@ -7,10 +7,6 @@ public class KillEnemy_Goal : Goal_Goap
   public KillEnemy_Goal(Planner_Goap planner) : base(planner)
   {
     GoalWorldstates.Add(WorldState.EnemyDead, true);
-    GoalWorldstates = new WorldStateSet()
-    {
-      {WorldState.EnemyDead, true},
-    };
   }
 
   //Calculate relevancy to loot something.

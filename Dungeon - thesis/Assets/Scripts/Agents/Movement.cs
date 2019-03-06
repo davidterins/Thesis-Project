@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
   // Normal Movements Variables
   private float walkSpeed;
@@ -17,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
   private Vector3 offset;
   private float scanRotation = 5f;
 
+  public bool PathInterrupted { get { return interruptPath; } }
+  public bool HasTarget { get { return hasTarget; } }
+
   void Start()
   {
     hasTarget = false;
@@ -26,6 +28,40 @@ public class PlayerMovement : MonoBehaviour
     offset = new Vector3(-0.5f, -0.5f, 0.0f);
   }
 
+
+  /// <summary>
+  /// Tillfälligt för att sätta en random tile som target så att den kan användas 
+  /// i GotoAction.
+  /// </summary>
+  public void MoveToTarget()
+  {
+    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+
+    List<TileModel> possibleTiles = new List<TileModel>(dungeon.CurrentRoom.Tiles2D.Length);
+    foreach (TileModel t in dungeon.CurrentRoom.Tiles2D)
+    {
+      if (t.Type != TileType.WALL)
+        possibleTiles.Add(t);
+    }
+    int randomTileIndex = Random.Range(0, possibleTiles.Count);
+    Vector2 target = possibleTiles[randomTileIndex].Position;
+
+    // Acquire path if agent has no target and isn't instructed to change path
+    if (!hasTarget || interruptPath)
+    {
+      var room = dungeon.CurrentRoom;
+      var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
+
+      path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[(int)target.x, (int)target.y]);
+      pathIndex = 0;
+      if (path.Count <= 0 && path != null)
+        hasTarget = false;
+      else
+        hasTarget = true;
+      interruptPath = false;
+    }
+
+  }
 
   void TemporaryWalkOnMouseClick()
   {
