@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeeleAttack_Action : Action_Goap
 {
-  public MeeleAttack_Action(Action action) : base(action)
+  public MeeleAttack_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.MeeleAttackAction;
 

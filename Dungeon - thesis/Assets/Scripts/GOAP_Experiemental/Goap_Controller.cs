@@ -37,12 +37,12 @@ public class Goap_Controller : MonoBehaviour
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>(){
-          new PickupItem_Action(new Action(PickupMethod)),
-          new GoTo_Action(gameObject, new Action(GotoAction)),
-          new MeeleAttack_Action(new Action(DoMeele)),
-          new RangedAttack_Action(new Action(DoRanged)),
-          new ChangeWeapon_Action(new Action(DoChangeWeapon)),
-          new Action_Goap(new Action(NoneAction))
+          new PickupItem_Action(gameObject),
+          new GoTo_Action(gameObject),
+          new MeeleAttack_Action(gameObject),
+          new RangedAttack_Action(gameObject),
+          new ChangeWeapon_Action(gameObject),
+          new Action_Goap(gameObject)
         };
 
     playerGoals = new List<Goal_Goap>()

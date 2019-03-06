@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PickupItem_Action : Action_Goap
 {
-  public PickupItem_Action(Action action) : base(action)
+  public PickupItem_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.PickupAction;
 

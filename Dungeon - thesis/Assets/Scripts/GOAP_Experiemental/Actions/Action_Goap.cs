@@ -8,6 +8,7 @@ public class Action_Goap
   public virtual event EventHandler<ActionFinishedEventArgs> OnActionFinished;
 
   protected Action action;
+  protected readonly GameObject owner;
 
   /// <summary>
   /// Dessa tre måste sättas i konstruktorn i varje action.
@@ -21,11 +22,12 @@ public class Action_Goap
   /// Action behövs antagligen inte skickas in sen.
   /// </summary>
   /// <param name="action">Action.</param>
-  public Action_Goap(Action action)
+  public Action_Goap(GameObject owner/*Action action*/)
   {
     Effects = new WorldState[0];
     PreConditions = new WorldState[0];
-    this.action = action;
+    this.owner = owner;
+    //this.action = action;
   }
 
   public virtual void Enter()

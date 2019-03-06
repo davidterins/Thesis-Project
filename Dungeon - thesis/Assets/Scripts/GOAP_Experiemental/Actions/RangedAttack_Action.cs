@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RangedAttack_Action : Action_Goap
 {
-  public RangedAttack_Action(Action action) : base(action)
+  public RangedAttack_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.RangedAttackAction;
 

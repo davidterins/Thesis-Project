@@ -8,12 +8,10 @@ using UnityEngine;
 /// </summary>
 public class GoTo_Action : Action_Goap
 {
-  private readonly GameObject owner;
   Movement movement;
 
-  public GoTo_Action(GameObject owner, Action action) : base(action)
+  public GoTo_Action(GameObject owner) : base(owner)
   {
-    this.owner = owner;
     ID = ActionID.GotoAction;
 
     PreConditions = new WorldState[0];
