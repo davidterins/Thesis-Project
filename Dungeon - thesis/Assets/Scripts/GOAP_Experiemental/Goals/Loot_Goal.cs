@@ -6,11 +6,7 @@ public class Loot_Goal : Goal_Goap
 {
   public Loot_Goal(Planner_Goap planner) : base(planner)
   {
-    GoalState = WorldState.HasItem;
-    GoalWorldstates = new WorldStateSet()
-    {
-      {WorldState.HasItem, true},
-    };
+    GoalWorldstates.Add(WorldState.HasItem, true);
   }
 
 

@@ -17,6 +17,7 @@ public class Goap_Controller : MonoBehaviour
 
   BlackBoard blackBoard;
 
+  // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
   {
     {WorldState.Win, false},
@@ -32,7 +33,6 @@ public class Goap_Controller : MonoBehaviour
   void Awake()
   {
     blackBoard = GetComponent<BlackBoard>();
-
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>(){
@@ -44,7 +44,11 @@ public class Goap_Controller : MonoBehaviour
           new Action_Goap(new Action(NoneAction))
         };
 
-    
+    playerGoals = new List<Goal_Goap>()
+    {
+      new Loot_Goal(planner),
+      new KillEnemy_Goal(planner),
+    };
 
     foreach (Action_Goap action in playerActions)
     {
@@ -52,15 +56,14 @@ public class Goap_Controller : MonoBehaviour
       action.ActionCallback += Action_ActionCallback;
     }
 
-
-    playerGoals = new List<Goal_Goap>()
-    {
-      new Loot_Goal(planner),
-      new KillEnemy_Goal(planner),
-    };
-
   }
 
+  /// <summary>
+  /// Tänker att denna ska användas efter att en action är klar för att byta
+  /// action/ge info om hur det gick att utföra den actionen.
+  /// </summary>
+  /// <param name="sender">Sender.</param>
+  /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
     switch (e.Result)
@@ -69,8 +72,8 @@ public class Goap_Controller : MonoBehaviour
         //playerActionLookup[plan.Pop()].ExecuteAction();
         break;
       case ActionCallback.Failed:
-       //currentGoal = GetNewGoal();
-       //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+        //currentGoal = GetNewGoal();
+        //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
         break;
       case ActionCallback.RunAgain:
         break;
@@ -79,14 +82,13 @@ public class Goap_Controller : MonoBehaviour
     }
   }
 
-
-
+  //För testningkörning
   void Update()
   {
     if (Input.GetKeyDown(KeyCode.P))
     {
       // planner.CreateActionGraph(playerActionLookup);
-     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+      var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
       currentGoal = GetNewGoal();
       viewControl.SetGoal(currentGoal);
 
@@ -95,11 +97,18 @@ public class Goap_Controller : MonoBehaviour
 
       while (plan.Count > 0)
       {
-          playerActionLookup[plan.Pop()].ExecuteAction();
+        currentAction = playerActionLookup[plan.Pop()];
+        currentAction.ExecuteAction();
       }
     }
   }
 
+  /// <summary>
+  /// TODO Gör så att målet räknas ut från goals relevans funktion när minnet är
+  /// klart.
+  /// Att använda när agenten behöver ett nytt mål.
+  /// </summary>
+  /// <returns>The new goal.</returns>
   public Goal_Goap GetNewGoal()
   {
     Goal_Goap relevantGoal = null;
@@ -114,7 +123,6 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
-
     Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
     return playerGoals[1];// relevantGoal;
   }
@@ -148,5 +156,16 @@ public class Goap_Controller : MonoBehaviour
   private void PickupMethod()
   {
     Debug.Log("Running pickup action");
+  }
+
+  /// <summary>
+  /// signa av från actionCallbacken
+  /// </summary>
+  private void OnDestroy()
+  {
+    foreach (var action in playerActions)
+    {
+      action.ActionCallback -= Action_ActionCallback;
+    }
   }
 }

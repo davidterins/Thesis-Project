@@ -4,29 +4,39 @@ using UnityEngine;
 
 public abstract class Goal_Goap
 {
-  protected Planner_Goap planner;
+
   protected float relevancy;
-
-  public WorldState GoalState;
-
+  protected Planner_Goap planner;
   public WorldStateSet GoalWorldstates = new WorldStateSet();
-
-  Dictionary<WorldState, bool> currentState;
 
   protected Goal_Goap(Planner_Goap planner)
   {
     this.planner = planner;
+    GoalWorldstates = new WorldStateSet();
   }
 
+  /// <summary>
+  /// Checks if this goals world state is satisfied based on the world state it
+  /// in parameter
+  /// </summary>
+  /// <returns><c>true</c>, if satisfied was ised, <c>false</c> otherwise.</returns>
+  /// <param name="worldState">World state.</param>
   public virtual bool IsSatisfied(WorldStateSet worldState)
   {
-    if (worldState[GoalState])
-      return true;
-    return false;
+    foreach(var goalState in GoalWorldstates)
+    {
+      if (worldState[goalState.Key] != goalState.Value)
+        return false;
+    }
+    return true;
   }
 
-
-  // Requests the planner to create a plan to satisfy this goal
+ /// <summary>
+ /// Tries the get plan.
+ /// </summary>
+ /// <returns>The get plan.</returns>
+ /// <param name="currentState">Agentens current world state.</param>
+ /// <param name="actions">Agentens tillgängliga actions.</param>
   public Stack<ActionID> TryGetPlan(WorldStateSet currentState, List<Action_Goap> actions)
   {
     var nodePlan = planner.FindPath(currentState, this, actions);
@@ -36,25 +46,15 @@ public abstract class Goal_Goap
       actionPlan.Push(node.ID);
 
     return actionPlan;
-    
   }
 
-  public static bool operator ==(Goal_Goap lhs, Goal_Goap rhs)
-  {
-    if (lhs.GoalWorldstates == rhs.GoalWorldstates)
-      return true;
-    return false;
-  }
-
-  public static bool operator !=(Goal_Goap lhs, Goal_Goap rhs)
-  {
-    if(lhs.GoalWorldstates != rhs.GoalWorldstates)
-      return true;
-    return false;
-  }
-
-  // Determine its relevancy based on the players surroundings & memory
-  // returns a value between 0-1
+ /// <summary>
+ /// Calculates the relevancy.
+ /// Räknar ut hur relevant det här målet är baserat på vad den vet om omvärlden
+ /// genom <see cref="BlackBoard"/>
+ /// </summary>
+ /// <returns>The relevancy.</returns>
+ /// <param name="blackBoard">Black board.</param>
   public virtual float CalculateRelevancy(BlackBoard blackBoard)
   {
     return relevancy;

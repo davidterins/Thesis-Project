@@ -74,7 +74,7 @@ public class Planner_Goap
 
         Node_Goap end = currentNode;
 
-        while (end != null)
+        while (end.parent != null)
         {
           path.Add(end);
           end = end.parent;

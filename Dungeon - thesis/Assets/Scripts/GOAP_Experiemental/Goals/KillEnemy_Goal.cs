@@ -6,7 +6,7 @@ public class KillEnemy_Goal : Goal_Goap
 {
   public KillEnemy_Goal(Planner_Goap planner) : base(planner)
   {
-    GoalState = WorldState.EnemyDead;
+    GoalWorldstates.Add(WorldState.EnemyDead, true);
     GoalWorldstates = new WorldStateSet()
     {
       {WorldState.EnemyDead, true},
