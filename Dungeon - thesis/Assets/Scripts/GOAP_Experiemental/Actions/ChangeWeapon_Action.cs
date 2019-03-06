@@ -17,4 +17,15 @@ public class ChangeWeapon_Action : Action_Goap
      WorldState.RangedEquiped,
      };
   }
+
+  public override void Enter()
+  {
+    base.Enter();
+  }
+
+  public override void Execute()
+  {
+    base.Execute();
+    Successfull();
+  }
 }

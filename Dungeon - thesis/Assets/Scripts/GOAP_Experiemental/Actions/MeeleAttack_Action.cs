@@ -21,6 +21,11 @@ public class MeeleAttack_Action : Action_Goap
      };
   }
 
+  public override void Enter()
+  {
+    base.Enter();
+  }
+
   public override void Execute()
   {
     base.Execute();
