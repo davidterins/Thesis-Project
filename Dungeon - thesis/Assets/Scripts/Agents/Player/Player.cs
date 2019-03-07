@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfo : AgentInfo
+public class Player : Agent
 {
-  public int Health = 100;
   public int Coins = 0;
+
+  
 
   // Start is called before the first frame update
   void Start()

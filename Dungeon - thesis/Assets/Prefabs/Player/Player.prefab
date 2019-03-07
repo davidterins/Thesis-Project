@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4410479370439878663}
   - component: {fileID: 4410479370439878664}
   - component: {fileID: 7079450495312726950}
-  - component: {fileID: 5337748328269264090}
   - component: {fileID: 9160978396859546507}
   - component: {fileID: 3558203974496359907}
   - component: {fileID: 7054571805118619822}
   - component: {fileID: 5749715552451439655}
+  - component: {fileID: 5670900340842679014}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -123,20 +123,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00730393, y: -0.030242791}
   m_Size: {x: 0.10487743, y: 0.13569081}
   m_Direction: 0
---- !u!114 &5337748328269264090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4410479370439878666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac89c5e0a5cf4077974bafdb22ec1bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  Coins: 0
 --- !u!114 &9160978396859546507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +171,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e31864f3934e34fb41b889af8cc184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5670900340842679014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410479370439878666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9f17b2578f34633902d56116f2d5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  Coins: 0

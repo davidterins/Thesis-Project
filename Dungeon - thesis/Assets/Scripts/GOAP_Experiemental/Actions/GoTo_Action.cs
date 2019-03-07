@@ -13,6 +13,7 @@ public class GoTo_Action : Action_Goap
   public GoTo_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.GotoAction;
+    cost = 2;
 
     PreConditions = new WorldState[0];
 
@@ -26,8 +27,13 @@ public class GoTo_Action : Action_Goap
   public override void Enter()
   {
     base.Enter();
+
+    // TODO need a good way to find its current walking target.
+    // Using an enemy for now.
+
     movement = owner.GetComponent<Movement>();
-    movement.MoveToTarget();
+    var s = owner.GetComponent<BlackBoard>().AttackTarget.transform.position;
+    movement.MoveToTarget(s);
   }
 
   public override void Execute()

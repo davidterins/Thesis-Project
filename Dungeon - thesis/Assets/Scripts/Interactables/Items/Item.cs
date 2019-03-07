@@ -7,7 +7,7 @@ public abstract class Item : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    PlayerInfo agentInfo = other.gameObject.GetComponent<PlayerInfo>();
+    Player agentInfo = other.gameObject.GetComponent<Player>();
     if (agentInfo)
     {
       agentInfo.HandlePickup(this);

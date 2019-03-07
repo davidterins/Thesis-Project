@@ -26,8 +26,8 @@ public class Goap_Controller : MonoBehaviour
     {WorldState.AtTarget, false},
     {WorldState.TargetInRange, false},
     {WorldState.EnemyDead, false},
-    {WorldState.MeleeEquiped, true},
-    {WorldState.RangedEquiped, false},
+    {WorldState.MeleeEquiped, false},
+    {WorldState.RangedEquiped, true},
   };
 
 
@@ -36,7 +36,7 @@ public class Goap_Controller : MonoBehaviour
     blackBoard = GetComponent<BlackBoard>();
     planner = new Planner_Goap();
 
-    playerActions = new List<Action_Goap>(){
+    playerActions = new List<Action_Goap>{
           new PickupItem_Action(gameObject),
           new GoTo_Action(gameObject),
           new MeeleAttack_Action(gameObject),
@@ -45,7 +45,7 @@ public class Goap_Controller : MonoBehaviour
           new Action_Goap(gameObject)
         };
 
-    playerGoals = new List<Goal_Goap>()
+    playerGoals = new List<Goal_Goap>
     {
       new Loot_Goal(planner),
       new KillEnemy_Goal(planner),
@@ -76,10 +76,10 @@ public class Goap_Controller : MonoBehaviour
         }
         else
         {
-          currentGoal = GetNewGoal();
-          plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
-          currentAction = playerActionLookup[plan.Pop()];
-          currentAction.Enter();
+          //currentGoal = GetNewGoal();
+          //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+          //currentAction = playerActionLookup[plan.Pop()];
+          //currentAction.Enter();
         }
         break;
       case ActionCallback.Failed:
@@ -98,8 +98,6 @@ public class Goap_Controller : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.P))
     {
-      // planner.CreateActionGraph(playerActionLookup);
-
       currentGoal = GetNewGoal();
       plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
@@ -109,12 +107,7 @@ public class Goap_Controller : MonoBehaviour
 
       currentAction = playerActionLookup[plan.Pop()];
       currentAction.Enter();
-      //while (plan.Count > 0)
-      //{
-        
-      //  currentAction = playerActionLookup[plan.Pop()];
 
-      //}
     }
     if (currentAction != null)
       currentAction.Execute();
@@ -144,38 +137,6 @@ public class Goap_Controller : MonoBehaviour
     return playerGoals[1];// relevantGoal;
   }
 
-
-  private void DoMeele()
-  {
-    //Debug.Log("Running Meele action");
-
-  }
-
-  private void DoRanged()
-  {
-    //Debug.Log("Running Ranged action");
-  }
-
-  private void DoChangeWeapon()
-  {
-    //Debug.Log("Running Changed weapon");
-  }
-
-  private void NoneAction()
-  {
-    //Debug.Log("Running action None");
-  }
-
-  private void GotoAction()
-  {
-    //Debug.Log("Running Goto action");
-  }
-
-  private void PickupMethod()
-  {
-    //Debug.Log("Running pickup action");
-  }
-
   /// <summary>
   /// signa av från actionCallbacken
   /// </summary>
@@ -186,4 +147,5 @@ public class Goap_Controller : MonoBehaviour
       action.OnActionFinished -= Action_ActionCallback;
     }
   }
+
 }
