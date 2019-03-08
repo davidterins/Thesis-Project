@@ -7,8 +7,8 @@ public class Action_Goap
 {
   public virtual event EventHandler<ActionFinishedEventArgs> OnActionFinished;
 
-  protected Action action;
   protected readonly GameObject owner;
+  protected FSM _FSM;
 
   /// <summary>
   /// Dessa tre måste sättas i konstruktorn i varje action.
@@ -18,16 +18,12 @@ public class Action_Goap
   public WorldState[] Effects { get; protected set; }
   public WorldState[] PreConditions { get; protected set; }
 
-  /// <summary>
-  /// Action behövs antagligen inte skickas in sen.
-  /// </summary>
-  /// <param name="action">Action.</param>
-  public Action_Goap(GameObject owner/*Action action*/)
+  public Action_Goap(GameObject owner, FSM FSM)
   {
     Effects = new WorldState[0];
     PreConditions = new WorldState[0];
     this.owner = owner;
-    //this.action = action;
+    _FSM = FSM;
   }
 
   public virtual void Enter()
@@ -37,7 +33,7 @@ public class Action_Goap
 
   public virtual void Execute()
   {
-    //action.Invoke();
+
   }
 
   protected void Interrupted()

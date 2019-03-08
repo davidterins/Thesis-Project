@@ -47,6 +47,11 @@ public class Movement : MonoBehaviour
     }
   }
 
+  public void GetWithinInteractionRange(GameObject target)
+  {
+    GetComponent<Player>().InteractionRange(target);
+  }
+
 
   private void Update()
   {

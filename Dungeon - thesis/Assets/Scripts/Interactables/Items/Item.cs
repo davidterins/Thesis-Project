@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
 
+
+  public abstract ItemType Type { get; }
+
   private void OnTriggerEnter2D(Collider2D other)
   {
     Player agentInfo = other.gameObject.GetComponent<Player>();

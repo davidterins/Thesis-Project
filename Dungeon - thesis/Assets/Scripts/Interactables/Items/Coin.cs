@@ -8,4 +8,11 @@ public class Coin : Item
   [SerializeField]
   public readonly int value = 1;
 
+  public override ItemType Type
+  {
+    get
+    {
+      return ItemType.Coin; 
+    }
+  }
 }

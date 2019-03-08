@@ -7,7 +7,7 @@ public class MeeleAttack_Action : Action_Goap
 {
   GameObject attackTarget;
 
-  public MeeleAttack_Action(GameObject owner) : base(owner)
+  public MeeleAttack_Action(GameObject owner, FSM FSM) : base(owner, FSM)
   {
     ID = ActionID.MeeleAttackAction;
     //cost = 2;
@@ -27,7 +27,7 @@ public class MeeleAttack_Action : Action_Goap
   public override void Enter()
   {
     base.Enter();
-    attackTarget = owner.GetComponent<BlackBoard>().AttackTarget;
+    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
   }
 
   public override void Execute()

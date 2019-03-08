@@ -10,7 +10,7 @@ public class GoTo_Action : Action_Goap
 {
   Movement movement;
 
-  public GoTo_Action(GameObject owner) : base(owner)
+  public GoTo_Action(GameObject owner, FSM FSM) : base(owner, FSM)
   {
     ID = ActionID.GotoAction;
     cost = 2;
@@ -32,7 +32,7 @@ public class GoTo_Action : Action_Goap
     // Using an enemy for now.
 
     movement = owner.GetComponent<Movement>();
-    var s = owner.GetComponent<BlackBoard>().AttackTarget.transform.position;
+    var s = owner.GetComponent<BlackBoard>().TargetObject.transform.position;
     movement.MoveToTarget(s);
   }
 

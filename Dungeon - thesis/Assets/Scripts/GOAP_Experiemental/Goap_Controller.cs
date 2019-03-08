@@ -18,6 +18,8 @@ public class Goap_Controller : MonoBehaviour
   BlackBoard blackBoard;
   Planner_Goap planner;
 
+  FSM FSM;
+
   // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
   {
@@ -26,23 +28,24 @@ public class Goap_Controller : MonoBehaviour
     {WorldState.AtTarget, false},
     {WorldState.TargetInRange, false},
     {WorldState.EnemyDead, false},
-    {WorldState.MeleeEquiped, false},
-    {WorldState.RangedEquiped, true},
+    {WorldState.MeleeEquiped, true},
+    {WorldState.RangedEquiped, false},
   };
 
 
   void Awake()
   {
+    FSM = new FSM(gameObject);
     blackBoard = GetComponent<BlackBoard>();
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>{
-          new PickupItem_Action(gameObject),
-          new GoTo_Action(gameObject),
-          new MeeleAttack_Action(gameObject),
-          new RangedAttack_Action(gameObject),
-          new ChangeWeapon_Action(gameObject),
-          new Action_Goap(gameObject)
+          new PickupItem_Action(gameObject, FSM),
+          new GoTo_Action(gameObject, FSM),
+          new MeeleAttack_Action(gameObject, FSM),
+          new RangedAttack_Action(gameObject, FSM),
+          new ChangeWeapon_Action(gameObject, FSM),
+          new Action_Goap(gameObject, FSM)
         };
 
     playerGoals = new List<Goal_Goap>
@@ -69,7 +72,7 @@ public class Goap_Controller : MonoBehaviour
     switch (e.Result)
     {
       case ActionCallback.Successfull:
-        if(plan.Count > 0)
+        if (plan.Count > 0)
         {
           currentAction = playerActionLookup[plan.Pop()];
           currentAction.Enter();
@@ -135,6 +138,11 @@ public class Goap_Controller : MonoBehaviour
     }
     Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
     return playerGoals[1];// relevantGoal;
+  }
+
+  public void getTargets()
+  {
+
   }
 
   /// <summary>

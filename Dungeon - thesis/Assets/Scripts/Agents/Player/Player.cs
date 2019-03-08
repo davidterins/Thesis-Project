@@ -6,20 +6,6 @@ public class Player : Agent
 {
   public int Coins = 0;
 
-  
-
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   public override void HandlePickup(Item item)
   {
     if (item.GetType() == typeof(Coin))
@@ -31,4 +17,15 @@ public class Player : Agent
       Health += ((Potion)item).value;
     }
   }
+
+  public void InteractionRange(GameObject target)
+  {
+    if (target.GetComponent<Enemy>())
+    {
+
+    }
+  }
+
+
 }
+

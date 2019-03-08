@@ -9,7 +9,6 @@ public class Loot_Goal : Goal_Goap
     GoalWorldstates.Add(WorldState.HasItem, true);
   }
 
-
   //Calculate relevancy to loot something.
   public override float CalculateRelevancy(BlackBoard blackBoard)
   {

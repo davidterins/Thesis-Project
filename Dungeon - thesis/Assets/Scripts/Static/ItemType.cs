@@ -5,4 +5,7 @@ using UnityEngine;
 public enum ItemType
 {
   Coin,
+  Weapon,
+  Key,
+  Potion
 }

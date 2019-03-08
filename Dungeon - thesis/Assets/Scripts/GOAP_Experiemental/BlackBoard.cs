@@ -49,12 +49,20 @@ public class BlackBoard : MonoBehaviour
       memory[type].Remove(go);
   }
 
-  public GameObject AttackTarget
+  public GameObject TargetObject
   {
     get
     {
       var s = memory[TileType.ENEMY].Where(o => o != null).First();
       return s;
+    }
+  }
+
+  public TileModel MovementTarget
+  {
+    get
+    {
+      return null;
     }
   }
 
