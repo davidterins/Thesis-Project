@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Item
-{
+public class Coin : Item {
 
-  [SerializeField]
-  public readonly int value = 1;
+    [SerializeField]
+    public readonly int value = 10;
 
-  public override ItemType Type
-  {
-    get
-    {
-      return ItemType.Coin; 
+    public override ItemType Type {
+        get {
+            return ItemType.Coin;
+        }
     }
-  }
+
+    public void Start() {
+        InfoBox.coins += value;
+    }
 }

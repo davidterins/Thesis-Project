@@ -11,8 +11,17 @@ public static class InfoBox {
     public static int hp = 100;
     public static int coins;
 
-    public static void AddToMemory(string item) {
-        memory += ", " + item;
+    /// <summary>
+    /// Add to memory and trim the "(Clone)"-part
+    /// </summary>
+    /// <param name="container">Item to add</param>
+    public static void UpdateMemory(Dictionary<TileType, List<GameObject>> container) {
+        memory = "";
+        foreach (KeyValuePair<TileType, List<GameObject>> item in container) {
+            foreach(GameObject go in item.Value) {
+                memory += "\n" + go.name.Substring(0, go.name.Length - 7);
+            }
+        }
     }
 
     public static string GetMemory() {
