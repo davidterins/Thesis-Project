@@ -15,7 +15,7 @@ public class TargetingService
     blackBoard = owner.GetComponent<BlackBoard>();
   }
 
-  //To be done once per second or so.
+  //To be done once per second.
   public void Refresh()
   {
 

@@ -6,7 +6,7 @@ public class Loot_Goal : Goal_Goap
 {
   public Loot_Goal(Planner_Goap planner) : base(planner)
   {
-    GoalWorldstates.Add(WorldState.HasItem, true);
+    GoalWorldstates.Add(WorldStateSymbol.HasItem, true);
   }
 
   //Calculate relevancy to loot something.

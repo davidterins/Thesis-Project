@@ -10,16 +10,15 @@ public class MeeleAttack_Action : MovingAction_Goap
   public MeeleAttack_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.MeeleAttackAction;
-    //cost = 2;
 
-    PreConditions = new WorldState[]
+    PreConditions = new WorldStateSymbol[]
     {
-      WorldState.MeleeEquiped,
+      WorldStateSymbol.MeleeEquiped,
      };
 
-    Effects = new WorldState[]
+    Effects = new WorldStateSymbol[]
     {
-     WorldState.EnemyDead
+     WorldStateSymbol.EnemyDead
      };
   }
 

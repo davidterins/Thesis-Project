@@ -8,9 +8,7 @@ public class TreasureChest : MonoBehaviour {
     [SerializeField]
     GameObject[] Loot = null;
 
-    void Start() {
-
-    }
+    void Start() {}
 
     void Open(GameObject interactingAgent) {
         foreach (var item in Loot) {

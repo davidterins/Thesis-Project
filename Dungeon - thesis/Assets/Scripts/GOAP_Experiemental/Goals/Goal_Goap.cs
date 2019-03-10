@@ -37,13 +37,13 @@ public abstract class Goal_Goap
  /// <returns>The get plan.</returns>
  /// <param name="currentState">Agentens current world state.</param>
  /// <param name="actions">Agentens tillgängliga actions.</param>
-  public Stack<ActionID> TryGetPlan(WorldStateSet currentState, List<Action_Goap> actions)
+  public Queue<ActionID> TryGetPlan(WorldStateSet currentState, List<Action_Goap> actions)
   {
-    var nodePlan = planner.FindPath(currentState, this, actions);
-    Stack<ActionID> actionPlan = new Stack<ActionID>(nodePlan.Count);
+    var nodePlan = planner.FindPathFromGoal(currentState, this, actions);
+    Queue<ActionID> actionPlan = new Queue<ActionID>(nodePlan.Count);
 
     foreach (Node_Goap node in nodePlan)
-      actionPlan.Push(node.ID);
+      actionPlan.Enqueue(node.ID);
 
     return actionPlan;
   }
@@ -59,4 +59,16 @@ public abstract class Goal_Goap
   {
     return relevancy;
   }
+
+  public WorldStateSet GetEffectedWorldState(WorldStateSet worldState)
+  {
+    WorldStateSet appliedWorldState = (WorldStateSet)worldState.Clone();
+
+    foreach (WorldStateSymbol effect in GoalWorldstates.Keys)
+    {
+      appliedWorldState[effect] = true;
+    }
+    return appliedWorldState;
+  }
+
 }

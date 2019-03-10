@@ -14,36 +14,63 @@ public class Node_Goap
   public float hCost;
   public float fCost { get { return gCost + hCost; } }
 
-  WorldState[] goalStates;
+  public WorldStateSymbol[] WSDiff { get; private set; }
 
   //The worldState at this node
- public WorldStateSet worldStates { get; private set; }
+  public WorldStateSet WS { get; private set; }
 
-  public Node_Goap(ActionID ID, WorldState[] goalStates)
-  {
-    this.ID = ID;
-    this.goalStates = goalStates;
-  }
-
-  public Node_Goap(WorldStateSet worldStates, float gCost, float hCost, Node_Goap parent, ActionID actionID)
+  public Node_Goap(WorldStateSet ws, WorldStateSymbol[] wsDiff, float gCost, float hCost, Node_Goap parent, ActionID actionID)
   {
     this.parent = parent;
-    this.worldStates = worldStates;
+    this.WS = ws;
+    this.ID = actionID;
+    this.hCost = hCost;
+    this.WSDiff = wsDiff;
+
+  }
+
+  public Node_Goap(WorldStateSet ws, float gCost, float hCost, Node_Goap parent, ActionID actionID)
+  {
+    this.parent = parent;
+    this.WS = ws;
     this.ID = actionID;
     this.hCost = hCost;
   }
 
-  public Node_Goap(WorldStateSet worldStates, ActionID actionID)
+
+  public Node_Goap(WorldStateSet ws, WorldStateSymbol[] wsDiff, ActionID actionID)
   {
-    this.worldStates = worldStates;
+    this.WS = ws;
+    this.ID = actionID;
+    this.WSDiff = wsDiff;
+  }
+
+  public Node_Goap(WorldStateSet ws, ActionID actionID)
+  {
+    this.WS = ws;
     this.ID = actionID;
   }
 
 
+  public void AddNeighBour(Node_Goap node)
+  {
+    
+  }
+
+  public bool IsValidInWorldState(WorldStateSet worldState)
+  {
+    foreach (WorldStateSymbol precondition in WSDiff)
+    {
+      if (!worldState[precondition])
+        return false;
+    }
+    return true;
+  }
+
   public float CalculateHCost(WorldStateSet currentState)
   {
     float cost = 0;
-    foreach (WorldState goalState in goalStates)
+    foreach (WorldStateSymbol goalState in WSDiff)
     {
       if (currentState[goalState] == false)
       {

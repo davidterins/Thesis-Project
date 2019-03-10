@@ -28,7 +28,7 @@ public class GoapViewController : MonoBehaviour
 
   }
 
-  public void SetPlan(Stack<ActionID> actions)
+  public void SetPlan(Queue<ActionID> actions)
   {
     PlanText.text = "Plan:";
 

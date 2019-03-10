@@ -12,15 +12,15 @@ public class RangedAttack_Action : MovingAction_Goap
   {
     ID = ActionID.RangedAttackAction;
 
-    PreConditions = new WorldState[]
+    PreConditions = new WorldStateSymbol[]
     {
-      WorldState.RangedEquiped,
+      WorldStateSymbol.RangedEquiped,
      //WorldState.TargetInRange
      };
 
-    Effects = new WorldState[]
+    Effects = new WorldStateSymbol[]
     {
-     WorldState.EnemyDead
+     WorldStateSymbol.EnemyDead
      };
   }
 

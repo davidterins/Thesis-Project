@@ -7,7 +7,7 @@ public class Goap_Controller : MonoBehaviour
 {
 
   Dictionary<ActionID, Action_Goap> playerActionLookup = new Dictionary<ActionID, Action_Goap>();
-  Stack<ActionID> plan;
+  Queue<ActionID> plan;
 
   List<Action_Goap> playerActions;
   List<Goal_Goap> playerGoals;
@@ -21,13 +21,13 @@ public class Goap_Controller : MonoBehaviour
   // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
   {
-    {WorldState.Win, false},
-    {WorldState.HasItem, false},
-    {WorldState.AtTarget, false},
-    {WorldState.TargetInRange, false},
-    {WorldState.EnemyDead, false},
-    {WorldState.MeleeEquiped, true },
-    {WorldState.RangedEquiped, false },
+    {WorldStateSymbol.Win, false},
+    {WorldStateSymbol.HasItem, false},
+    {WorldStateSymbol.AtTarget, false},
+    {WorldStateSymbol.TargetInRange, false},
+    {WorldStateSymbol.EnemyDead, false},
+    {WorldStateSymbol.MeleeEquiped, true },
+    {WorldStateSymbol.RangedEquiped, true },
   };
 
 
@@ -71,7 +71,7 @@ public class Goap_Controller : MonoBehaviour
       case ActionCallback.Successfull:
         if (plan.Count > 0)
         {
-          currentAction = playerActionLookup[plan.Pop()];
+          currentAction = playerActionLookup[plan.Dequeue()];
           currentAction.Enter();
         }
         else
@@ -114,13 +114,13 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
     viewControl.SetPlan(plan);
 
-    currentAction = playerActionLookup[plan.Pop()];
+    currentAction = playerActionLookup[plan.Dequeue()];
     currentAction.Enter();
 
-    //if(currentAction!= null)
-    //{
-    //  currentAction.Execute();
-    //}
+    if(currentAction!= null)
+    {
+      currentAction.Execute();
+    }
 
   }
 

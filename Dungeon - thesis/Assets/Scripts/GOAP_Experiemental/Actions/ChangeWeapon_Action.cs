@@ -9,12 +9,12 @@ public class ChangeWeapon_Action : Action_Goap
   {
     ID = ActionID.ChangeWeapon;
 
-    PreConditions = new WorldState[0];
+    PreConditions = new WorldStateSymbol[0];
 
-    Effects = new WorldState[]
+    Effects = new WorldStateSymbol[]
     {
-     WorldState.MeleeEquiped,
-     WorldState.RangedEquiped,
+     WorldStateSymbol.MeleeEquiped,
+     WorldStateSymbol.RangedEquiped,
      };
   }
 

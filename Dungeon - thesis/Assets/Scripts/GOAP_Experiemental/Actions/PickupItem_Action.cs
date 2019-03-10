@@ -11,9 +11,9 @@ public class PickupItem_Action : MovingAction_Goap
   {
     ID = ActionID.PickupAction;
 
-    PreConditions = new WorldState[] { WorldState.AtTarget };
+    PreConditions = new WorldStateSymbol[] { WorldStateSymbol.AtTarget };
 
-    Effects = new WorldState[] { WorldState.HasItem };
+    Effects = new WorldStateSymbol[] { WorldStateSymbol.HasItem };
   }
 
   public override void Enter()

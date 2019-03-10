@@ -15,13 +15,13 @@ public class Action_Goap
   /// </summary>
   public int cost = 1;
   public ActionID ID;
-  public WorldState[] Effects { get; protected set; }
-  public WorldState[] PreConditions { get; protected set; }
+  public WorldStateSymbol[] Effects { get; protected set; }
+  public WorldStateSymbol[] PreConditions { get; protected set; }
 
   public Action_Goap(GameObject owner)
   {
-    Effects = new WorldState[0];
-    PreConditions = new WorldState[0];
+    Effects = new WorldStateSymbol[0];
+    PreConditions = new WorldStateSymbol[0];
     this.owner = owner;
   }
 
@@ -56,7 +56,7 @@ public class Action_Goap
   {
     WorldStateSet appliedWorldState = (WorldStateSet)worldState.Clone();
 
-    foreach (WorldState effect in Effects)
+    foreach (WorldStateSymbol effect in Effects)
     {
       appliedWorldState[effect] = true;
     }
@@ -65,7 +65,7 @@ public class Action_Goap
 
   public bool IsValidInWorldState(WorldStateSet worldState)
   {
-    foreach (WorldState precondition in PreConditions)
+    foreach (WorldStateSymbol precondition in PreConditions)
     {
       if (!worldState[precondition])
         return false;
