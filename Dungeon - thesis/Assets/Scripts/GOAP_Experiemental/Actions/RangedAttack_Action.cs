@@ -10,23 +10,23 @@ public class RangedAttack_Action : MovingAction_Goap
 
   public RangedAttack_Action(GameObject owner) : base(owner)
   {
-    ID = ActionID.RangedAttackAction;
+    ID = ActionID.RangedAttack;
 
     PreConditions = new WorldStateSymbol[]
     {
       WorldStateSymbol.RangedEquiped,
-     //WorldState.TargetInRange
      };
 
     Effects = new WorldStateSymbol[]
     {
-     WorldStateSymbol.EnemyDead
+     WorldStateSymbol.EnemyDead,
+     WorldStateSymbol.LootableItem
      };
   }
 
   public override void Enter()
   {
-    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
+    attackTarget = owner.GetComponent<BlackBoard>().EnemyObject;
     if (!attackTarget)
     {
       Failed();
@@ -41,7 +41,7 @@ public class RangedAttack_Action : MovingAction_Goap
 
   public override void Execute()
   {
-    if(InRange)
+    if (InRange)
     {
       if (attackTarget != null)
       {
@@ -59,13 +59,14 @@ public class RangedAttack_Action : MovingAction_Goap
 
   public override float GetCost()
   {
-    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
-    if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
-    {
-      cost = 2;
-    }
-    else
-      cost = 1;
+    attackTarget = owner.GetComponent<BlackBoard>().EnemyObject;
+    if (attackTarget)
+      if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
+      {
+        cost = 2;
+      }
+      else
+        cost = 1;
     return base.GetCost();
   }
 }

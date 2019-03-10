@@ -28,6 +28,8 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.EnemyDead, false},
     {WorldStateSymbol.MeleeEquiped, true },
     {WorldStateSymbol.RangedEquiped, false },
+    {WorldStateSymbol.LootableItem, false},
+    {WorldStateSymbol.AvailableChest, false}
   };
 
 
@@ -42,6 +44,7 @@ public class Goap_Controller : MonoBehaviour
           new MeeleAttack_Action(gameObject),
           new RangedAttack_Action(gameObject),
           new ChangeWeapon_Action(gameObject),
+          new OpenChest_Action(gameObject),
           new Action_Goap(gameObject)
         };
 
@@ -144,7 +147,7 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
-    Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
+   //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
     return playerGoals[1];// relevantGoal;
   }
 

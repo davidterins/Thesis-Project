@@ -53,13 +53,11 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  public GameObject TargetObject
-  {
-    get
-    {
-      return targetingService.TryGetEnemyTarget();
-    }
-  }
+  public GameObject EnemyObject { get { return targetingService.TryGetEnemyTarget(); } }
+
+  public GameObject TreasureObject { get { return targetingService.TryGetTreasureChest(); } }
+
+  public Vector2 LootPosition { get; set; }
 
   public int Health { get { return GetComponent<Player>().Health; } }
 

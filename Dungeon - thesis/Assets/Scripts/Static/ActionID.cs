@@ -5,11 +5,11 @@ using UnityEngine;
 public enum ActionID
 {
   None,
-  GotoAction,
-  PickupAction,
-  MeeleAttackAction,
-  RangedAttackAction,
+  PickupItem,
+  MeeleAttack,
+  RangedAttack,
   ChangeWeapon,
+  OpenChest
 }
 
 public enum ActionCallback

@@ -45,8 +45,27 @@ public class TargetingService
       return closestTarget;
   }
 
-  public void GetItemTarget()
+  public GameObject TryGetTreasureChest()
   {
+    GameObject closestTarget = null;
+    if (blackBoard.Memory[TileType.TREASURE].Count > 0)
+    {
+      Vector2 ownPos = owner.transform.position;
+      float closestDistance = float.MaxValue;
 
+      foreach (GameObject treasure in blackBoard.Memory[TileType.TREASURE])
+      {
+        if (treasure != null)
+        {
+          float distance = Vector2.Distance(ownPos, treasure.transform.position);
+          if (distance < closestDistance)
+          {
+            closestTarget = treasure;
+            closestDistance = distance;
+          }
+        }
+      }
+    }
+    return closestTarget;
   }
 }

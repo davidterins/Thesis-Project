@@ -5,27 +5,39 @@ using UnityEngine;
 
 public class PickupItem_Action : MovingAction_Goap
 {
-  GameObject targetItem;
 
   public PickupItem_Action(GameObject owner) : base(owner)
   {
-    ID = ActionID.PickupAction;
+    ID = ActionID.PickupItem;
 
-    PreConditions = new WorldStateSymbol[] { WorldStateSymbol.AtTarget };
+    PreConditions = new WorldStateSymbol[]
+    {
+      WorldStateSymbol.LootableItem
+    };
 
-    Effects = new WorldStateSymbol[] { WorldStateSymbol.HasItem };
+    Effects = new WorldStateSymbol[]
+    {
+     WorldStateSymbol.HasItem
+     };
   }
 
   public override void Enter()
   {
-    targetItem = owner.GetComponent<BlackBoard>().TargetObject;
-
-    base.Enter();
+    target = owner.GetComponent<BlackBoard>().LootPosition;
+    //if (target)
+    //{
+    //  Failed();
+    //}
+    //else
+    {
+      //target = targetItem.transform.position;
+      base.Enter();
+    }
   }
 
   public override void Execute()
   {
-    if(InRange)
+    if (InRange)
     {
       base.Execute();
       Successfull();
@@ -35,7 +47,7 @@ public class PickupItem_Action : MovingAction_Goap
 
   public override bool IsInRange()
   {
-    InRange = Vector2.Distance(owner.transform.position, targetItem.transform.position) <= 0.5;
+    InRange = Vector2.Distance(owner.transform.position, target) <= 0.5;
     return InRange;
   }
 }
