@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Action_Goap
 {
   public virtual event EventHandler<ActionFinishedEventArgs> OnActionFinished;
 
   protected readonly GameObject owner;
-  protected FSM _FSM;
 
   /// <summary>
   /// Dessa tre måste sättas i konstruktorn i varje action.
@@ -18,12 +18,11 @@ public class Action_Goap
   public WorldState[] Effects { get; protected set; }
   public WorldState[] PreConditions { get; protected set; }
 
-  public Action_Goap(GameObject owner, FSM FSM)
+  public Action_Goap(GameObject owner)
   {
     Effects = new WorldState[0];
     PreConditions = new WorldState[0];
     this.owner = owner;
-    _FSM = FSM;
   }
 
   public virtual void Enter()
@@ -31,24 +30,26 @@ public class Action_Goap
     Debug.Log("Entered: " + ID);
   }
 
-  public virtual void Execute()
-  {
+  public virtual void Execute() { }
 
-  }
+  protected virtual void Exit() { }
 
-  protected void Interrupted()
+  protected void Failed()
   {
+    Debug.Log(ID + " was a failure");
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Failed));
   }
 
   protected void Successfull()
   {
+    Debug.Log(ID + " was sucessful");
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Successfull));
   }
 
-  protected void RunAgain()
+  protected void NeedPath()
   {
-    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.RunAgain));
+    Debug.Log(ID + " was sucessful");
+    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.NeedPath));
   }
 
   public WorldStateSet ApplyEffects(WorldStateSet worldState)

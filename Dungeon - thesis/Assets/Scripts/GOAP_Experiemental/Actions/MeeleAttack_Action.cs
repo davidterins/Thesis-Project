@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeeleAttack_Action : Action_Goap
+public class MeeleAttack_Action : MovingAction_Goap
 {
   GameObject attackTarget;
 
-  public MeeleAttack_Action(GameObject owner, FSM FSM) : base(owner, FSM)
+  public MeeleAttack_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.MeeleAttackAction;
     //cost = 2;
@@ -15,7 +15,6 @@ public class MeeleAttack_Action : Action_Goap
     PreConditions = new WorldState[]
     {
       WorldState.MeleeEquiped,
-      WorldState.AtTarget
      };
 
     Effects = new WorldState[]
@@ -26,16 +25,40 @@ public class MeeleAttack_Action : Action_Goap
 
   public override void Enter()
   {
-    base.Enter();
     attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
+    if (!attackTarget)
+    {
+      Failed();
+    }
+    else
+    {
+      target = attackTarget.transform.position;
+      interactionRange = 1;
+      base.Enter();
+    }
+  }
+
+  public override bool IsInRange()
+  {
+    if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5)
+    {
+      return InRange = true;
+    }
+    return InRange = false;
   }
 
   public override void Execute()
   {
-    //base.Execute();
-    if (attackTarget != null)
-      attackTarget.GetComponent<Enemy>().TakeDamage(101);
-    Successfull();
+    if (InRange)
+    {
+      if (attackTarget != null)
+      {
+        attackTarget.GetComponent<Enemy>().TakeDamage(101);
+        Successfull();
+      }
+    }
   }
+
+
 }
 

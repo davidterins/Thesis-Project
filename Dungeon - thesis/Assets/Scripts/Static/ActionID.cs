@@ -16,5 +16,5 @@ public enum ActionCallback
 {
   Successfull,
   Failed,
-  RunAgain,
+  NeedPath,
 }

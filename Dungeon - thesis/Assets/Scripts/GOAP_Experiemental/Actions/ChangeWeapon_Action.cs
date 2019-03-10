@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChangeWeapon_Action : Action_Goap
 {
-  public ChangeWeapon_Action(GameObject owner, FSM FSM) : base(owner, FSM)
+  public ChangeWeapon_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.ChangeWeapon;
 

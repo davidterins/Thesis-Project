@@ -9,55 +9,61 @@ using System.Linq;
 /// Black board.
 /// Tanken är att agentens minne ska finnas här i en massa properties.
 /// </summary>
-public class BlackBoard : MonoBehaviour {
+public class BlackBoard : MonoBehaviour
+{
+  TargetingService targetingService;
 
-    Dictionary<TileType, List<GameObject>> memory;
+  public Dictionary<TileType, List<GameObject>> Memory { get; private set; }
 
-    public void Start() {
-        memory = new Dictionary<TileType, List<GameObject>>() {
+  public void Start()
+  {
+    targetingService = new TargetingService(gameObject);
+
+    Memory = new Dictionary<TileType, List<GameObject>>() {
             { TileType.ENEMY, new List<GameObject>() },
             { TileType.TREASURE, new List<GameObject>() },
             { TileType.DOOR, new List<GameObject>() },
             { TileType.DOORENTER, new List<GameObject>() }
         };
-    }
+  }
 
-    public void AddPOI(TileType type, GameObject go) {
-        if (type != TileType.FLOOR)
-            try {
-                if (!memory[type].Contains(go)) {
-                    memory[type].Add(go);
-                    InfoBox.UpdateMemory(memory);
-                    Debug.Log("Added " + type + " count: " + memory[type].Count);
-                }
-            }
-            catch (System.Exception ex) {
-                Debug.Log(ex.Message + "Type = " + type);
-            }
-    }
-
-    public void RemovePOI(TileType type, GameObject go) {
-        if (memory[type].Contains(go)) {
-            memory[type].Remove(go);
-            InfoBox.UpdateMemory(memory);
-        }          
-    }
-
-    public GameObject TargetObject {
-        get {
-            var s = memory[TileType.ENEMY].Where(o => o != null).First();
-            return s;
+  public void AddPOI(TileType type, GameObject go)
+  {
+    if (type != TileType.FLOOR)
+      try
+      {
+        if (!Memory[type].Contains(go))
+        {
+          Memory[type].Add(go);
+          InfoBox.UpdateMemory(Memory);
+          Debug.Log("Added " + type + " count: " + Memory[type].Count);
         }
+      }
+      catch (System.Exception ex)
+      {
+        Debug.Log(ex.Message + "Type = " + type);
+      }
+  }
+
+  public void RemovePOI(TileType type, GameObject go)
+  {
+    if (Memory[type].Contains(go))
+    {
+      Memory[type].Remove(go);
+      InfoBox.UpdateMemory(Memory);
     }
+  }
 
-    public TileModel MovementTarget {
-        get {
-            return null;
-        }
+  public GameObject TargetObject
+  {
+    get
+    {
+      return targetingService.TryGetEnemyTarget();
     }
+  }
 
-    public int Health { get { return GetComponent<Player>().Health; } }
+  public int Health { get { return GetComponent<Player>().Health; } }
 
-    public int Coins { get { return GetComponent<Player>().Coins; } }
+  public int Coins { get { return GetComponent<Player>().Coins; } }
 
 }

@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedAttack_Action : Action_Goap
+public class RangedAttack_Action : MovingAction_Goap
 {
-  public RangedAttack_Action(GameObject owner, FSM FSM) : base(owner, FSM)
+  GameObject attackTarget;
+
+
+  public RangedAttack_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.RangedAttackAction;
 
     PreConditions = new WorldState[]
     {
       WorldState.RangedEquiped,
-      WorldState.TargetInRange
+     //WorldState.TargetInRange
      };
 
     Effects = new WorldState[]
@@ -23,12 +26,34 @@ public class RangedAttack_Action : Action_Goap
 
   public override void Enter()
   {
-    base.Enter();
+    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
+    if (!attackTarget)
+    {
+      Failed();
+    }
+    else
+    {
+      target = attackTarget.transform.position;
+      interactionRange = 2;
+      base.Enter();
+    }
   }
 
   public override void Execute()
   {
-    base.Execute();
-    Successfull();
+    if(InRange)
+    {
+      if (attackTarget != null)
+      {
+        attackTarget.GetComponent<Enemy>().TakeDamage(101);
+        Successfull();
+      }
+    }
+  }
+
+  public override bool IsInRange()
+  {
+    InRange = Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f;
+    return InRange;
   }
 }

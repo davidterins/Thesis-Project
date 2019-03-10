@@ -18,8 +18,6 @@ public class Goap_Controller : MonoBehaviour
   BlackBoard blackBoard;
   Planner_Goap planner;
 
-  FSM FSM;
-
   // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
   {
@@ -28,24 +26,23 @@ public class Goap_Controller : MonoBehaviour
     {WorldState.AtTarget, false},
     {WorldState.TargetInRange, false},
     {WorldState.EnemyDead, false},
-    {WorldState.MeleeEquiped, true},
-    {WorldState.RangedEquiped, false},
+    {WorldState.MeleeEquiped, true },
+    {WorldState.RangedEquiped, false },
   };
 
 
   void Awake()
   {
-    FSM = new FSM(gameObject);
+
     blackBoard = GetComponent<BlackBoard>();
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>{
-          new PickupItem_Action(gameObject, FSM),
-          new GoTo_Action(gameObject, FSM),
-          new MeeleAttack_Action(gameObject, FSM),
-          new RangedAttack_Action(gameObject, FSM),
-          new ChangeWeapon_Action(gameObject, FSM),
-          new Action_Goap(gameObject, FSM)
+          new PickupItem_Action(gameObject),
+          new MeeleAttack_Action(gameObject),
+          new RangedAttack_Action(gameObject),
+          new ChangeWeapon_Action(gameObject),
+          new Action_Goap(gameObject)
         };
 
     playerGoals = new List<Goal_Goap>
@@ -79,41 +76,52 @@ public class Goap_Controller : MonoBehaviour
         }
         else
         {
-          //currentGoal = GetNewGoal();
-          //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
-          //currentAction = playerActionLookup[plan.Pop()];
-          //currentAction.Enter();
+          //CreateNewPlan();
         }
         break;
       case ActionCallback.Failed:
+       // CreateNewPlan();
         //currentGoal = GetNewGoal();
         //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
         break;
-      case ActionCallback.RunAgain:
-        break;
-      default:
+      case ActionCallback.NeedPath:
+        {
+
+        }
         break;
     }
   }
 
-  //För testningkörning
   void Update()
+  {
+    CreatePlanOnP();
+  }
+
+  void CreatePlanOnP()
   {
     if (Input.GetKeyDown(KeyCode.P))
     {
-      currentGoal = GetNewGoal();
-      plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
-
-      var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
-      viewControl.SetGoal(currentGoal);
-      viewControl.SetPlan(plan);
-
-      currentAction = playerActionLookup[plan.Pop()];
-      currentAction.Enter();
-
+      CreateNewPlan();
     }
-    if (currentAction != null)
-      currentAction.Execute();
+  }
+
+  private void CreateNewPlan()
+  {
+    currentGoal = GetNewGoal();
+    plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+
+    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+    viewControl.SetGoal(currentGoal);
+    viewControl.SetPlan(plan);
+
+    currentAction = playerActionLookup[plan.Pop()];
+    currentAction.Enter();
+
+    //if(currentAction!= null)
+    //{
+    //  currentAction.Execute();
+    //}
+
   }
 
   /// <summary>
@@ -138,11 +146,6 @@ public class Goap_Controller : MonoBehaviour
     }
     Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
     return playerGoals[1];// relevantGoal;
-  }
-
-  public void getTargets()
-  {
-
   }
 
   /// <summary>
