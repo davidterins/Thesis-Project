@@ -27,7 +27,7 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.TargetInRange, false},
     {WorldStateSymbol.EnemyDead, false},
     {WorldStateSymbol.MeleeEquiped, true },
-    {WorldStateSymbol.RangedEquiped, true },
+    {WorldStateSymbol.RangedEquiped, false },
   };
 
 

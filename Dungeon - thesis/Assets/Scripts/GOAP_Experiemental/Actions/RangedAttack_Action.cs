@@ -56,4 +56,16 @@ public class RangedAttack_Action : MovingAction_Goap
     InRange = Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f;
     return InRange;
   }
+
+  public override float GetCost()
+  {
+    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
+    if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
+    {
+      cost = 2;
+    }
+    else
+      cost = 1;
+    return base.GetCost();
+  }
 }

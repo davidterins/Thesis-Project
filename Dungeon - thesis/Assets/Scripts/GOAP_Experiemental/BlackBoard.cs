@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: Add hashing to Dictionary List
-using System.Linq;
 
 /// <summary>
 /// Black board.

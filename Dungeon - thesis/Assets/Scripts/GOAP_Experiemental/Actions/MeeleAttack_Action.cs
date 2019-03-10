@@ -58,6 +58,19 @@ public class MeeleAttack_Action : MovingAction_Goap
     }
   }
 
+  public override float GetCost()
+  {
+    attackTarget = owner.GetComponent<BlackBoard>().TargetObject;
+    if (attackTarget)
+      if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
+      {
+        cost = 1;
+      }
+      else
+        cost = 2;
+    return base.GetCost();
+  }
+
 
 }
 

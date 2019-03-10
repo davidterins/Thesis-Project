@@ -72,6 +72,11 @@ public class Action_Goap
     }
     return true;
   }
+
+  public virtual float GetCost()
+  {
+    return cost;
+  }
 }
 
 
