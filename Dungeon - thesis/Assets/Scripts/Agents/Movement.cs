@@ -4,127 +4,109 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
 
-public class Movement : MonoBehaviour
-{
-  // Normal Movements Variables
-  private float walkSpeed;
-  private bool hasTarget, interruptPath;
-  private List<Node> path;
-  private int pathIndex = 4;
-  private Vector3 offset;
+public class Movement : MonoBehaviour {
+    // Normal Movements Variables
+    private float walkSpeed;
+    private bool hasTarget, interruptPath;
+    private List<Node> path;
+    private int pathIndex = 4;
+    private Vector3 offset;
 
-  public event EventHandler AtDestination;
+    public event EventHandler AtDestination;
 
-  public TileModel Target { get; private set; }
-  public bool PathInterrupted { get { return interruptPath; } }
-  public bool HasTarget { get { return hasTarget; } }
+    public TileModel Target { get; private set; }
+    public bool PathInterrupted { get { return interruptPath; } }
+    public bool HasTarget { get { return hasTarget; } }
 
-  float targetOffsetDistance = 0;
+    float targetOffsetDistance = 0;
 
-  void Start()
-  {
-    hasTarget = false;
-    interruptPath = false;
-    walkSpeed = 0.08f;
-    offset = new Vector3(-0.5f, -0.5f, 0.0f);
-  }
-
-  public bool TryMoveToTarget(Vector2 targetPosition, float targetOffsetDistance = 0.001f)
-  {
-    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
-    interruptPath = true;
-
-    if (!hasTarget || interruptPath)
-    {
-      var room = dungeon.CurrentRoom;
-      var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
-
-      path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[(int)targetPosition.y, (int)targetPosition.x]);
-      pathIndex = 0;
-      if (path != null && path.Count <= 0)
-      {
+    void Start() {
         hasTarget = false;
-      }
-      else
-      {
-        hasTarget = true;
-        this.targetOffsetDistance = targetOffsetDistance;
         interruptPath = false;
-      }
+        walkSpeed = 0.08f;
+        offset = new Vector3(-0.5f, -0.5f, 0.0f);
     }
-    return hasTarget;
-  }
 
+    public bool TryMoveToTarget(Vector2 targetPosition, float targetOffsetDistance = 0.001f) {
+        var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+        interruptPath = true;
 
-  private void Update()
-  {
-    if (hasTarget)
-    {
-      //Moving between nodes
-      if (hasTarget && !interruptPath)
-      {
-        transform.position = Vector2.MoveTowards(transform.position, path[pathIndex].GetFloatPosition(), walkSpeed);
-      }
+        if (!hasTarget || interruptPath) {
+            var room = dungeon.CurrentRoom;
+            var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
 
-      //At a node
-      if (hasTarget && !interruptPath && (Vector2.Distance(transform.position, path[pathIndex].GetFloatPosition()) < 0.001f + targetOffsetDistance))
-      {
-        pathIndex++;
-        if (pathIndex >= path.Count)
-        {//At final node
-          hasTarget = false;
-          targetOffsetDistance = 0;
-          if (AtDestination != null)
-            AtDestination.Invoke(this, new EventArgs());
+            path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[(int)targetPosition.y, (int)targetPosition.x]);
+            pathIndex = 0;
+            if (path != null && path.Count <= 0) {
+                hasTarget = false;
+            }
+            else {
+                hasTarget = true;
+                this.targetOffsetDistance = targetOffsetDistance;
+                interruptPath = false;
+            }
         }
-        GetComponent<Vision>().Scan();
-      }
-
-
-
-      if (hasTarget)
-      {
-        InfoBox.pathLength = path.Count;
-        InfoBox.playerTile = transform.position.ToString();
-        InfoBox.targetTile = path[pathIndex].position.ToString();
-        InfoBox.stepsLeft = path.Count - pathIndex;
-      }
-
+        return hasTarget;
     }
 
-    TemporaryWalkOnMouseClick();
-  }
 
+    private void Update() {
+        if (hasTarget) {
+            //Moving between nodes
+            if (hasTarget && !interruptPath) {
+                transform.position = Vector2.MoveTowards(transform.position, path[pathIndex].GetFloatPosition(), walkSpeed);
+            }
 
-  void TemporaryWalkOnMouseClick()
-  {
-    if (Input.GetMouseButtonDown(0))
-    {
-      interruptPath = true;
+            //At a node
+            if (hasTarget && !interruptPath && (Vector2.Distance(transform.position, path[pathIndex].GetFloatPosition()) < 0.001f + targetOffsetDistance)) {
+                pathIndex++;
+                if (pathIndex >= path.Count) {//At final node
+                    hasTarget = false;
+                    targetOffsetDistance = 0;
+                    if (AtDestination != null)
+                        AtDestination.Invoke(this, new EventArgs());
+                }
+                GetComponent<Vision>().Scan();
+            }
 
-      var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
-      Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+            if (hasTarget) {
+                InfoBox.pathLength = path.Count;
+                InfoBox.playerTile = transform.position.ToString();
+                InfoBox.targetTile = path[pathIndex].position.ToString();
+                InfoBox.stepsLeft = path.Count - pathIndex;
+            }
 
-      var mousePos = dungeon.WorldGrid.WorldToCell(new Vector3((int)pos.x, (int)pos.y, 0));
-      var tile = dungeon.CurrentRoom.Tiles2D[mousePos.x, mousePos.y];
-      if (tile != null)
-      {
-        if (!hasTarget || interruptPath)
-        {
-          var room = dungeon.CurrentRoom;
-          var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
-
-          path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[mousePos.y, mousePos.x]);
-          pathIndex = 0;
-          if (path.Count <= 0)
-            hasTarget = false;
-          else
-            hasTarget = true;
-          interruptPath = false;
         }
-      }
+
+        TemporaryWalkOnMouseClick();
     }
-  }
+
+
+    void TemporaryWalkOnMouseClick() {
+        if (Input.GetMouseButtonDown(0)) {
+            interruptPath = true;
+
+            var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+            Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+
+            var mousePos = dungeon.WorldGrid.WorldToCell(new Vector3((int)pos.x, (int)pos.y, 0));
+            var tile = dungeon.CurrentRoom.Tiles2D[mousePos.x, mousePos.y];
+            if (tile != null) {
+                if (!hasTarget || interruptPath) {
+                    var room = dungeon.CurrentRoom;
+                    var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
+
+                    path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[mousePos.y, mousePos.x]);
+                    pathIndex = 0;
+                    if (path.Count <= 0)
+                        hasTarget = false;
+                    else
+                        hasTarget = true;
+                    interruptPath = false;
+                }
+            }
+        }
+    }
 
 }
 
