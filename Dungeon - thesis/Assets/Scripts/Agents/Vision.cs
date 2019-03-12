@@ -47,6 +47,10 @@ public class Vision : MonoBehaviour {
         //}
     }
 
+    public float GetSightRange() {
+        return sightRange;
+    }
+
     /// <summary>
     /// Simply rotates a Vector2 around its origin scanInterval degrees
     /// </summary>
