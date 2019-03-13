@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpVelocity: 0
-  minDistance: 1
+  minDistance: 0
   followDistance: 0
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}

@@ -2,20 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : InteractableObject
 {
 
-
-  public abstract ItemType Type { get; }
-
-  private void OnTriggerEnter2D(Collider2D other)
+  public override void Interact(GameObject player)
   {
-    Player agentInfo = other.gameObject.GetComponent<Player>();
-    if (agentInfo)
-    {
-      agentInfo.HandlePickup(this);
-      Destroy(gameObject, 1);
-    }
+    player.GetComponent<Agent>().HandlePickup(this);
+    Destroy(gameObject, 1);
   }
 }
 

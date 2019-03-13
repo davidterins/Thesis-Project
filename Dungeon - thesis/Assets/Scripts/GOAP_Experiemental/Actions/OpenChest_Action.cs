@@ -40,16 +40,22 @@ public class OpenChest_Action : MovingAction_Goap
     if (InRange)
     {
       base.Execute();
+      targetItem.GetComponent<InteractableObject>().Interact(owner);
       Successfull();
     }
 
   }
 
-
   public override bool IsInRange()
   {
     InRange = Vector2.Distance(owner.transform.position, targetItem.transform.position) <= 0.5;
     return InRange;
+  }
+
+  // TODO HAR SATT DENNA HÖGT FÖR DEBUGSYFTE!
+  public override float GetCost()
+  {
+    return 1000;
   }
 
 }

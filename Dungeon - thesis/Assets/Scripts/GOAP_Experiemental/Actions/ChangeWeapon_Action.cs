@@ -9,7 +9,10 @@ public class ChangeWeapon_Action : Action_Goap
   {
     ID = ActionID.ChangeWeapon;
 
-    PreConditions = new WorldStateSymbol[0];
+    PreConditions = new WorldStateSymbol[0]
+    {
+      //WorldStateSymbol.SecondaryWeapon,
+    };
 
     Effects = new WorldStateSymbol[]
     {
@@ -21,6 +24,7 @@ public class ChangeWeapon_Action : Action_Goap
   public override void Enter()
   {
     base.Enter();
+    
   }
 
   public override void Execute()
@@ -28,4 +32,5 @@ public class ChangeWeapon_Action : Action_Goap
     base.Execute();
     Successfull();
   }
+
 }

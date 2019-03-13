@@ -9,7 +9,7 @@ public class KillEnemy_Goal : Goal_Goap {
 
     // Calculate relevancy to attack something.
     public override float CalculateRelevancy(BlackBoard blackBoard) {
-        relevancy = blackBoard.GetAttackEnemyRelevancy();        
+        //relevancy = blackBoard.GetAttackEnemyRelevancy();        
         return relevancy;
         //return base.CalculateRelevancy(blackBoard);
     }

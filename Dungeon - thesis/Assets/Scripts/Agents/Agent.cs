@@ -11,13 +11,13 @@ public class Agent : MonoBehaviour {
 
     }
 
-    public void TakeDamage(int amount) {
+    public void TakeDamage(GameObject attacker, int amount) {
         if (Health - amount < 0) {
-            HandleDeath();
+            HandleDeath(attacker);
         }
     }
 
-    protected virtual void HandleDeath() {
+    protected virtual void HandleDeath(GameObject attacker) {
         Destroy(gameObject);
     }
 }

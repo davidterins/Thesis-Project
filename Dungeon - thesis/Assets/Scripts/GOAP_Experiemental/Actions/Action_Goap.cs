@@ -46,11 +46,6 @@ public class Action_Goap
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Successfull));
   }
 
-  protected void NeedPath()
-  {
-    Debug.Log(ID + " was sucessful");
-    OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.NeedPath));
-  }
 
   public WorldStateSet ApplyEffects(WorldStateSet worldState)
   {

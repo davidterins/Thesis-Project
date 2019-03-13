@@ -21,15 +21,13 @@ public class Goap_Controller : MonoBehaviour
   // Dessa ska nog flyttas till blackboarden sen
   WorldStateSet playerWorldState = new WorldStateSet()
   {
-    {WorldStateSymbol.Win, false},
     {WorldStateSymbol.HasItem, false},
-    {WorldStateSymbol.AtTarget, false},
-    {WorldStateSymbol.TargetInRange, false},
     {WorldStateSymbol.EnemyDead, false},
+    {WorldStateSymbol.SecondaryWeapon, false},
     {WorldStateSymbol.MeleeEquiped, true },
     {WorldStateSymbol.RangedEquiped, false },
     {WorldStateSymbol.LootableItem, false},
-    {WorldStateSymbol.AvailableChest, false}
+    {WorldStateSymbol.AvailableChest, false }
   };
 
 
@@ -87,11 +85,6 @@ public class Goap_Controller : MonoBehaviour
         //currentGoal = GetNewGoal();
         //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
         break;
-      case ActionCallback.NeedPath:
-        {
-
-        }
-        break;
     }
   }
 
@@ -148,7 +141,7 @@ public class Goap_Controller : MonoBehaviour
       }
     }
    //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
-    return playerGoals[1];// relevantGoal;
+    return playerGoals[0];// relevantGoal;
   }
 
   /// <summary>

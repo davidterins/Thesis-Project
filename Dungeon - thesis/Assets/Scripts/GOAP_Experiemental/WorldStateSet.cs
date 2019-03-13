@@ -6,6 +6,7 @@ using System;
 
 public class WorldStateSet : Dictionary<WorldStateSymbol,bool>, ICloneable
 {
+
   public object Clone()
   {
     WorldStateSet clone = new WorldStateSet();

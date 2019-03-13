@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Enemy : Agent
 {
+  [SerializeField]
+  GameObject[] Loot = null;
 
 
-  // Start is called before the first frame update
-  void Start()
+  protected override void HandleDeath(GameObject attacker)
   {
+    attacker.GetComponent<BlackBoard>().TargetLoot.Clear();
+    foreach (var item in Loot)
+    {
+      attacker.GetComponent<BlackBoard>().TargetLoot.Add(
+      Instantiate(item, transform.position, Quaternion.identity, transform.parent));
+    }
 
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
+    base.HandleDeath(attacker);
   }
 }

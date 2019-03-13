@@ -7,12 +7,12 @@ public enum WorldStateSymbol
   AtTarget,
   TargetInRange,
   HasItem,
-  Win,
   EnemyDead,
   MeleeEquiped,
   RangedEquiped,
   AvailableChest,
-  LootableItem
+  LootableItem,
+  SecondaryWeapon,
 }
 
 //public static class WorldStateActionLookup

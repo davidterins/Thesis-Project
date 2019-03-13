@@ -9,11 +9,4 @@ public class Potion : Item
   [SerializeField]
   public readonly int value = 10;
 
-  public override ItemType Type
-  {
-    get
-    {
-     return ItemType.Potion;
-    }
-  }
 }

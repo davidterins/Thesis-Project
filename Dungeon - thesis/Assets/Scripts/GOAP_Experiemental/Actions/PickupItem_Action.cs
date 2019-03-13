@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PickupItem_Action : MovingAction_Goap
 {
+  List<GameObject> lootItems;
 
   public PickupItem_Action(GameObject owner) : base(owner)
   {
@@ -23,14 +24,15 @@ public class PickupItem_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    target = owner.GetComponent<BlackBoard>().LootPosition;
-    //if (target)
-    //{
-    //  Failed();
-    //}
-    //else
+    lootItems = owner.GetComponent<BlackBoard>().TargetLoot;
+   
+    if (!lootItems[0])
     {
-      //target = targetItem.transform.position;
+      Failed();
+    }
+    else
+    {
+      target = lootItems[0].transform. position;
       base.Enter();
     }
   }
@@ -40,6 +42,10 @@ public class PickupItem_Action : MovingAction_Goap
     if (InRange)
     {
       base.Execute();
+      foreach(GameObject loot in lootItems)
+      {
+        loot.GetComponent<InteractableObject>().Interact(owner);
+      }
       Successfull();
     }
 
