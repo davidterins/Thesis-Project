@@ -67,11 +67,15 @@ public class Goap_Controller : MonoBehaviour
   /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
+    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+    viewControl.UpdateActionStatus(e.Result);
+
     switch (e.Result)
     {
       case ActionCallback.Successfull:
         if (plan.Count > 0)
         {
+         
           currentAction = playerActionLookup[plan.Dequeue()];
           currentAction.Enter();
         }
@@ -81,7 +85,7 @@ public class Goap_Controller : MonoBehaviour
         }
         break;
       case ActionCallback.Failed:
-       // CreateNewPlan();
+        // CreateNewPlan();
         //currentGoal = GetNewGoal();
         //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
         break;
@@ -112,12 +116,6 @@ public class Goap_Controller : MonoBehaviour
 
     currentAction = playerActionLookup[plan.Dequeue()];
     currentAction.Enter();
-
-    if(currentAction!= null)
-    {
-      currentAction.Execute();
-    }
-
   }
 
   /// <summary>

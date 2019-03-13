@@ -9,7 +9,7 @@ public class Loot_Goal : Goal_Goap {
 
     //Calculate relevancy to loot something.
     public override float CalculateRelevancy(BlackBoard blackBoard) {
-        relevancy = blackBoard.GetLootTreasureRelevancy();
+        //relevancy = blackBoard.GetLootTreasureRelevancy();
         return relevancy;
         //if (blackBoard.Coins < 0)
         //    relevancy += 0.2f;

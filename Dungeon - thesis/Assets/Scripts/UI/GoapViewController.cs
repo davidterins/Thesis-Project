@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GoapViewController : MonoBehaviour
 {
@@ -9,7 +10,14 @@ public class GoapViewController : MonoBehaviour
   private Text GoalText;
 
   [SerializeField]
-  public Text PlanText;
+  public GameObject PlanList;
+
+  [SerializeField]
+  public Text PlanStepTextPrefab;
+
+
+  int actionIndex = 0;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -30,10 +38,38 @@ public class GoapViewController : MonoBehaviour
 
   public void SetPlan(Queue<ActionID> actions)
   {
-    PlanText.text = "Plan:";
+    foreach (Transform child in PlanList.transform)
+    {
+      Destroy(child.gameObject);
+    }
 
+    actionIndex = 0;
     int index = 1;
-    foreach(ActionID action in actions)
-      PlanText.text += "\n" + index++ + ". " + action;
+    foreach (ActionID action in actions)
+    {
+      var planStep = Instantiate(PlanStepTextPrefab, PlanList.transform);
+      planStep.color = Color.yellow;
+      planStep.text +=  index++ + ". " + action;
+    }
+
   }
+
+  public void UpdateActionStatus(ActionCallback actionResult)
+  {
+
+    var updatedplanStep = PlanList.transform.GetChild(actionIndex++).gameObject;
+    switch (actionResult)
+    {
+      case ActionCallback.Successfull:
+        updatedplanStep.GetComponent<Text>().color = Color.green;
+        break;
+      case ActionCallback.Failed:
+        updatedplanStep.GetComponent<Text>().color = Color.red;
+        break;
+    }
+   
+  }
+
+
 }
+
