@@ -11,8 +11,8 @@ using UnityEngine;
 public class BlackBoard : MonoBehaviour
 {
   TargetingService targetingService;
-  [SerializeField]
-  Persona currentPersona;
+  //[SerializeField]
+  //Persona currentPersona;
 
   public Dictionary<TileType, List<GameObject>> Memory { get; private set; }
 
@@ -20,8 +20,8 @@ public class BlackBoard : MonoBehaviour
   {
     TargetLoot = new List<GameObject>();
     targetingService = new TargetingService(gameObject);
-    if (!currentPersona)
-      gameObject.AddComponent<DefaultPersona>();
+    //if (!currentPersona)
+      //gameObject.AddComponent<DefaultPersona>();
 
     Memory = new Dictionary<TileType, List<GameObject>>() {
             { TileType.ENEMY, new List<GameObject>() },
@@ -58,19 +58,19 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  public float GetAttackEnemyRelevancy()
-  {
-    if (Memory[TileType.ENEMY].Count <= 0)
-      return 0f;
-    return currentPersona.AttackEnemyFactor(targetingService.TryGetEnemyTarget());
-  }
+  //public float GetAttackEnemyRelevancy()
+  //{
+  //  if (Memory[TileType.ENEMY].Count <= 0)
+  //    return 0f;
+  //  //return currentPersona.AttackEnemyFactor(targetingService.TryGetEnemyTarget());
+  //}
 
-  public float GetLootTreasureRelevancy()
-  {
-    if (Memory[TileType.TREASURE].Count <= 0)
-      return 0f;
-    return currentPersona.LootTreasureFactor();
-  }
+  //public float GetLootTreasureRelevancy()
+  //{
+  //  if (Memory[TileType.TREASURE].Count <= 0)
+  //    return 0f;
+  //  return currentPersona.LootTreasureFactor();
+  //}
 
   public GameObject EnemyObject { get { return targetingService.TryGetEnemyTarget(); } }
 

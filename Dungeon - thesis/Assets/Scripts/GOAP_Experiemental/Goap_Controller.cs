@@ -17,8 +17,10 @@ public class Goap_Controller : MonoBehaviour
 
   BlackBoard blackBoard;
   Planner_Goap planner;
+  Persona persona;
 
-  // Dessa ska nog flyttas till blackboarden sen
+
+  public WorldStateSet PlayerWorldState { get { return playerWorldState; } }
   WorldStateSet playerWorldState = new WorldStateSet()
   {
     {WorldStateSymbol.HasItem, false},
@@ -27,14 +29,20 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.MeleeEquiped, true },
     {WorldStateSymbol.RangedEquiped, false },
     {WorldStateSymbol.LootableItem, false},
-    {WorldStateSymbol.AvailableChest, false }
+    {WorldStateSymbol.AvailableChest, true },
+    {WorldStateSymbol.HasPotion, false},
+    {WorldStateSymbol.IsHealthy, false},
+    {WorldStateSymbol.RoomExplored, true }
   };
+
+ 
 
 
   void Awake()
   {
 
     blackBoard = GetComponent<BlackBoard>();
+    persona = GetComponent<Persona>();
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>{
@@ -43,13 +51,16 @@ public class Goap_Controller : MonoBehaviour
           new RangedAttack_Action(gameObject),
           new ChangeWeapon_Action(gameObject),
           new OpenChest_Action(gameObject),
+          new Drink_Action(gameObject),
           new Action_Goap(gameObject)
         };
 
     playerGoals = new List<Goal_Goap>
     {
-      new Loot_Goal(planner),
-      new KillEnemy_Goal(planner),
+      new Loot_Goal(gameObject, planner),
+      new KillEnemy_Goal(gameObject, planner),
+      new Heal_Goal(gameObject, planner),
+      new Explore_Goal(gameObject, planner)
     };
 
     foreach (Action_Goap action in playerActions)
@@ -139,7 +150,8 @@ public class Goap_Controller : MonoBehaviour
       }
     }
    //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
-    return playerGoals[0];// relevantGoal;
+    //return playerGoals[2];// relevantGoal;
+    return relevantGoal;
   }
 
   /// <summary>

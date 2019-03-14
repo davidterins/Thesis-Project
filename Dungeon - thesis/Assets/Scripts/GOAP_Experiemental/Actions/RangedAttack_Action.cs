@@ -63,10 +63,10 @@ public class RangedAttack_Action : MovingAction_Goap
     if (attackTarget)
       if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
       {
-        cost = 2;
+        cost = 3;
       }
       else
-        cost = 1;
+        cost = 2;
     return base.GetCost();
   }
 }

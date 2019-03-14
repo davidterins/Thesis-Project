@@ -28,6 +28,11 @@ public class Action_Goap
   public virtual void Enter()
   {
     Debug.Log("Entered: " + ID);
+    if (!PreconditionsSatisfied())
+    {
+      Debug.Log("All preconditions was not satisfied on entering " + ID);
+      Failed();
+    }
   }
 
   public virtual void Execute() { }
@@ -64,6 +69,19 @@ public class Action_Goap
     {
       if (!worldState[precondition])
         return false;
+    }
+    return true;
+  }
+
+  protected bool PreconditionsSatisfied()
+  {
+    var agentWorldState = owner.GetComponent<Goap_Controller>().PlayerWorldState;
+    foreach(WorldStateSymbol symbol in PreConditions)
+    {
+      if (!agentWorldState[symbol])
+      {
+        return false;
+      }
     }
     return true;
   }

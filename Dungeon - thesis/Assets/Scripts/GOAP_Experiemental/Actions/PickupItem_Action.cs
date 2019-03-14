@@ -18,7 +18,8 @@ public class PickupItem_Action : MovingAction_Goap
 
     Effects = new WorldStateSymbol[]
     {
-     WorldStateSymbol.HasItem
+     WorldStateSymbol.HasItem,
+     WorldStateSymbol.HasPotion,
      };
   }
 

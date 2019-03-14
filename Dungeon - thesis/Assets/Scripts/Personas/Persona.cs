@@ -7,7 +7,7 @@ public enum Personality { BRAVERY, BLOODLUST, GREED, EXPLORATION, PROGRESSION, }
 public abstract class Persona : MonoBehaviour {
     protected BlackBoard blackBoard;
     public Dictionary<Personality, float> personalityModifer;
-    protected float enemyDistanceRange; // The distance of even being interested in an enemy
+    public float enemyDistanceRange; // The distance of even being interested in an enemy
 
     public virtual void Awake() {
         try {

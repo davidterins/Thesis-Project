@@ -5,13 +5,20 @@ using UnityEngine;
 public abstract class Goal_Goap
 {
 
-  protected float relevancy;
+  protected float relevancy = 0;
   protected Planner_Goap planner;
+  protected Persona persona;
+  protected GameObject owner;
   public WorldStateSet GoalWorldstates = new WorldStateSet();
 
-  protected Goal_Goap(Planner_Goap planner)
+
+  public float Relevancy { get { return relevancy; } }
+
+  protected Goal_Goap(GameObject owner, Planner_Goap planner)
   {
     this.planner = planner;
+    this.owner = owner;
+    this.persona = owner.GetComponent<Persona>();
     GoalWorldstates = new WorldStateSet();
   }
 

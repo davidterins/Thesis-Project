@@ -20,11 +20,14 @@ public class Player : Agent
   [SerializeField]
   public List<Weapon> weapons;
 
+  public List<Potion> potions;
+
   public int Coins = 0;
  
 
   private void Start()
   {
+    potions = new List<Potion>();
     weapons = new List<Weapon>();
     EquipWeapon(currentWeapon.GetComponent<Weapon>());
   }

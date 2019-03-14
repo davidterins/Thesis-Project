@@ -19,98 +19,99 @@ public class Planner_Goap
 
   public List<Node_Goap> FindPathFromGoal(WorldStateSet currentState, Goal_Goap goal, List<Action_Goap> agentActions)
   {
+    Dictionary<WorldStateSymbol, List<Action_Goap>> actionEffectsTable = new Dictionary<WorldStateSymbol, List<Action_Goap>>(agentActions.Count);
 
-      Dictionary<WorldStateSymbol, List<Action_Goap>> actionEffectsTable = new Dictionary<WorldStateSymbol, List<Action_Goap>>(agentActions.Count);
-
-      foreach (Action_Goap action in agentActions)
+    foreach (Action_Goap action in agentActions)
+    {
+      foreach (WorldStateSymbol effect in action.Effects)
       {
-        foreach (WorldStateSymbol effect in action.Effects)
+        if (!actionEffectsTable.ContainsKey(effect))
         {
-          if (!actionEffectsTable.ContainsKey(effect))
-          {
-            actionEffectsTable.Add(effect, new List<Action_Goap>());
-          }
-          actionEffectsTable[effect].Add(action);
+          actionEffectsTable.Add(effect, new List<Action_Goap>());
+        }
+        actionEffectsTable[effect].Add(action);
+      }
+    }
+    
+    List<Node_Goap> openSet = new List<Node_Goap>();
+    HashSet<Node_Goap> closedSet = new HashSet<Node_Goap>();
+
+    Node_Goap start = new Node_Goap(goal.GetEffectedWorldState(currentState), goal.GoalWorldstates.Keys.ToArray(), 1000, CalculateHCost(currentState, goal), null, ActionID.None);
+    openSet.Add(start);
+
+
+
+    while (openSet.Count > 0)
+    {
+      Node_Goap currentNode = openSet[0];
+
+      for (int i = 1; i < openSet.Count; i++)
+      {
+        if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
+        {
+          currentNode = openSet[i];
         }
       }
 
-      List<Node_Goap> openSet = new List<Node_Goap>();
-      HashSet<Node_Goap> closedSet = new HashSet<Node_Goap>();
+      openSet.Remove(currentNode);
+      closedSet.Add(currentNode);
 
-      Node_Goap start = new Node_Goap(goal.GetEffectedWorldState(currentState), goal.GoalWorldstates.Keys.ToArray(), 1000, CalculateHCost(currentState, goal), null, ActionID.None);
-      openSet.Add(start);
-
-      while (openSet.Count > 0)
+      ///Debug.Log("Added " + currentNode.ID + " to closed set");
+      if (currentNode.IsValidInWorldState(currentState))
       {
-        Node_Goap currentNode = openSet[0];
+        List<Node_Goap> path = new List<Node_Goap>();
+        Node_Goap end = currentNode;
 
-        for (int i = 1; i < openSet.Count; i++)
+        while (end.parent != null)
         {
-          if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
-          {
-            currentNode = openSet[i];
-          }
+          path.Add(end);
+          end = end.parent;
         }
+        return path;
+      }
 
-        openSet.Remove(currentNode);
-        closedSet.Add(currentNode);
-
-        ///Debug.Log("Added " + currentNode.ID + " to closed set");
-        if (currentNode.IsValidInWorldState(currentState))
+      // Get possible actions form currentNode, create new nodes from the actions
+      // effected worldState.
+      foreach (WorldStateSymbol symbol in currentNode.WSDiff)
+      {
+        //Debug.Log(symbol);
+        //TODO denna checken ska antagligen bort sen
+        if (!actionEffectsTable.ContainsKey(symbol))
+          continue;
+        //Check the actions available from the current WorldState
+        foreach (Action_Goap action in actionEffectsTable[symbol])
         {
-          List<Node_Goap> path = new List<Node_Goap>();
-          Node_Goap end = currentNode;
+          WorldStateSet effectedWS = action.ApplyEffects(currentNode.WS);
+          Node_Goap possibleNode = new Node_Goap(effectedWS, action.PreConditions, action.ID);
 
-          while (end.parent != null)
+          if (closedSet.Contains(possibleNode))
           {
-            path.Add(end);
-            end = end.parent;
-          }
-          return path;
-        }
-
-        // Get possible actions form currentNode, create new nodes from the actions
-        // effected worldState.
-        foreach (WorldStateSymbol symbol in currentNode.WSDiff)
-        {
-          //Debug.Log(symbol);
-          //TODO denna checken ska antagligen bort sen
-          if (!actionEffectsTable.ContainsKey(symbol))
             continue;
-          //Check the actions available from the current WorldState
-          foreach (Action_Goap action in actionEffectsTable[symbol])
+          }
+
+          if (!openSet.Contains(possibleNode)) //The node is not a member, just add it.
           {
-            WorldStateSet effectedWS = action.ApplyEffects(currentNode.WS);
-            Node_Goap possibleNode = new Node_Goap(effectedWS, action.PreConditions, action.ID);
-
-            if (closedSet.Contains(possibleNode))
+            possibleNode.parent = currentNode;
+            possibleNode.gCost = currentNode.gCost + action.GetCost() + CalculateHCost(effectedWS, goal);
+            openSet.Add(possibleNode);
+            // Debug.Log(action.ID + " was not visited before added to open set.");
+          }
+          else
+          {
+            if (currentNode.gCost + action.GetCost() < possibleNode.gCost)
             {
-              continue;
-            }
-
-            if (!openSet.Contains(possibleNode)) //The node is not a member, just add it.
-            {
-              possibleNode.parent = currentNode;
-              possibleNode.gCost = currentNode.gCost + action.GetCost() + CalculateHCost(effectedWS, goal);
-              openSet.Add(possibleNode);
-              // Debug.Log(action.ID + " was not visited before added to open set.");
-            }
-            else
-            {
-              if (currentNode.gCost + action.GetCost() < possibleNode.gCost)
-              {
-                int index = openSet.IndexOf(possibleNode);
-                openSet[index].parent = currentNode;
-                openSet[index].gCost = currentNode.gCost + action.GetCost();
-                openSet[index].hCost = CalculateHCost(effectedWS, goal);
-                openSet[index].ID = action.ID;
-                // Debug.Log("There was a cheaper path to: " + action.ID + " updating its values");
-              }
+              int index = openSet.IndexOf(possibleNode);
+              openSet[index].parent = currentNode;
+              openSet[index].gCost = currentNode.gCost + action.GetCost();
+              openSet[index].hCost = CalculateHCost(effectedWS, goal);
+              openSet[index].ID = action.ID;
+              // Debug.Log("There was a cheaper path to: " + action.ID + " updating its values");
             }
           }
         }
       }
-   
+    }
+
     return null;
   }
 }

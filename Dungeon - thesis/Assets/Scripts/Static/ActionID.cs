@@ -9,7 +9,8 @@ public enum ActionID
   MeeleAttack,
   RangedAttack,
   ChangeWeapon,
-  OpenChest
+  OpenChest,
+  Drink,
 }
 
 public enum ActionCallback

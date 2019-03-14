@@ -13,6 +13,10 @@ public enum WorldStateSymbol
   AvailableChest,
   LootableItem,
   SecondaryWeapon,
+  IsHealthy,
+  HasPotion,
+  RoomExplored,
+
 }
 
 //public static class WorldStateActionLookup

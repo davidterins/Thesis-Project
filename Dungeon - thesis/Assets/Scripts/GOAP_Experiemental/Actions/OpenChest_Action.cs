@@ -55,7 +55,7 @@ public class OpenChest_Action : MovingAction_Goap
   // TODO HAR SATT DENNA HÖGT FÖR DEBUGSYFTE!
   public override float GetCost()
   {
-    return 1000;
+    return 1;
   }
 
 }

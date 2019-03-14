@@ -7,7 +7,7 @@ using System.Linq;
 public class GoapViewController : MonoBehaviour
 {
   [SerializeField]
-  private Text GoalText;
+  private Text GoalText = null;
 
   [SerializeField]
   public GameObject PlanList;
@@ -18,21 +18,9 @@ public class GoapViewController : MonoBehaviour
 
   int actionIndex = 0;
 
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   public void SetGoal(Goal_Goap goal)
   {
-    GoalText.text = "Goal:\n" + goal.GetType();
+    GoalText.text = "Goal:\n" + goal.GetType() + " " + goal.Relevancy;
 
   }
 
@@ -57,7 +45,7 @@ public class GoapViewController : MonoBehaviour
   public void UpdateActionStatus(ActionCallback actionResult)
   {
 
-    var updatedplanStep = PlanList.transform.GetChild(actionIndex++).gameObject;
+    var updatedplanStep = PlanList.transform.GetChild(actionIndex).gameObject;
     switch (actionResult)
     {
       case ActionCallback.Successfull:
@@ -67,6 +55,7 @@ public class GoapViewController : MonoBehaviour
         updatedplanStep.GetComponent<Text>().color = Color.red;
         break;
     }
+    actionIndex++;
    
   }
 

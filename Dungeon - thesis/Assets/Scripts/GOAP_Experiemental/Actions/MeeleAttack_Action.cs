@@ -66,10 +66,10 @@ public class MeeleAttack_Action : MovingAction_Goap
     if (attackTarget)
       if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
       {
-        cost = 1;
+        cost = 2;
       }
       else
-        cost = 2;
+        cost = 3;
     return base.GetCost();
   }
 
