@@ -40,7 +40,7 @@ public class PickupItem_Action : MovingAction_Goap
 
   public override void Execute()
   {
-    if (InRange && PreconditionsSatisfied())
+    if (InRange)
     {
       base.Execute();
       foreach(GameObject loot in lootItems)
