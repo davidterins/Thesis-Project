@@ -55,10 +55,7 @@ public class GoapViewController : MonoBehaviour
         updatedplanStep.GetComponent<Text>().color = Color.red;
         break;
     }
-    actionIndex++;
-   
+    actionIndex++; 
   }
-
-
 }
 

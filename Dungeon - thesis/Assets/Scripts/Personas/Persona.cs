@@ -23,7 +23,4 @@ public abstract class Persona : MonoBehaviour {
         personalityModifer.Add(Personality.EXPLORATION, 0f);
         personalityModifer.Add(Personality.PROGRESSION, 0f);
     }
-
-    public abstract float AttackEnemyFactor(GameObject closestEnemy);
-    public abstract float LootTreasureFactor();
 }

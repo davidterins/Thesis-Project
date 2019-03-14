@@ -69,7 +69,5 @@ public class Player : Agent
     var equipedWeapon = currentWeapon.GetComponent<Weapon>();
     equipedWeapon = weapon;
   }
-
-
 }
 
