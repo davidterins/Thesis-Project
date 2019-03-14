@@ -43,7 +43,6 @@ public class OpenChest_Action : MovingAction_Goap
       targetItem.GetComponent<InteractableObject>().Interact(owner);
       Successfull();
     }
-
   }
 
   public override bool IsInRange()

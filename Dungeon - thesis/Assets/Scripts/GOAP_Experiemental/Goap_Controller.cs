@@ -35,12 +35,8 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.RoomExplored, true }
   };
 
- 
-
-
   void Awake()
   {
-
     blackBoard = GetComponent<BlackBoard>();
     persona = GetComponent<Persona>();
     planner = new Planner_Goap();
@@ -78,6 +74,7 @@ public class Goap_Controller : MonoBehaviour
   /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
+    
     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateActionStatus(e.Result);
 
@@ -86,7 +83,7 @@ public class Goap_Controller : MonoBehaviour
       case ActionCallback.Successfull:
         if (plan.Count > 0)
         {
-         
+        
           currentAction = playerActionLookup[plan.Dequeue()];
           currentAction.Enter();
         }
@@ -96,11 +93,16 @@ public class Goap_Controller : MonoBehaviour
         }
         break;
       case ActionCallback.Failed:
+        //currentAction = null playerActionLookup[plan.Dequeue()];
+        plan.Clear();
+        currentAction = null;
         // CreateNewPlan();
         //currentGoal = GetNewGoal();
         //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
         break;
     }
+
+
   }
 
   void Update()

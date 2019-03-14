@@ -26,7 +26,7 @@ public class TreasureChest : InteractableObject
     try
     {
       interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, this.gameObject);
-      this.GetComponent<BoxCollider2D>().enabled = false;
+      //this.GetComponent<BoxCollider2D>().enabled = false;
     }
     catch { Debug.Log("Agent has no memory applied."); }
   }

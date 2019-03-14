@@ -18,7 +18,7 @@ public abstract class Goal_Goap
   {
     this.planner = planner;
     this.owner = owner;
-    this.persona = owner.GetComponent<Persona>();
+    persona = owner.GetComponent<Persona>();
     GoalWorldstates = new WorldStateSet();
   }
 

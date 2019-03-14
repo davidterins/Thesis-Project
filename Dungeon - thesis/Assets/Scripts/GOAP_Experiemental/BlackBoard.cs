@@ -21,7 +21,7 @@ public class BlackBoard : MonoBehaviour
     TargetLoot = new List<GameObject>();
     targetingService = new TargetingService(gameObject);
     //if (!currentPersona)
-      //gameObject.AddComponent<DefaultPersona>();
+    //gameObject.AddComponent<DefaultPersona>();
 
     Memory = new Dictionary<TileType, List<GameObject>>() {
             { TileType.ENEMY, new List<GameObject>() },
@@ -58,27 +58,11 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  //public float GetAttackEnemyRelevancy()
-  //{
-  //  if (Memory[TileType.ENEMY].Count <= 0)
-  //    return 0f;
-  //  //return currentPersona.AttackEnemyFactor(targetingService.TryGetEnemyTarget());
-  //}
-
-  //public float GetLootTreasureRelevancy()
-  //{
-  //  if (Memory[TileType.TREASURE].Count <= 0)
-  //    return 0f;
-  //  return currentPersona.LootTreasureFactor();
-  //}
-
   public GameObject EnemyObject { get { return targetingService.TryGetEnemyTarget(); } }
 
   public GameObject TreasureObject { get { return targetingService.TryGetTreasureChest(); } }
 
   public List<GameObject> TargetLoot { get; set; }
-
-  public Vector2 LootPosition { get; set; }
 
   public int Health { get { return GetComponent<Player>().Health; } }
 

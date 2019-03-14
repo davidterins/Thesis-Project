@@ -6,13 +6,14 @@ public class KillEnemy_Goal : Goal_Goap {
     public KillEnemy_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner) {
         GoalWorldstates.Add(WorldStateSymbol.EnemyDead, true);
     }
-
     /// <summary>
     /// Calculates the relevancy of attacking something
     /// </summary>
     /// <param name="blackBoard">The blackboard</param>
     /// <returns></returns>
     public override float CalculateRelevancy(BlackBoard blackBoard) {
+    if (!blackBoard.EnemyObject)
+      return 0f;
         relevancy = persona.personalityModifer[Personality.BLOODLUST] +
                        persona.personalityModifer[Personality.BRAVERY] -
                        (Vector2.Distance(blackBoard.EnemyObject.transform.position, owner.transform.position) / 10);

@@ -9,6 +9,7 @@ public class Action_Goap
   public virtual event EventHandler<ActionFinishedEventArgs> OnActionFinished;
 
   protected readonly GameObject owner;
+  protected bool PreconditionsMet;
 
   /// <summary>
   /// Dessa tre måste sättas i konstruktorn i varje action.
@@ -28,7 +29,8 @@ public class Action_Goap
   public virtual void Enter()
   {
     Debug.Log("Entered: " + ID);
-    if (!PreconditionsSatisfied())
+    PreconditionsMet = PreconditionsSatisfied();
+    if (!PreconditionsMet)
     {
       Debug.Log("All preconditions was not satisfied on entering " + ID);
       Failed();

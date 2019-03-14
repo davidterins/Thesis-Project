@@ -34,9 +34,11 @@ public abstract class MovingAction_Goap : Action_Goap
     }
     else
     {
-      Execute();
+      if (PreconditionsMet)
+      {
+        Execute();
+      }
     }
-
   }
 
   void HandleAtDestination(object sender, EventArgs e)
