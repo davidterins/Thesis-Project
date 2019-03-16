@@ -31,6 +31,7 @@ public class OpenChest_Action : MovingAction_Goap
     else
     {
       target = targetItem.transform.position;
+      //Debug.Log("Targeted Chest pos: " + target.x + ", " + target.y);
       base.Enter();
     }
   }
@@ -47,7 +48,7 @@ public class OpenChest_Action : MovingAction_Goap
 
   public override bool IsInRange()
   {
-    InRange = Vector2.Distance(owner.transform.position, targetItem.transform.position) <= 0.5;
+    InRange = Vector2.Distance(owner.transform.position, targetItem.transform.position) <= 0.5f;
     return InRange;
   }
 

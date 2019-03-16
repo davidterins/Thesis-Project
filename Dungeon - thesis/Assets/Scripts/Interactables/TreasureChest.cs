@@ -44,6 +44,7 @@ public class TreasureChest : InteractableObject
 
   public override void Interact(GameObject player)
   {
+    DebugColoring();
     if (isClosed)
     {
       Open(player);

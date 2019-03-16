@@ -47,7 +47,7 @@ public class GoapViewController : MonoBehaviour
 
   public void UpdateActionStatus(ActionCallback actionResult)
   {
-    Debug.Log("Current acttionIndex " + actionIndex);
+    //Debug.Log("Current acttionIndex " + actionIndex);
     var updatedplanStep = PlanList.transform.GetChild(actionIndex).gameObject;
     switch (actionResult)
     {

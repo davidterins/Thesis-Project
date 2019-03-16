@@ -90,15 +90,16 @@ public class BlackBoard : MonoBehaviour
     get { return treasureTarget; }
     set
     {
-      if (!treasureTarget == value)
-      {
+      //if (!treasureTarget == value)
+      //{
         treasureTarget = value;
         bool wsValue = false;
         if (value != null)
           wsValue = true;
 
+        //Debug.Log("Closest chest is at " + value.transform.position.x + ", " + value.transform.position.y);
         WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableChest, wsValue));
-      }
+      //}
     }
   }
 
@@ -125,7 +126,10 @@ public class BlackBoard : MonoBehaviour
 
   public int Coins { get { return GetComponent<Player>().Coins; } }
 
-  void UpdateTargets() { targetingService.Refresh(); }
+  /// <summary>
+  /// Updated every second by the InvokeRepeating function in Start().
+  /// </summary>
+  public void UpdateTargets() { targetingService.Refresh(); }
 }
 
 public class WsSymbolChangedEventArgs : EventArgs

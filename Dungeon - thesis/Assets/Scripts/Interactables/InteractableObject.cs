@@ -7,5 +7,10 @@ public abstract class InteractableObject : MonoBehaviour
   // istället för att forca en interaction med en trigger. Tror det blir lättare
   // att kontrollera såhär.
   public abstract void Interact(GameObject player);
+
+  protected void DebugColoring()
+  {
+    GetComponent<SpriteRenderer>().color = Color.green;
+  }
 }
 

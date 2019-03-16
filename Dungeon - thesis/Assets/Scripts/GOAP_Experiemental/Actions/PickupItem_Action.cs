@@ -47,10 +47,9 @@ public class PickupItem_Action : MovingAction_Goap
       {
         loot.GetComponent<InteractableObject>().Interact(owner);
       }
-      // IS set here for now, should probably the loot handle this when picked up.
+      // Is set here for now, should probably the loot handle this when picked up.
       owner.GetComponent<BlackBoard>().TargetLoot = null;
       Successfull();
-    
     }
 
   }

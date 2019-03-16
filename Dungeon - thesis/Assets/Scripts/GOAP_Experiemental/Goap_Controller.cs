@@ -19,6 +19,10 @@ public class Goap_Controller : MonoBehaviour
   Planner_Goap planner;
   Persona persona;
 
+  bool needPlan;
+  bool crRunning = false;
+
+
 
   public WorldStateSet PlayerWorldState { get { return playerWorldState; } }
   WorldStateSet playerWorldState = new WorldStateSet()
@@ -67,14 +71,14 @@ public class Goap_Controller : MonoBehaviour
       action.OnActionFinished += Action_ActionCallback;
     }
 
-   
+
     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateWSVariables(playerWorldState);
   }
 
   void BlackBoard_WorldStateVariableChanged(object sender, WsSymbolChangedEventArgs e)
   {
-    Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
+    //    Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateWSVariables(playerWorldState);
     playerWorldState[e.Symbol] = e.Value;
@@ -89,35 +93,62 @@ public class Goap_Controller : MonoBehaviour
   /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
-
+    Debug.Log("ActionCallback " + e.Result);
     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateActionStatus(e.Result);
 
     switch (e.Result)
     {
       case ActionCallback.Successfull:
-        if (plan.Count > 0)
+        if (plan.Count < 1)
         {
-
-          currentAction = playerActionLookup[plan.Dequeue()];
-          currentAction.Enter();
+          Debug.Log("PlanQueue count was 0, need new plan!");
+          needPlan = true;
+          //currentAction = null;
+          //CreateNewPlan();
+          //break;
         }
         else
         {
+          Debug.Log("ActionCallback " + e.Result);
+          currentAction = playerActionLookup[plan.Dequeue()];
+          currentAction.Enter();
+          //plan.Clear();
+          //currentAction = null;
           //CreateNewPlan();
         }
         break;
       case ActionCallback.Failed:
+        needPlan = true;
         //currentAction = null playerActionLookup[plan.Dequeue()];
         plan.Clear();
         currentAction = null;
-        // CreateNewPlan();
-        //currentGoal = GetNewGoal();
-        //plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+        //CreateNewPlan();
         break;
     }
 
 
+
+    if (needPlan)
+    {
+      if (!crRunning)
+      {
+        StartCoroutine(DoPlan());
+        needPlan = false;
+        crRunning = false;
+      }
+
+    }
+  }
+
+
+  private IEnumerator DoPlan()
+  {
+    crRunning = true;
+    blackBoard.UpdateTargets();
+    CreateNewPlan();
+
+    yield return new WaitForSecondsRealtime(1f);// WaitForSeconds(1f);
   }
 
   void Update()
@@ -129,6 +160,7 @@ public class Goap_Controller : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.P))
     {
+      blackBoard.UpdateTargets();
       CreateNewPlan();
     }
   }
@@ -142,7 +174,7 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
     viewControl.SetPlan(plan);
 
-    if(plan.Count > 0)
+    if (plan.Count > 0)
     {
       currentAction = playerActionLookup[plan.Dequeue()];
       currentAction.Enter();
@@ -170,8 +202,6 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
-    //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
-    //return playerGoals[2];// relevantGoal;
     return relevantGoal;
   }
 
