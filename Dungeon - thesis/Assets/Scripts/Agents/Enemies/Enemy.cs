@@ -5,17 +5,18 @@ using UnityEngine;
 public class Enemy : Agent
 {
   [SerializeField]
-  GameObject[] Loot = null;
+  List<GameObject> Loot = null;
 
 
   protected override void HandleDeath(GameObject attacker)
   {
-    attacker.GetComponent<BlackBoard>().TargetLoot.Clear();
+    var tempLootList = new List<GameObject>(Loot.Count);
     foreach (var item in Loot)
     {
-      attacker.GetComponent<BlackBoard>().TargetLoot.Add(
-      Instantiate(item, transform.position, Quaternion.identity, transform.parent));
+      tempLootList.Add(Instantiate(item, transform.position, Quaternion.identity));
     }
+
+    attacker.GetComponent<BlackBoard>().TargetLoot = tempLootList;
 
     base.HandleDeath(attacker);
   }

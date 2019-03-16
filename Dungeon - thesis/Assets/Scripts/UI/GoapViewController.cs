@@ -15,6 +15,9 @@ public class GoapViewController : MonoBehaviour
   [SerializeField]
   public Text PlanStepTextPrefab;
 
+  [SerializeField]
+  private Text WSVariableText = null;
+
 
   int actionIndex = 0;
 
@@ -56,6 +59,15 @@ public class GoapViewController : MonoBehaviour
         break;
     }
     actionIndex++; 
+  }
+
+  public void UpdateWSVariables(WorldStateSet currentWS)
+  {
+    WSVariableText.text = "WorldState";
+    foreach (var keyVal in currentWS)
+    {
+      WSVariableText.text += "\n" + keyVal.Key + ": " + keyVal.Value;
+    }
   }
 }
 

@@ -15,6 +15,7 @@ public class RangedAttack_Action : MovingAction_Goap
     PreConditions = new WorldStateSymbol[]
     {
       WorldStateSymbol.RangedEquiped,
+      WorldStateSymbol.AvailableEnemy,
      };
 
     Effects = new WorldStateSymbol[]

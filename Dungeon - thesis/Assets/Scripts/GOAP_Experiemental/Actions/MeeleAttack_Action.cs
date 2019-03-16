@@ -14,6 +14,7 @@ public class MeeleAttack_Action : MovingAction_Goap
     PreConditions = new WorldStateSymbol[]
     {
       WorldStateSymbol.MeleeEquiped,
+      WorldStateSymbol.AvailableEnemy,
      };
 
     Effects = new WorldStateSymbol[]

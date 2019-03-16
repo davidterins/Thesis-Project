@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: Add hashing to Dictionary List
+using System;
 
 /// <summary>
 /// Black board.
@@ -10,6 +11,8 @@ using UnityEngine;
 /// </summary>
 public class BlackBoard : MonoBehaviour
 {
+  public event EventHandler<WsSymbolChangedEventArgs> WorldStateVariableChanged;
+
   TargetingService targetingService;
   //[SerializeField]
   //Persona currentPersona;
@@ -18,8 +21,9 @@ public class BlackBoard : MonoBehaviour
 
   public void Start()
   {
-    TargetLoot = new List<GameObject>();
+    //TargetLoot = new List<GameObject>();
     targetingService = new TargetingService(gameObject);
+    InvokeRepeating("UpdateTargets", 0, 1.0f);
     //if (!currentPersona)
     //gameObject.AddComponent<DefaultPersona>();
 
@@ -58,14 +62,80 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  public GameObject EnemyObject { get { return targetingService.TryGetEnemyTarget(); } }
+  private GameObject enemyObject;
+  public GameObject EnemyObject
+  {
+    get
+    {
+      return enemyObject;
+    }
+    set
+    {
+      if (enemyObject != value)
+      {
+        enemyObject = value;
+        bool wsValue = false;
+        if (value != null)
+          wsValue = true;
 
-  public GameObject TreasureObject { get { return targetingService.TryGetTreasureChest(); } }
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableEnemy, wsValue));
+      }
 
-  public List<GameObject> TargetLoot { get; set; }
+    }
+  }
+
+  private GameObject treasureTarget;
+  public GameObject TreasureObject
+  {
+    get { return treasureTarget; }
+    set
+    {
+      if (!treasureTarget == value)
+      {
+        treasureTarget = value;
+        bool wsValue = false;
+        if (value != null)
+          wsValue = true;
+
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableChest, wsValue));
+      }
+    }
+  }
+
+  private List<GameObject> targetLoot;
+  public List<GameObject> TargetLoot
+  {
+    get { return targetLoot; }
+    set
+    {
+      var s = value;
+      if(targetLoot != value)
+      {
+        targetLoot = value;
+        bool wsValue = false;
+        if (value != null)
+          wsValue = true;
+
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.LootableItem, wsValue));
+      }
+    }
+  }
 
   public int Health { get { return GetComponent<Player>().Health; } }
 
   public int Coins { get { return GetComponent<Player>().Coins; } }
 
+  void UpdateTargets() { targetingService.Refresh(); }
+}
+
+public class WsSymbolChangedEventArgs : EventArgs
+{
+  public WorldStateSymbol Symbol { get; private set; }
+  public bool Value { get; private set; }
+
+  public WsSymbolChangedEventArgs(WorldStateSymbol symbol, bool value)
+  {
+    Symbol = symbol;
+    Value = value;
+  }
 }

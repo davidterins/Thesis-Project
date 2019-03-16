@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class TreasureChest : InteractableObject
 {
-  bool IsClosed = true;
+  bool isClosed = true;
+  public bool IsClosed { get { return isClosed; } private set { isClosed = value; } }
 
   [SerializeField]
-  GameObject[] Loot = null;
+  List<GameObject> Loot = null;
 
   void Start() { }
 
   void Open(GameObject interactingAgent)
   {
-    interactingAgent.GetComponent<BlackBoard>().TargetLoot.Clear();
+    //interactingAgent.GetComponent<BlackBoard>().TargetLoot.Clear();
+    var tempLootList = new List<GameObject>(Loot.Count);
     foreach (var item in Loot)
     {
-
-      interactingAgent.GetComponent<BlackBoard>().TargetLoot.Add(
-      Instantiate(item, transform.position, Quaternion.identity, transform));
+      tempLootList.Add(Instantiate(item, transform.position, Quaternion.identity));
     }
+    interactingAgent.GetComponent<BlackBoard>().TargetLoot = tempLootList;
 
 
-    IsClosed = false;
+    isClosed = false;
     try
     {
       interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, this.gameObject);
@@ -43,7 +44,7 @@ public class TreasureChest : InteractableObject
 
   public override void Interact(GameObject player)
   {
-    if (IsClosed)
+    if (isClosed)
     {
       Open(player);
       Debug.Log(" Player requested to open chest");

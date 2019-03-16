@@ -18,10 +18,11 @@ public class TargetingService
   //To be done once per second.
   public void Refresh()
   {
-
+    TrySetEnemyTarget();
+    TrySetTreasureChest();
   }
 
-  public GameObject TryGetEnemyTarget()
+  public void TrySetEnemyTarget()
   { //Look through memory facts
     GameObject closestTarget = null;
     if (blackBoard.Memory[TileType.ENEMY].Count > 0)
@@ -42,10 +43,11 @@ public class TargetingService
         }
       }
     }
-    return closestTarget;
+    blackBoard.EnemyObject = closestTarget;
   }
 
-  public GameObject TryGetTreasureChest()
+
+  public void TrySetTreasureChest()
   {
     GameObject closestTarget = null;
     if (blackBoard.Memory[TileType.TREASURE].Count > 0)
@@ -55,7 +57,7 @@ public class TargetingService
 
       foreach (GameObject treasure in blackBoard.Memory[TileType.TREASURE])
       {
-        if (treasure != null)
+        if (treasure != null && treasure.GetComponent<TreasureChest>().IsClosed)
         {
           float distance = Vector2.Distance(ownPos, treasure.transform.position);
           if (distance < closestDistance)
@@ -66,6 +68,7 @@ public class TargetingService
         }
       }
     }
-    return closestTarget;
+    blackBoard.TreasureObject = closestTarget;
   }
+
 }

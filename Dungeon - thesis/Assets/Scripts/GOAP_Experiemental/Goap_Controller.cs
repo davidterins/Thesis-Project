@@ -27,9 +27,10 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.EnemyDead, false},
     {WorldStateSymbol.SecondaryWeapon, false},
     {WorldStateSymbol.MeleeEquiped, true },
+    {WorldStateSymbol.AvailableEnemy, false },
     {WorldStateSymbol.RangedEquiped, false },
     {WorldStateSymbol.LootableItem, false},
-    {WorldStateSymbol.AvailableChest, true },
+    {WorldStateSymbol.AvailableChest, false },
     {WorldStateSymbol.HasPotion, false},
     {WorldStateSymbol.IsHealthy, false},
     {WorldStateSymbol.RoomExplored, true }
@@ -38,6 +39,7 @@ public class Goap_Controller : MonoBehaviour
   void Awake()
   {
     blackBoard = GetComponent<BlackBoard>();
+    blackBoard.WorldStateVariableChanged += BlackBoard_WorldStateVariableChanged;
     persona = GetComponent<Persona>();
     planner = new Planner_Goap();
 
@@ -64,7 +66,20 @@ public class Goap_Controller : MonoBehaviour
       playerActionLookup.Add(action.ID, action);
       action.OnActionFinished += Action_ActionCallback;
     }
+
+   
+    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+    viewControl.UpdateWSVariables(playerWorldState);
   }
+
+  void BlackBoard_WorldStateVariableChanged(object sender, WsSymbolChangedEventArgs e)
+  {
+    Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
+    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+    viewControl.UpdateWSVariables(playerWorldState);
+    playerWorldState[e.Symbol] = e.Value;
+  }
+
 
   /// <summary>
   /// Tänker att denna ska användas efter att en action är klar för att byta
@@ -74,7 +89,7 @@ public class Goap_Controller : MonoBehaviour
   /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
-    
+
     var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateActionStatus(e.Result);
 
@@ -83,7 +98,7 @@ public class Goap_Controller : MonoBehaviour
       case ActionCallback.Successfull:
         if (plan.Count > 0)
         {
-        
+
           currentAction = playerActionLookup[plan.Dequeue()];
           currentAction.Enter();
         }
@@ -127,8 +142,12 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
     viewControl.SetPlan(plan);
 
-    currentAction = playerActionLookup[plan.Dequeue()];
-    currentAction.Enter();
+    if(plan.Count > 0)
+    {
+      currentAction = playerActionLookup[plan.Dequeue()];
+      currentAction.Enter();
+    }
+
   }
 
   /// <summary>
@@ -151,20 +170,23 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
-   //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
+    //Debug.Log("Goal with with highest relevance: " + relevantGoal.GetType());
     //return playerGoals[2];// relevantGoal;
     return relevantGoal;
   }
+
 
   /// <summary>
   /// signa av från actionCallbacken
   /// </summary>
   private void OnDestroy()
   {
+    blackBoard.WorldStateVariableChanged -= BlackBoard_WorldStateVariableChanged;
     foreach (var action in playerActions)
     {
       action.OnActionFinished -= Action_ActionCallback;
     }
   }
+
 
 }

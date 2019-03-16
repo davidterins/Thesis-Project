@@ -27,13 +27,13 @@ public class PickupItem_Action : MovingAction_Goap
   {
     lootItems = owner.GetComponent<BlackBoard>().TargetLoot;
    
-    if (!lootItems[0])
+    if (lootItems == null)
     {
       Failed();
     }
     else
     {
-      target = lootItems[0].transform. position;
+      target = lootItems[0].transform.position;
       base.Enter();
     }
   }
@@ -47,7 +47,10 @@ public class PickupItem_Action : MovingAction_Goap
       {
         loot.GetComponent<InteractableObject>().Interact(owner);
       }
+      // IS set here for now, should probably the loot handle this when picked up.
+      owner.GetComponent<BlackBoard>().TargetLoot = null;
       Successfull();
+    
     }
 
   }
