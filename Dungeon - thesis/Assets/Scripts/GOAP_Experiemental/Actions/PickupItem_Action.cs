@@ -56,7 +56,7 @@ public class PickupItem_Action : MovingAction_Goap
 
   public override bool IsInRange()
   {
-    InRange = Vector2.Distance(owner.transform.position, target) <= 0.5;
+    InRange = Vector2.Distance(owner.transform.position, target) <= interactionRange + 0.5;
     return InRange;
   }
 }

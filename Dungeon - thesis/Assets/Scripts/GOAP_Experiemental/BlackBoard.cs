@@ -44,7 +44,7 @@ public class BlackBoard : MonoBehaviour
         {
           Memory[type].Add(go);
           InfoBox.UpdateMemory(Memory);
-          Debug.Log("Added " + type + " count: " + Memory[type].Count);
+         // Debug.Log("Added " + type + " count: " + Memory[type].Count);
         }
       }
       catch (System.Exception ex)

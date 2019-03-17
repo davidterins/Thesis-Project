@@ -19,10 +19,7 @@ public class Goap_Controller : MonoBehaviour
   Planner_Goap planner;
   Persona persona;
 
-  bool needPlan;
-  bool crRunning = false;
-
-
+  GoapViewController viewControl;
 
   public WorldStateSet PlayerWorldState { get { return playerWorldState; } }
   WorldStateSet playerWorldState = new WorldStateSet()
@@ -42,6 +39,9 @@ public class Goap_Controller : MonoBehaviour
 
   void Awake()
   {
+
+    viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+
     blackBoard = GetComponent<BlackBoard>();
     blackBoard.WorldStateVariableChanged += BlackBoard_WorldStateVariableChanged;
     persona = GetComponent<Persona>();
@@ -72,14 +72,13 @@ public class Goap_Controller : MonoBehaviour
     }
 
 
-    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+
     viewControl.UpdateWSVariables(playerWorldState);
   }
 
   void BlackBoard_WorldStateVariableChanged(object sender, WsSymbolChangedEventArgs e)
   {
-    //    Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
-    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
+    //   Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
     viewControl.UpdateWSVariables(playerWorldState);
     playerWorldState[e.Symbol] = e.Value;
   }
@@ -93,62 +92,57 @@ public class Goap_Controller : MonoBehaviour
   /// <param name="e">E.</param>
   void Action_ActionCallback(object sender, ActionFinishedEventArgs e)
   {
-    Debug.Log("ActionCallback " + e.Result);
-    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
     viewControl.UpdateActionStatus(e.Result);
-
     switch (e.Result)
     {
       case ActionCallback.Successfull:
         if (plan.Count < 1)
         {
           Debug.Log("PlanQueue count was 0, need new plan!");
-          needPlan = true;
-          //currentAction = null;
-          //CreateNewPlan();
-          //break;
+          //Kommentera ut StartCoroutine(NewPlan()) om du bestämma själv när agenten ska
+          //göra ny plan med P.
+          StartCoroutine(NewPlan());
         }
         else
         {
           Debug.Log("ActionCallback " + e.Result);
-          currentAction = playerActionLookup[plan.Dequeue()];
-          currentAction.Enter();
-          //plan.Clear();
-          //currentAction = null;
-          //CreateNewPlan();
+          StartCoroutine(NextAction());
         }
         break;
       case ActionCallback.Failed:
-        needPlan = true;
-        //currentAction = null playerActionLookup[plan.Dequeue()];
-        plan.Clear();
-        currentAction = null;
-        //CreateNewPlan();
+        Debug.Log("Plan failed, need new plan!");
+        //Kommentera ut StartCoroutine(NewPlan()) om du bestämma själv när agenten ska
+        //göra ny plan med P.
+        StartCoroutine(NewPlan());
         break;
-    }
-
-
-
-    if (needPlan)
-    {
-      if (!crRunning)
-      {
-        StartCoroutine(DoPlan());
-        needPlan = false;
-        crRunning = false;
-      }
-
     }
   }
 
-
-  private IEnumerator DoPlan()
+  /// <summary>
+  /// Blir tydligare för debugningen att kolla med en paus på 0.5s
+  /// </summary>
+  /// <returns>The action.</returns>
+  private IEnumerator NextAction()
   {
-    crRunning = true;
-    blackBoard.UpdateTargets();
-    CreateNewPlan();
+    yield return new WaitForSecondsRealtime(0.5f);
+    currentAction = playerActionLookup[plan.Dequeue()];
+    currentAction.Enter();
+  }
 
-    yield return new WaitForSecondsRealtime(1f);// WaitForSeconds(1f);
+
+  private IEnumerator NewPlan()
+  {
+    //blackBoard.UpdateTargets();
+    currentGoal = GetNewGoal();
+    plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+
+    yield return new WaitForSecondsRealtime(0.5f);
+    viewControl.SetGoal(currentGoal);
+    viewControl.SetPlan(plan);
+    currentAction = playerActionLookup[plan.Dequeue()];
+    currentAction.Enter();
+
+
   }
 
   void Update()
@@ -170,8 +164,7 @@ public class Goap_Controller : MonoBehaviour
     currentGoal = GetNewGoal();
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
-    var viewControl = GameObject.FindWithTag("GoapViewController").GetComponent<GoapViewController>();
-    viewControl.SetGoal(currentGoal);
+
     viewControl.SetPlan(plan);
 
     if (plan.Count > 0)

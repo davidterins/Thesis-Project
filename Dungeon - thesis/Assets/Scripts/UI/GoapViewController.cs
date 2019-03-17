@@ -10,10 +10,10 @@ public class GoapViewController : MonoBehaviour
   private Text GoalText = null;
 
   [SerializeField]
-  public GameObject PlanList;
+  GameObject PlanList;
 
   [SerializeField]
-  public Text PlanStepTextPrefab;
+  Text PlanStepTextPrefab;
 
   [SerializeField]
   private Text WSVariableText = null;
