@@ -116,11 +116,46 @@ public class BlackBoard : MonoBehaviour
         bool wsValue = false;
         if (value != null)
           wsValue = true;
-
+        
         WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.LootableItem, wsValue));
       }
     }
   }
+
+  private GameObject importantItemDrop;
+  public GameObject ImportantItemDrop
+  {
+    get { return importantItemDrop; }
+    set
+    {
+      var s = value;
+      if (importantItemDrop != value)
+      {
+        importantItemDrop = value;
+        bool wsValue = false;
+        if (value != null)
+          wsValue = true;
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.ImportantLoot, wsValue));
+      }
+    }
+  }
+
+  bool hasKey;
+  public bool HasKey
+  {
+    get { return hasKey; }
+    set
+    {
+      var s = value;
+      if (hasKey != value)
+      {
+        hasKey = value;
+      
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasKey, hasKey));
+      }
+    }
+  }
+
 
   public int Health { get { return GetComponent<Player>().Health; } }
 

@@ -29,7 +29,6 @@ public class Room : MonoBehaviour
   /// <param name="model">Model.</param>
   public void CreateFromModel(RoomModel model)
   {
-
     RoomID = model.RoomID;
     Width = model.Width;
     Height = model.Height;
@@ -43,18 +42,12 @@ public class Room : MonoBehaviour
         Tiles2D[x, y] = model.Tiles[index++];
       }
     }
-
+    
     ConnectionLookup = new Dictionary<Vector2, RoomEdgeModel>();
     foreach (RoomEdgeModel edge in model.ConnectingRoomIDs)
     {
       ConnectionLookup[edge.StartDoorPosition] = edge;
     }
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
   }
 
 }

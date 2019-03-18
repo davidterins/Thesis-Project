@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
+using System;
 
 public class Player : Agent
 {
@@ -22,8 +23,12 @@ public class Player : Agent
 
   public List<Potion> potions;
 
+  public List<Key> Keys;
+
   public int Coins = 0;
- 
+
+  public Key Key { get { return Keys[0]; } }
+
 
   private void Start()
   {
@@ -49,6 +54,15 @@ public class Player : Agent
     {
       weapons.Add((Weapon)item);
     }
+    else if (item.GetType() == typeof(Key))
+    {
+      Keys.Add((Key)item);
+      if (Keys.Count > 0)
+      {
+        GetComponent<BlackBoard>().HasKey = true;
+      
+      }
+    }
   }
 
   public void EquipWeapon(Weapon weapon)
@@ -68,6 +82,12 @@ public class Player : Agent
     }
     var equipedWeapon = currentWeapon.GetComponent<Weapon>();
     equipedWeapon = weapon;
+  }
+
+  public void UseItem(string itemType)
+  {
+    if (itemType == "Key")
+      Keys[0].Use();
   }
 }
 

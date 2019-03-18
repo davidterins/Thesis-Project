@@ -8,6 +8,9 @@ public class TreasureChest : InteractableObject
   public bool IsClosed { get { return isClosed; } private set { isClosed = value; } }
 
   [SerializeField]
+  Sprite ChestOpen = null;
+
+  [SerializeField]
   List<GameObject> Loot = null;
 
   void Start() { }
@@ -18,11 +21,23 @@ public class TreasureChest : InteractableObject
     var tempLootList = new List<GameObject>(Loot.Count);
     foreach (var item in Loot)
     {
-      tempLootList.Add(Instantiate(item, transform.position, Quaternion.identity));
+      float dropRateValue = Random.Range(0.00f, 1.00f);
+
+      if (dropRateValue <= item.GetComponent<Item>().Droprate)
+      {
+        var lootObj = Instantiate(item, transform.position, Quaternion.identity);
+        tempLootList.Add(lootObj);
+        if (item.GetComponent<Key>())
+        {
+          interactingAgent.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
+        }
+      }
     }
-    interactingAgent.GetComponent<BlackBoard>().TargetLoot = tempLootList;
+    if (tempLootList.Count > 0)
+      interactingAgent.GetComponent<BlackBoard>().TargetLoot = tempLootList;
 
 
+    GetComponent<SpriteRenderer>().sprite = ChestOpen;
     isClosed = false;
     //try
     //{
@@ -44,7 +59,7 @@ public class TreasureChest : InteractableObject
 
   public override void Interact(GameObject player)
   {
-    DebugColoring();
+    //DebugColoring();
     if (isClosed)
     {
       Open(player);

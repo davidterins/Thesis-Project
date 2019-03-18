@@ -16,6 +16,9 @@ public enum WorldStateSymbol
   SecondaryWeapon,
   IsHealthy,
   HasPotion,
+  HasKey,
   RoomExplored,
+  ImportantLoot,
+  Progress,
 
 }

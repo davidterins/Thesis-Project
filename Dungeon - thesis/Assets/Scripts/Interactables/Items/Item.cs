@@ -4,10 +4,22 @@ using UnityEngine;
 
 public abstract class Item : InteractableObject
 {
+  protected int importance = 0;
+  public int Importance { get { return importance; } }
+
+  protected float dropRate = 0.2f;
+  public float Droprate { get { return dropRate; } }
+
   public override void Interact(GameObject player)
   {
     player.GetComponent<Agent>().HandlePickup(this);
     Destroy(gameObject, 1);
+  }
+
+
+  public virtual void Use()
+  {
+
   }
 }
 

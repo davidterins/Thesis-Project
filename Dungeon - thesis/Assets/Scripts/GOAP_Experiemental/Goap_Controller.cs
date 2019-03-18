@@ -34,7 +34,10 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.AvailableChest, false },
     {WorldStateSymbol.HasPotion, false},
     {WorldStateSymbol.IsHealthy, false},
-    {WorldStateSymbol.RoomExplored, true }
+    {WorldStateSymbol.RoomExplored, false },
+    {WorldStateSymbol.HasKey, false},
+    {WorldStateSymbol.ImportantLoot, false},
+    {WorldStateSymbol.Progress, false},
   };
 
   void Awake()
@@ -54,6 +57,7 @@ public class Goap_Controller : MonoBehaviour
           new ChangeWeapon_Action(gameObject),
           new OpenChest_Action(gameObject),
           new Drink_Action(gameObject),
+          new OpenDoor_Action(gameObject),
           new Action_Goap(gameObject)
         };
 
@@ -62,7 +66,8 @@ public class Goap_Controller : MonoBehaviour
       new Loot_Goal(gameObject, planner),
       new KillEnemy_Goal(gameObject, planner),
       new Heal_Goal(gameObject, planner),
-      new Explore_Goal(gameObject, planner)
+      new Explore_Goal(gameObject, planner),
+      new Progress_Goal(gameObject, planner),
     };
 
     foreach (Action_Goap action in playerActions)
@@ -132,7 +137,7 @@ public class Goap_Controller : MonoBehaviour
 
   private IEnumerator NewPlan()
   {
-    //blackBoard.UpdateTargets();
+    blackBoard.UpdateTargets();
     currentGoal = GetNewGoal();
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
@@ -164,7 +169,7 @@ public class Goap_Controller : MonoBehaviour
     currentGoal = GetNewGoal();
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
-
+    viewControl.SetGoal(currentGoal);
     viewControl.SetPlan(plan);
 
     if (plan.Count > 0)

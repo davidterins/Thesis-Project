@@ -9,7 +9,8 @@ public class Loot_Goal : Goal_Goap
   public Loot_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner)
   {
     GoalWorldstates.Add(WorldStateSymbol.HasItem, true);
-      baseValue = persona.personalityModifer[Personality.GREED] * 0.33f;
+
+    baseValue = persona.personalityModifer[Personality.GREED] * 0.33f;
   }
 
   /// <summary>
@@ -19,8 +20,17 @@ public class Loot_Goal : Goal_Goap
   /// <returns></returns>
   public override float CalculateRelevancy(BlackBoard blackBoard)
   {
+
+    if (blackBoard.ImportantItemDrop)
+    {
+      return 1f;
+    }
+   
     // TODO: Right now coins are set to the value 10. This value is hardcoded and needs to be x10 the value of 1 coin.
     relevancy = baseValue + persona.personalityModifer[Personality.GREED] - owner.GetComponent<Player>().Coins / 100;
+
     return Mathf.Clamp(relevancy, 0f, 1f);
+
+
   }
 }

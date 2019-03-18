@@ -11,6 +11,7 @@ public enum ActionID
   ChangeWeapon,
   OpenChest,
   Drink,
+  OpenDoor,
 }
 
 public enum ActionCallback

@@ -82,7 +82,6 @@ public class RoomBuilder : MonoBehaviour
 
     foreach (TileModel tile in room.Tiles2D)
     {
-
       Vector3Int tilePos = new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0);
 
       room.RoomGraph.InsertNode(tilePos, tile.Type);
@@ -111,7 +110,7 @@ public class RoomBuilder : MonoBehaviour
 
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
           Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform);
-
+          
           break;
         case TileType.DOOR:
 
@@ -134,6 +133,7 @@ public class RoomBuilder : MonoBehaviour
         default:
           break;
       }
+
       BaseTileLayer.RefreshAllTiles();
     }
   }

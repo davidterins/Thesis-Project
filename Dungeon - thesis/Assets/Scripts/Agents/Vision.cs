@@ -29,22 +29,6 @@ public class Vision : MonoBehaviour {
                 Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
             }
         }
-
-        //for (int i = 0; i < 360 / scanRotation; i++)
-        //{
-        //  RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, sightRange, visionMask);
-        //  if (hit)
-        //  {
-        //    var hitObject = hit.collider.gameObject;
-        //    if (hitObject)
-        //    {
-        //      var cellPos = dungeon.WorldGrid.WorldToCell(hitObject.transform.position);
-        //      GetComponent<BlackBoard>().AddPOI(dungeon.CurrentRoom.Tiles2D[cellPos.y, cellPos.x].Type, hit.collider.gameObject);
-        //      Debug.DrawLine(rayOrigin, hitObject.transform.position, Color.green);
-        //    }
-        //  }
-        //  rayDirection = Rotate(rayDirection);
-        //}
     }
 
     public float GetSightRange() {
