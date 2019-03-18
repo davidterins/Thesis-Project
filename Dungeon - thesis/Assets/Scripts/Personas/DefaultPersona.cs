@@ -11,6 +11,6 @@ public class DefaultPersona : Persona {
         personalityModifer[Personality.BLOODLUST] = 0.4f;
         personalityModifer[Personality.GREED] = 0.4f;
         personalityModifer[Personality.EXPLORATION] = 0.3f;
-        personalityModifer[Personality.PROGRESSION] = 0.1f;       
+        personalityModifer[Personality.PROGRESSION] = 0.2f;       
     }
 }
