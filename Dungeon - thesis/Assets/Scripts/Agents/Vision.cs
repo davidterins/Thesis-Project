@@ -29,6 +29,7 @@ public class Vision : MonoBehaviour {
                 Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
             }
         }
+        GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.RoomGraph.ExploreNodes(transform.position, sightRange);
     }
 
     public float GetSightRange() {

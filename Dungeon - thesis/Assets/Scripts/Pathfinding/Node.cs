@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Node {     // TODO: struct istället
     private int gridX, gridY;
-    //public Vector3Int position;
+    //public bool explored;
     public Vector3Int position;
     public TileType tileType;
     public Node parent;
@@ -14,6 +14,7 @@ public class Node {     // TODO: struct istället
     public Node(Vector3Int position, TileType tileType) {
         this.position = position;
         this.tileType = tileType;
+        //explored = false;
     }
 
     public Vector3 GetFloatPosition() {

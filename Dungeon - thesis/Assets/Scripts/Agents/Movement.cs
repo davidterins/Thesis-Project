@@ -75,12 +75,9 @@ public class Movement : MonoBehaviour {
                 InfoBox.targetTile = path[pathIndex].position.ToString();
                 InfoBox.stepsLeft = path.Count - pathIndex;
             }
-
         }
-
         TemporaryWalkOnMouseClick();
     }
-
 
     void TemporaryWalkOnMouseClick() {
         if (Input.GetMouseButtonDown(0)) {

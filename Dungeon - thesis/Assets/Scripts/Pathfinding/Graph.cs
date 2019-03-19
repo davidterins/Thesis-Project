@@ -8,6 +8,7 @@ using UnityEngine;
 public class Graph : MonoBehaviour {
     private int distance;
     private Node[,] nodes;
+    private List<Node> unexploredNodes;
     private List<Node> finalPath;
     private int gridSizeX, gridSizeY;
 
@@ -20,6 +21,7 @@ public class Graph : MonoBehaviour {
         this.gridSizeX = gridSizeX;
         this.gridSizeY = gridSizeY;
         nodes = new Node[gridSizeX, gridSizeY];
+        unexploredNodes = new List<Node>();
         for (int x = 0; x < gridSizeX; x++) {
             for (int y = 0; y < gridSizeY; y++) {
                 nodes[x, y] = new Node(new Vector3Int(x, y, 0), TileType.WALL);
@@ -28,13 +30,42 @@ public class Graph : MonoBehaviour {
     }
 
     /// <summary>
-    /// Insert a new Node into the graph used by the A* algorithm
+    /// Sets the nearby nodes to be explored
+    /// </summary>
+    /// <param name="agentPosition"></param>
+    /// <param name="range"></param>
+    public void ExploreNodes(Vector2 agentPosition, int range) {
+        int xmin = (int)Mathf.Clamp(agentPosition.x - range, 0f, gridSizeX);
+        int ymin = (int)Mathf.Clamp(agentPosition.y - range, 0f, gridSizeY);
+        int xmax = (int)Mathf.Clamp(agentPosition.x + range, 0f, gridSizeX);
+        int ymax = (int)Mathf.Clamp(agentPosition.y + range, 0f, gridSizeY);
+        for (int x = xmin; x < xmax; x++) {
+            for (int y = ymin; y < ymax; y++) {
+                if (nodes[x, y].tileType != TileType.WALL && unexploredNodes.Contains(nodes[x, y])/*!nodes[x, y].explored*/) {
+                    //nodes[x, y].explored = true;
+                    //if (unexploredNodes.Contains(nodes[x, y]))
+                    unexploredNodes.Remove(nodes[x, y]);
+                }                  
+            }
+        }
+    }
+
+    // TODO: Prefer to explore a position close to the player?
+    public Vector2 GetUnexploredPosition() {
+        int index = Random.Range(0, unexploredNodes.Count);
+        return new Vector2(unexploredNodes[index].position.x, unexploredNodes[index].position.y);
+    }
+
+    /// <summary>
+    /// Inserts a new Node into the graph used by the A* algorithm when the room is loaded
     /// </summary>
     /// <param name="position">The Node's position in the grid</param>
     /// <param name="tileType">Tile type</param>
     public void InsertNode(Vector3Int position, TileType tileType) {
         if (tileType != TileType.WALL) {
-            nodes[position.x, position.y] = new Node(position, tileType);
+            Node node = new Node(position, tileType);
+            nodes[position.x, position.y] = node;
+            unexploredNodes.Add(node);
         }
     }
 
