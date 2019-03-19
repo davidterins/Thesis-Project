@@ -16,6 +16,11 @@ public abstract class Item : InteractableObject
     Destroy(gameObject, 1);
   }
 
+  public virtual float GetDropRate()
+  {
+    return dropRate;
+  }
+
 
   public virtual void Use()
   {

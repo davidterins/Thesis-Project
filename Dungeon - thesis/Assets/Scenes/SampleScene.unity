@@ -234,6 +234,8 @@ MonoBehaviour:
   ExitDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
     type: 3}
   Room: {fileID: 2130253542598192886, guid: 07d7c14dbcc2d4094b88395303fbeb60, type: 3}
+  KeyPrefab: {fileID: 328438026115366100, guid: 5159b7dd8eb574318bc000af070056e8,
+    type: 3}
 --- !u!114 &131168173
 MonoBehaviour:
   m_ObjectHideFlags: 0

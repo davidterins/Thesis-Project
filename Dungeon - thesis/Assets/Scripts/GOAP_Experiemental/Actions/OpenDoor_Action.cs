@@ -26,8 +26,14 @@ public class OpenDoor_Action : MovingAction_Goap
   {
     //TODO Behöver få in så att en Key har en referens till end dörr. Nu går den 
     // till en kista:9
-    //targetDoor = owner.GetComponent<Player>().Key.TargetDoor.gameObject;
-    targetDoor = owner.GetComponent<BlackBoard>().TreasureObject;
+    if (!PreconditionsSatisfied())
+    {
+      Failed();
+      return;
+    }
+   
+    targetDoor = owner.GetComponent<Player>().Key.KeyData.TargetDoor.gameObject;// .TargetDoor.gameObject;
+    //targetDoor = owner.GetComponent<BlackBoard>().TreasureObject;
     if (!targetDoor)
     {
       Failed();

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ILootableObject
 {
-  List<GameObject> Loot { get; set; }
+  void AddLoot(GameObject gameObject);
 }

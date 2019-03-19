@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Agent
+public class Enemy : Agent, ILootableObject
 {
   [SerializeField]
   List<GameObject> Loot = null;
 
+  public void AddLoot(GameObject gameObject)
+  {
+    Loot.Add(gameObject);
+  }
 
   protected override void HandleDeath(GameObject attacker)
   {
@@ -20,10 +24,13 @@ public class Enemy : Agent
         var lootObj = Instantiate(item, transform.position, Quaternion.identity);
         tempLootList.Add(lootObj);
 
-        if (item.GetComponent<Key>())
-        {
-          attacker.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
-        }
+       
+      }
+      if (item.GetComponent<Key>())
+      {
+        var lootObj = Instantiate(item, transform.position, Quaternion.identity);
+        tempLootList.Add(lootObj);
+        attacker.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
       }
     }
 

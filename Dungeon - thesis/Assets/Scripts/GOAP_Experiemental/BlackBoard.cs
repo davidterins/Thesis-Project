@@ -60,14 +60,14 @@ public class BlackBoard : MonoBehaviour {
             return enemyObject;
         }
         set {
-            if (enemyObject != value) {
+            //if (enemyObject != value) {
                 enemyObject = value;
                 bool wsValue = false;
                 if (value != null)
                     wsValue = true;
 
                 WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableEnemy, wsValue));
-            }
+            //}
 
         }
     }

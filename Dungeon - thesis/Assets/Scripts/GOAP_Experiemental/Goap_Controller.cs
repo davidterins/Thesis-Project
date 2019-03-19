@@ -139,10 +139,11 @@ public class Goap_Controller : MonoBehaviour
   {
     blackBoard.UpdateTargets();
     currentGoal = GetNewGoal();
+    viewControl.SetGoal(currentGoal);
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
     yield return new WaitForSecondsRealtime(0.5f);
-    viewControl.SetGoal(currentGoal);
+  
     viewControl.SetPlan(plan);
     currentAction = playerActionLookup[plan.Dequeue()];
     currentAction.Enter();
@@ -167,9 +168,9 @@ public class Goap_Controller : MonoBehaviour
   private void CreateNewPlan()
   {
     currentGoal = GetNewGoal();
-    plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
-
     viewControl.SetGoal(currentGoal);
+
+    plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
     viewControl.SetPlan(plan);
 
     if (plan.Count > 0)

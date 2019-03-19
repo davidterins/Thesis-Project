@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureChest : InteractableObject
+public class TreasureChest : InteractableObject, ILootableObject
 {
   bool isClosed = true;
   public bool IsClosed { get { return isClosed; } private set { isClosed = value; } }
@@ -23,14 +23,17 @@ public class TreasureChest : InteractableObject
     {
       float dropRateValue = Random.Range(0.00f, 1.00f);
 
-      if (dropRateValue <= item.GetComponent<Item>().Droprate)
+      if (dropRateValue <= item.GetComponent<Item>().GetDropRate())
       {
         var lootObj = Instantiate(item, transform.position, Quaternion.identity);
         tempLootList.Add(lootObj);
-        if (item.GetComponent<Key>())
-        {
-          interactingAgent.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
-        }
+       
+      }
+      if (item.GetComponent<Key>())
+      {
+        var lootObj = Instantiate(item, transform.position, Quaternion.identity);
+        interactingAgent.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
+        tempLootList.Add(lootObj);
       }
     }
     if (tempLootList.Count > 0)
@@ -65,5 +68,11 @@ public class TreasureChest : InteractableObject
       Open(player);
       Debug.Log(" Player requested to open chest");
     }
+  }
+
+  public void AddLoot(GameObject gameObject)
+  {
+    DebugColoring();
+    Loot.Add(gameObject);
   }
 }

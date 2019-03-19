@@ -41,6 +41,9 @@ public class RoomBuilder : MonoBehaviour
   [SerializeField]
   GameObject Room = null;
 
+  [SerializeField]
+  GameObject KeyPrefab = null;
+
   public Tilemap GetBaseLayer() { return BaseTileLayer; }
 
   private static RoomBuilder Instance;
@@ -103,14 +106,15 @@ public class RoomBuilder : MonoBehaviour
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
 
           var center = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
-          Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform);
+         //Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform);
+          room.InitialLootableItems.Add(Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform));
 
           break;
         case TileType.ENEMY:
 
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-          Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform);
-          
+          //Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform);
+          room.InitialLootableItems.Add(Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform));
           break;
         case TileType.DOOR:
 
@@ -121,6 +125,8 @@ public class RoomBuilder : MonoBehaviour
           RoomEdgeModel roomConnection = dungeon.RoomLookup[room.RoomID].ConnectionLookup[new Vector2(tilePos.x, tilePos.y)];
           doorScript.TargetRoomID = roomConnection.ToRoomID;
           doorScript.TargetDoorPosition = roomConnection.TargetDoorPosition;
+
+          room.requiredKeys.Enqueue(new KeyInfo(doorScript));
 
           break;
         case TileType.DOORENTER:
@@ -135,6 +141,14 @@ public class RoomBuilder : MonoBehaviour
       }
 
       BaseTileLayer.RefreshAllTiles();
+    }
+
+    //Place out keys too lootableItems
+    foreach (KeyInfo keyInfo in room.requiredKeys)
+    {
+      int randomKeyIndex = Random.Range(0, room.InitialLootableItems.Count - 1);
+      room.InitialLootableItems[randomKeyIndex].GetComponent<ILootableObject>().AddLoot(KeyPrefab);
+      //room.InitialLootableItems[randomKeyIndex].GetComponent<SpriteRenderer>().color = Color.green;
     }
   }
 }
