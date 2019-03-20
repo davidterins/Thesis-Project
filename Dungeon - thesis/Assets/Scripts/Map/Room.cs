@@ -25,7 +25,7 @@ public class Room : MonoBehaviour
 
   public Queue<KeyInfo> requiredKeys = new Queue<KeyInfo>();
 
-  public List<GameObject> InitialLootableItems = new List<GameObject>();
+ // public List<GameObject> InitialLootableItems = new List<GameObject>();
 
   /// <summary>
   /// Used as a contructor to build the acutal room from its model.

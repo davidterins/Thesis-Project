@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Experimental.UIElements;
 
 public class Key : Item
 {
   private void Awake()
   {
     importance = 1;
-    dropRate = 1;
+    //dropRate = 1;
     //KeyData = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.requiredKeys.Dequeue();
   }
 
@@ -26,6 +27,11 @@ public class Key : Item
   }
 
   public override float GetDropRate()
+  {
+    return 1;
+  }
+
+  public override float GetImportance()
   {
     return 1;
   }

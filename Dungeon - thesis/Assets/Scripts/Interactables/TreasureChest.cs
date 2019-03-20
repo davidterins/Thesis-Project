@@ -2,46 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureChest : InteractableObject, ILootableObject
+public class TreasureChest : InteractableObject
 {
   bool isClosed = true;
   public bool IsClosed { get { return isClosed; } private set { isClosed = value; } }
 
+
   [SerializeField]
   Sprite ChestOpen = null;
 
-  [SerializeField]
-  List<GameObject> Loot = null;
+ 
 
   void Start() { }
 
   void Open(GameObject interactingAgent)
   {
-    //interactingAgent.GetComponent<BlackBoard>().TargetLoot.Clear();
-    var tempLootList = new List<GameObject>(Loot.Count);
-    foreach (var item in Loot)
-    {
-      float dropRateValue = Random.Range(0.00f, 1.00f);
 
-      // TODO Göra så att agenten har någon "Itemimportance function som säger
-      // hur viktigt ett visst item är att plocka upp.
-      if (dropRateValue <= item.GetComponent<Item>().GetDropRate())
-      {
-        var lootObj = Instantiate(item, transform.position, Quaternion.identity);
-        tempLootList.Add(lootObj);
-       
-      }
-      if (item.GetComponent<Key>() || item.GetComponent<Potion>())
-      {
-        var lootObj = Instantiate(item, transform.position, Quaternion.identity);
-        interactingAgent.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
-        tempLootList.Add(lootObj);
-      }
-    }
-    if (tempLootList.Count > 0)
-      interactingAgent.GetComponent<BlackBoard>().TargetLoot = tempLootList;
-
-
+     GetComponentInChildren<Loot>().Drop(interactingAgent, transform.position);
     GetComponent<SpriteRenderer>().sprite = ChestOpen;
     isClosed = false;
     //try
@@ -70,11 +47,5 @@ public class TreasureChest : InteractableObject, ILootableObject
       Open(player);
       Debug.Log(" Player requested to open chest");
     }
-  }
-
-  public void AddLoot(GameObject gameObject)
-  {
-    DebugColoring();
-    Loot.Add(gameObject);
   }
 }

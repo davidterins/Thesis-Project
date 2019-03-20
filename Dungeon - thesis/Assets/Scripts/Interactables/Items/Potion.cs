@@ -11,10 +11,14 @@ public class Potion : Item
   private void Start()
   {
     importance = 1;
-    dropRate = 1;
   }
 
   public override float GetDropRate()
+  {
+    return 0.4f;
+  }
+
+  public override float GetImportance()
   {
     return 1;
   }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Item : InteractableObject
 {
+  // TODO put this in use somehow
   protected int importance = 0;
   public int Importance { get { return importance; } }
 
@@ -19,6 +20,11 @@ public abstract class Item : InteractableObject
   public virtual float GetDropRate()
   {
     return dropRate;
+  }
+
+  public virtual float GetImportance()
+  {
+    return importance;
   }
 
 

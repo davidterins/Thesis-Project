@@ -43,6 +43,7 @@ public class Player : Agent
     if (item.GetType() == typeof(Coin))
     {
       Coins += ((Coin)item).value;
+      InfoBox.coins = Coins;
     }
     else if (item.GetType() == typeof(Potion))
     {
@@ -95,6 +96,10 @@ public class Player : Agent
     {
       Health += potions.Peek().value;
       potions.Pop().Use();
+      if(potions.Count == 0)
+      {
+        GetComponent<BlackBoard>().HasPotion = false;
+      }
       InfoBox.hp = Health;
 
     }
