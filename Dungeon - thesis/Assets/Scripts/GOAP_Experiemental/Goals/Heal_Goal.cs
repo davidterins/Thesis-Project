@@ -16,9 +16,9 @@ public class Heal_Goal : Goal_Goap {
     /// <param name="blackBoard">The blackboard</param>
     /// <returns></returns>
     public override float CalculateRelevancy(BlackBoard blackBoard) {
-        // TODO: Also, add the amount of health pots the agent has divided by 10 to the below formula.
-        //       A lot of potions should allow agent to be less conservative.
-        relevancy = (owner.GetComponent<Player>().MaxHealth - owner.GetComponent<Player>().Health) / healthScale;
-        return Mathf.Clamp(relevancy, 0f, 1f);
-    }
+    // TODO: Also, add the amount of health pots the agent has divided by 10 to the below formula.
+    //       A lot of potions should allow agent to be less conservative.
+    relevancy = (owner.GetComponent<Player>().MaxHealth - owner.GetComponent<Player>().Health) / healthScale;
+    return Mathf.Clamp(relevancy, 0f, 1f);
+  }
 }

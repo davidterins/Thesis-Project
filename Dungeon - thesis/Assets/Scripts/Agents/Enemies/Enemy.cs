@@ -12,6 +12,12 @@ public class Enemy : Agent, ILootableObject
     Loot.Add(gameObject);
   }
 
+  public override void TakeDamage(GameObject attacker, int amount)
+  {
+    base.TakeDamage(attacker, amount);
+    attacker.GetComponent<Agent>().TakeDamage(gameObject, Damage);
+  }
+
   protected override void HandleDeath(GameObject attacker)
   {
     var tempLootList = new List<GameObject>(Loot.Count);
@@ -26,7 +32,7 @@ public class Enemy : Agent, ILootableObject
 
        
       }
-      if (item.GetComponent<Key>())
+      if (item.GetComponent<Key>() || item.GetComponent<Potion>())
       {
         var lootObj = Instantiate(item, transform.position, Quaternion.identity);
         tempLootList.Add(lootObj);

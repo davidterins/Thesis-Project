@@ -23,13 +23,15 @@ public class TreasureChest : InteractableObject, ILootableObject
     {
       float dropRateValue = Random.Range(0.00f, 1.00f);
 
+      // TODO Göra så att agenten har någon "Itemimportance function som säger
+      // hur viktigt ett visst item är att plocka upp.
       if (dropRateValue <= item.GetComponent<Item>().GetDropRate())
       {
         var lootObj = Instantiate(item, transform.position, Quaternion.identity);
         tempLootList.Add(lootObj);
        
       }
-      if (item.GetComponent<Key>())
+      if (item.GetComponent<Key>() || item.GetComponent<Potion>())
       {
         var lootObj = Instantiate(item, transform.position, Quaternion.identity);
         interactingAgent.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;

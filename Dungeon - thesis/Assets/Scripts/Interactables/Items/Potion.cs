@@ -5,8 +5,19 @@ using System;
 
 public class Potion : Item
 {
-  // Start is called before the first frame update
   [SerializeField]
-  public readonly int value = 10;
+  public readonly int value = 25;
+
+  private void Start()
+  {
+    importance = 1;
+    dropRate = 1;
+  }
+
+  public override float GetDropRate()
+  {
+    return 1;
+  }
+
 
 }

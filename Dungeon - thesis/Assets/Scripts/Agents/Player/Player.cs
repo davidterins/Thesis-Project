@@ -21,18 +21,19 @@ public class Player : Agent
   [SerializeField]
   public List<Weapon> weapons;
 
-  public List<Potion> potions;
+  public Stack<Potion> potions;
 
-  public List<Key> Keys;
+  public Stack<Key> Keys;
 
   public int Coins = 0;
 
-  public Key Key { get { return Keys[0]; } }
+  public Key Key { get { return Keys.Peek(); } }
 
 
   private void Start()
   {
-    potions = new List<Potion>();
+    Keys = new Stack<Key>();
+    potions = new Stack<Potion>();
     weapons = new List<Weapon>();
     EquipWeapon(currentWeapon.GetComponent<Weapon>());
   }
@@ -42,13 +43,14 @@ public class Player : Agent
     if (item.GetType() == typeof(Coin))
     {
       Coins += ((Coin)item).value;
-      //var cellPos = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().WorldGrid.WorldToCell(transform.position);
-      //GameObject chest = cellPos.
-      //GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, chest);
     }
     else if (item.GetType() == typeof(Potion))
     {
-      Health += ((Potion)item).value;
+      potions.Push((Potion)item);
+      if (potions.Count > 0)
+      {
+        GetComponent<BlackBoard>().HasPotion = true;
+      }
     }
     else if (item.GetType() == typeof(Weapon))
     {
@@ -56,18 +58,18 @@ public class Player : Agent
     }
     else if (item.GetType() == typeof(Key))
     {
-      Keys.Add((Key)item);
+      Keys.Push((Key)item);
       if (Keys.Count > 0)
       {
         GetComponent<BlackBoard>().HasKey = true;
-      
+
       }
     }
   }
 
   public void EquipWeapon(Weapon weapon)
   {
-   
+
     switch (weapon.Type)
     {
       case WeaponType.Melee:
@@ -87,7 +89,27 @@ public class Player : Agent
   public void UseItem(string itemType)
   {
     if (itemType == "Key")
-      Keys[0].Use();
+      Keys.Pop().Use();
+
+    if (itemType == "Potion")
+    {
+      Health += potions.Peek().value;
+      potions.Pop().Use();
+      InfoBox.hp = Health;
+
+    }
+
+  }
+
+  public override void TakeDamage(GameObject attacker, int amount)
+  {
+    base.TakeDamage(attacker, amount);
+    InfoBox.hp = Health;
+  }
+
+  protected override void HandleDeath(GameObject attacker)
+  {
+    //base.HandleDeath(attacker);
   }
 }
 

@@ -29,12 +29,26 @@ public class Action_Goap
   public virtual void Enter()
   {
     Debug.Log("Entered: " + ID);
-    PreconditionsMet = PreconditionsSatisfied();
-    if (!PreconditionsMet)
+    if (CanExecute())
+    {
+      Execute();
+    }
+    else
+      Failed();
+      
+  }
+
+  protected virtual bool CanExecute()
+  {
+   // PreconditionsMet = PreconditionsSatisfied();
+    if (!PreconditionsSatisfied())
     {
       Debug.Log("All preconditions was not satisfied on entering " + ID);
       Failed();
+      return false;
     }
+
+    return true;
   }
 
   public virtual void Execute() { }

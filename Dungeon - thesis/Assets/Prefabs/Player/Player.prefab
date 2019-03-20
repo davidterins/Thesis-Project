@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e304cdd10994bf28be7004826b7338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPersona: {fileID: 0}
 --- !u!114 &7054571805118619822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  damagePower: 60
   currentWeapon: {fileID: 5778769701367995653, guid: fb9be3461d10e4d6d9e17f499848fe72,
     type: 3}
   meleeEquipedSprite: {fileID: 21300002, guid: 621b1fb1f2f3a4c179c0f70599b1e7f0, type: 3}
@@ -195,6 +195,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 3328724598527210975, guid: f69e3a6f94f0b4448a4d50b8b3eccc72, type: 3}
   - {fileID: 3328724598527210975, guid: fb9be3461d10e4d6d9e17f499848fe72, type: 3}
+  potions: []
+  Keys: []
   Coins: 0
 --- !u!114 &6042485085041341505
 MonoBehaviour:
@@ -208,3 +210,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373365cd856535c43820cada300b697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDistanceRange: 0

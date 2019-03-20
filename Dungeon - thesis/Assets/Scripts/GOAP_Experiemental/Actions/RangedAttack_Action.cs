@@ -46,7 +46,8 @@ public class RangedAttack_Action : MovingAction_Goap
     {
       if (attackTarget != null)
       {
-        attackTarget.GetComponent<Enemy>().TakeDamage(owner, 101);
+        attackTarget.GetComponent<Enemy>().TakeDamage(
+        owner, owner.GetComponent<Agent>().Damage);
         Successfull();
       }
     }
