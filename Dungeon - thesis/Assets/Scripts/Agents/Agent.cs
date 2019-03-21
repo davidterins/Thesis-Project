@@ -24,6 +24,8 @@ public class Agent : MonoBehaviour
       HandleDeath(attacker);
     }
     Health -= amount;
+    if (Health < 0)
+      Health = 0;
 
     Debug.Log(gameObject.name + " Health: " + Health);
   }

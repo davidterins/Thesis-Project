@@ -19,16 +19,17 @@ public class KillEnemy_Goal : Goal_Goap {
                        persona.personalityModifer[Personality.BRAVERY] -
                        (Vector2.Distance(blackBoard.EnemyObject.transform.position, owner.transform.position) / 10);
 
-        // For multiple enemies. Irrelevant with static enemies though.
-        //foreach (GameObject enemy in blackBoard.Memory[TileType.ENEMY]) {
-        //    if (enemy != null) {
-        //        if (enemy != blackBoard.EnemyObject) {
-        //            float distance = Vector2.Distance(owner.transform.position, enemy.transform.position);
-        //            if (distance < persona.enemyDistanceRange)
-        //                relevancy -= (1f - (distance / 10) - persona.personalityModifer[Personality.BRAVERY]) / 10;
-        //        }
-        //    }
-        //}
-        return Mathf.Clamp(relevancy, 0f, 1f);
-    }
+    // For multiple enemies. Irrelevant with static enemies though.
+    //foreach (GameObject enemy in blackBoard.Memory[TileType.ENEMY]) {
+    //    if (enemy != null) {
+    //        if (enemy != blackBoard.EnemyObject) {
+    //            float distance = Vector2.Distance(owner.transform.position, enemy.transform.position);
+    //            if (distance < persona.enemyDistanceRange)
+    //                relevancy -= (1f - (distance / 10) - persona.personalityModifer[Personality.BRAVERY]) / 10;
+    //        }
+    //    }
+    //}
+    relevancy = Mathf.Clamp(relevancy, 0f, 1f);
+    return relevancy;
+  }
 }

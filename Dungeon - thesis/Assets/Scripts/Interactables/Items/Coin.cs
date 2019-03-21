@@ -13,21 +13,24 @@ public class Coin : Item
 
   public void Start()
   {
-   
-   
+
+    GetComponent<Animator>().SetTrigger("OnPickup");
+    destroyDelay = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + destroyDelay;
+   // agentInfo.HandlePickup(this);
+
+    Destroy(gameObject, destroyDelay);
   }
 
-
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    Player agentInfo = other.gameObject.GetComponent<Player>();
-    if (agentInfo)
-    {
-      GetComponent<Animator>().SetTrigger("OnPickup");
-      destroyDelay = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + destroyDelay;
-      agentInfo.HandlePickup(this);
+  //private void OnTriggerEnter2D(Collider2D other)
+  //{
+  //  Player agentInfo = other.gameObject.GetComponent<Player>();
+  //  if (agentInfo)
+  //  {
+  //    GetComponent<Animator>().SetTrigger("OnPickup");
+  //    destroyDelay = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + destroyDelay;
+  //    agentInfo.HandlePickup(this);
      
-     Destroy(gameObject, destroyDelay);
-    }
-  }
+  //   Destroy(gameObject, destroyDelay);
+  //  }
+  //}
 }

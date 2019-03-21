@@ -58,7 +58,8 @@ public class Goap_Controller : MonoBehaviour
           new OpenChest_Action(gameObject),
           new Drink_Action(gameObject),
           new OpenDoor_Action(gameObject),
-          new Action_Goap(gameObject)
+          new Explore_Action(gameObject),
+          new Action_Goap(gameObject),
         };
 
     playerGoals = new List<Goal_Goap>
@@ -129,9 +130,12 @@ public class Goap_Controller : MonoBehaviour
   /// <returns>The action.</returns>
   private IEnumerator NextAction()
   {
-    yield return new WaitForSecondsRealtime(0.5f);
-    currentAction = playerActionLookup[plan.Dequeue()];
-    currentAction.Enter();
+    yield return new WaitForSecondsRealtime(0.8f);
+    if (plan.Count > 0)
+    {
+      currentAction = playerActionLookup[plan.Dequeue()];
+      currentAction.Enter();
+    }
   }
 
 
@@ -142,13 +146,14 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
-    yield return new WaitForSecondsRealtime(0.5f);
-  
+    yield return new WaitForSecondsRealtime(0.8f);
+
     viewControl.SetPlan(plan);
-    currentAction = playerActionLookup[plan.Dequeue()];
-    currentAction.Enter();
-
-
+    if (plan.Count > 0)
+    {
+      currentAction = playerActionLookup[plan.Dequeue()];
+      currentAction.Enter();
+    }
   }
 
   void Update()

@@ -25,6 +25,7 @@ public class Loot_Goal : Goal_Goap {
         // TODO: Right now coins are set to the value 10. This value is hardcoded and needs to be x10 the value of 1 coin.
         relevancy = baseValue + persona.personalityModifer[Personality.GREED] - owner.GetComponent<Player>().Coins / 100;
 
-        return Mathf.Clamp(relevancy, 0f, 1f);
-    }
+    relevancy = Mathf.Clamp(relevancy, 0f, 1f);
+    return relevancy;
+  }
 }

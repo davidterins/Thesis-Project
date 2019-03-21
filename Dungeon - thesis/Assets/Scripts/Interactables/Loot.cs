@@ -23,10 +23,7 @@ public class Loot : MonoBehaviour
       float dropRateValue = Random.Range(0.00f, 1.00f);
       Item itemScript = item.GetComponent<Item>();
 
-      if (itemScript.GetType() == typeof(Key))
-      {
-        Debug.Log("WTF");
-      }
+    
       // TODO Göra så att agenten har någon "Itemimportance function som säger
       // hur viktigt ett visst item är att plocka upp.
       if (dropRateValue <= itemScript.GetDropRate())

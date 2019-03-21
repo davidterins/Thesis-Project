@@ -10,10 +10,10 @@ public class GoapViewController : MonoBehaviour
   private Text GoalText = null;
 
   [SerializeField]
-  GameObject PlanList;
+  GameObject PlanList = null;
 
   [SerializeField]
-  Text PlanStepTextPrefab;
+  Text PlanStepTextPrefab = null;
 
   [SerializeField]
   private Text WSVariableText = null;
@@ -33,32 +33,43 @@ public class GoapViewController : MonoBehaviour
     {
       Destroy(child.gameObject);
     }
-
-    actionIndex = 0;
-    int index = 1;
-    foreach (ActionID action in actions)
+    if (actions.Count > 0)
     {
-      var planStep = Instantiate(PlanStepTextPrefab, PlanList.transform);
-      planStep.color = Color.yellow;
-      planStep.text +=  index++ + ". " + action;
+      actionIndex = 0;
+      int index = 1;
+      foreach (ActionID action in actions)
+      {
+        var planStep = Instantiate(PlanStepTextPrefab, PlanList.transform);
+        planStep.color = Color.yellow;
+        planStep.text += index++ + ". " + action;
+      }
     }
+   
 
   }
 
   public void UpdateActionStatus(ActionCallback actionResult)
   {
     //Debug.Log("Current acttionIndex " + actionIndex);
-    var updatedplanStep = PlanList.transform.GetChild(actionIndex).gameObject;
-    switch (actionResult)
+    try
     {
-      case ActionCallback.Successfull:
-        updatedplanStep.GetComponent<Text>().color = Color.green;
-        break;
-      case ActionCallback.Failed:
-        updatedplanStep.GetComponent<Text>().color = Color.red;
-        break;
+      var updatedplanStep = PlanList.transform.GetChild(actionIndex).gameObject;
+      switch (actionResult)
+      {
+        case ActionCallback.Successfull:
+          updatedplanStep.GetComponent<Text>().color = Color.green;
+          break;
+        case ActionCallback.Failed:
+          updatedplanStep.GetComponent<Text>().color = Color.red;
+          break;
+      }
+      actionIndex++;
     }
-    actionIndex++; 
+    catch (System.Exception ex)
+    {
+      Debug.Log(ex.Message);
+    }
+
   }
 
   public void UpdateWSVariables(WorldStateSet currentWS)

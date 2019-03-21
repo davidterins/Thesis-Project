@@ -9,7 +9,7 @@ public class Key : Item
   {
     importance = 1;
     //dropRate = 1;
-    //KeyData = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.requiredKeys.Dequeue();
+    KeyData = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.requiredKeys.Dequeue();
   }
 
   public override void Interact(GameObject player)

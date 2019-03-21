@@ -24,6 +24,7 @@ public class Progress_Goal : Goal_Goap
       relevancy = persona.personalityModifer[Personality.PROGRESSION] + baseValue;
     else
       return 0f;
-    return Mathf.Clamp(relevancy, 0f, 1f);
+    relevancy = Mathf.Clamp(relevancy, 0f, 1f);
+    return relevancy;
   }
 }
