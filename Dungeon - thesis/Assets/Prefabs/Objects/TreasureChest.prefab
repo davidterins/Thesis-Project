@@ -30,7 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
-  - {fileID: 6636336106321624326}
+  - {fileID: 4591888583962689233}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,9 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9632f88dedc7476d8520561c15dc97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loot: {fileID: 6856286093148353320, guid: 5789d51e616344b5cbf67f64cd877c29, type: 3}
   ChestOpen: {fileID: 21300002, guid: 667b9615c73994faaae6a6c68dd68e06, type: 3}
---- !u!1001 &234023795905056337
+  LootPrefab: {fileID: 6856286093148353321, guid: 5789d51e616344b5cbf67f64cd877c29,
+    type: 3}
+--- !u!1001 &6962496539382680966
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -189,16 +190,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6856286093148353320, guid: 5789d51e616344b5cbf67f64cd877c29,
-        type: 3}
-      propertyPath: items.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5789d51e616344b5cbf67f64cd877c29, type: 3}
---- !u!4 &6636336106321624326 stripped
+--- !u!4 &4591888583962689233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6856286093148353367, guid: 5789d51e616344b5cbf67f64cd877c29,
     type: 3}
-  m_PrefabInstance: {fileID: 234023795905056337}
+  m_PrefabInstance: {fileID: 6962496539382680966}
   m_PrefabAsset: {fileID: 0}

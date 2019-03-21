@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Room : MonoBehaviour
 {
-
   public TileModel[,] Tiles2D { get; private set; }
 
   public Dictionary<Vector2, RoomEdgeModel> ConnectionLookup { get; private set; }
@@ -25,7 +24,6 @@ public class Room : MonoBehaviour
 
   public Queue<KeyInfo> requiredKeys = new Queue<KeyInfo>();
 
- // public List<GameObject> InitialLootableItems = new List<GameObject>();
 
   /// <summary>
   /// Used as a contructor to build the acutal room from its model.
@@ -52,6 +50,7 @@ public class Room : MonoBehaviour
     {
       ConnectionLookup[edge.StartDoorPosition] = edge;
     }
+
   }
 
 

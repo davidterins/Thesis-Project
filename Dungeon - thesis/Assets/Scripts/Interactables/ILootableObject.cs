@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface ILootableObject
 {
-  Loot Loot { get; }
-  void AddLoot(GameObject gameObject);
+  bool ContainsDoorKey { get; set; }
 }

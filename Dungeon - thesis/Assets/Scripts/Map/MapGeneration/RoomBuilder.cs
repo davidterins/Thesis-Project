@@ -15,6 +15,9 @@ public class RoomBuilder : MonoBehaviour
   Tilemap CollideLayer = null;
 
   [SerializeField]
+  Grid WorldGrid = null;
+
+  [SerializeField]
   UnityEngine.Tilemaps.Tile FloorTile = null;
 
   [SerializeField]
@@ -124,7 +127,7 @@ public class RoomBuilder : MonoBehaviour
           var doorObj = Instantiate(ExitDoor, centerOfTile, Quaternion.identity, roomObj.transform);
           var doorScript = doorObj.GetComponent<Door>();
 
-          RoomEdgeModel roomConnection = dungeon.RoomLookup[room.RoomID].ConnectionLookup[new Vector2(tilePos.x, tilePos.y)];
+          RoomEdgeModel roomConnection = dungeon.RoomLookup[room.RoomID].ConnectionLookup[(new Vector2(tilePos.x, tilePos.y))];
           doorScript.TargetRoomID = roomConnection.ToRoomID;
           doorScript.TargetDoorPosition = roomConnection.TargetDoorPosition;
 
@@ -134,7 +137,11 @@ public class RoomBuilder : MonoBehaviour
         case TileType.DOORENTER:
 
           BaseTileLayer.SetTile(tilePos, Instantiate(DoorEnterTile));
-          Camera.main.GetComponent<SmoothCamera>().target = Instantiate(player, centerOfTile, Quaternion.identity, roomObj.transform);
+          if (roomToBuild.RoomID == dungeon.InitialRoomID)
+          {
+            Camera.main.GetComponent<SmoothCamera>().target = Instantiate(player, centerOfTile, Quaternion.identity, dungeon.transform);
+          }
+
           break;
         case TileType.NONE:
           break;
@@ -145,15 +152,69 @@ public class RoomBuilder : MonoBehaviour
       BaseTileLayer.RefreshAllTiles();
     }
 
-      //Place out keys too lootableItems
-      foreach (KeyInfo keyInfo in room.requiredKeys)
+    //Place out keys too lootableItems
+    foreach (KeyInfo keyInfo in room.requiredKeys)
+    {
+      int randomKeyIndex = Random.Range(0, lootableObjects.Count - 1);
+      lootableObjects[randomKeyIndex].GetComponentInChildren<Loot>().Items.Add(KeyPrefab);
+      lootableObjects[randomKeyIndex].GetComponent<SpriteRenderer>().color = Color.green;
+    }
+  }
+
+  public void CreateTileLayersOnRoomChange(Room roomToBuild)
+  {
+    //För att rensa när rum två laddas in, görs på annat sätt sen. 
+    BaseTileLayer.ClearAllTiles();
+    CollideLayer.ClearAllTiles();
+
+
+    List<GameObject> lootableObjects = new List<GameObject>();
+
+    foreach (TileModel tile in roomToBuild.Tiles2D)
+    {
+      Vector3Int tilePos = new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0);
+
+      var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+      switch (tile.Type)
       {
-        int randomKeyIndex = Random.Range(0, lootableObjects.Count - 1);
-        //KeyPrefab.GetComponent<Key>().KeyData = keyInfo;
-        lootableObjects[randomKeyIndex].GetComponentInChildren<Loot>().Items.Add(KeyPrefab);
-        lootableObjects[randomKeyIndex].GetComponent<SpriteRenderer>().color = Color.green;
+        case TileType.FLOOR:
+
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          break;
+        case TileType.WALL:
+
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
+
+          break;
+        case TileType.TREASURE:
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+
+          break;
+        case TileType.ENEMY:
+
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+
+          break;
+        case TileType.DOOR:
+
+          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(DoorTile));
+   
+
+          break;
+        case TileType.DOORENTER:
+
+          BaseTileLayer.SetTile(tilePos, Instantiate(DoorEnterTile));
+
+
+          break;
+        case TileType.NONE:
+          break;
+        default:
+          break;
       }
 
-   
+      BaseTileLayer.RefreshAllTiles();
+    }
   }
 }

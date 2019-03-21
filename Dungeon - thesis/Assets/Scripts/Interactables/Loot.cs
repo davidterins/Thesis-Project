@@ -28,7 +28,7 @@ public class Loot : MonoBehaviour
       // hur viktigt ett visst item är att plocka upp.
       if (dropRateValue <= itemScript.GetDropRate())
       {
-        var lootObj = Instantiate(item, dropPosition, Quaternion.identity);
+        var lootObj = Instantiate(item, dropPosition, Quaternion.identity, transform);
         tempLootList.Add(lootObj);
 
         if(itemScript.GetImportance() == 1f)

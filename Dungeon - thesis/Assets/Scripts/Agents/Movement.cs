@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour {
 
 
     private void Update() {
-        if (hasTarget) {
+        if (hasTarget && path != null) {
             //Moving between nodes
             if (hasTarget && !interruptPath) {
                 transform.position = Vector2.MoveTowards(transform.position, path[pathIndex].GetFloatPosition(), walkSpeed);

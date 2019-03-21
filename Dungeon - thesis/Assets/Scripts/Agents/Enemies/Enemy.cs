@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Agent
 {
-
   public override void TakeDamage(GameObject attacker, int amount)
   {
     base.TakeDamage(attacker, amount);
@@ -13,8 +12,12 @@ public class Enemy : Agent
 
   protected override void HandleDeath(GameObject attacker)
   {
-    GetComponentInChildren<Loot>().Drop(attacker, transform.position);
-   
+    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+    var loot = transform.GetChild(0);
+    loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
+    loot.GetComponent<Loot>().Drop(attacker, transform.position);
+
+
 
     base.HandleDeath(attacker);
   }

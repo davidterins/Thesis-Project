@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net.Sockets;
 
 public class TreasureChest : InteractableObject
 {
@@ -17,8 +18,12 @@ public class TreasureChest : InteractableObject
 
   void Open(GameObject interactingAgent)
   {
+    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+    var loot = transform.GetChild(0);
+    loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
+    loot.GetComponent<Loot>().Drop(interactingAgent, transform.position);
 
-     GetComponentInChildren<Loot>().Drop(interactingAgent, transform.position);
+
     GetComponent<SpriteRenderer>().sprite = ChestOpen;
     isClosed = false;
     //try
