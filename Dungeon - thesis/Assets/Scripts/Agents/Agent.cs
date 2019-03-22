@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Agent : MonoBehaviour
 {
+  public static event Action<Agent> OnIsEnabled = delegate { };
+  public static event Action<Agent> OnIsDisabled = delegate { };
+
   public static int maxHealth = 100;
   public int Health = maxHealth;
   protected float attackSpeed = 1.0f;
 
   [SerializeField]
   protected int damagePower = 25;
+
+  public event Action<float> OnHealthChanged = delegate { };
 
   public int Damage { get { return damagePower; } }
 
@@ -24,6 +30,9 @@ public class Agent : MonoBehaviour
       HandleDeath(attacker);
     }
     Health -= amount;
+    float healthPct = (float)Health / (float)maxHealth;
+    OnHealthChanged(healthPct);
+
     if (Health < 0)
       Health = 0;
 
@@ -34,4 +43,11 @@ public class Agent : MonoBehaviour
   {
     Destroy(gameObject);
   }
+
+  private void OnEnable()
+  {
+    OnIsEnabled(this);
+  }
+
+
 }
