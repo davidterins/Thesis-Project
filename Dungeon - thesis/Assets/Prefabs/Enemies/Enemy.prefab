@@ -133,9 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  damagePower: 25
-  LootPrefab: {fileID: 6856286093148353321, guid: 5789d51e616344b5cbf67f64cd877c29,
-    type: 3}
+  damagePower: 15
 --- !u!1001 &2875371298930081539
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System;
 
 public class Player : Agent
 {
@@ -38,6 +35,8 @@ public class Player : Agent
     EquipWeapon(currentWeapon.GetComponent<Weapon>());
   }
 
+
+  //TODO Denna funktionaliteten ska in Inventory.cs
   public override void HandlePickup(Item item)
   {
     if (item.GetType() == typeof(Coin))
@@ -47,6 +46,7 @@ public class Player : Agent
     }
     else if (item.GetType() == typeof(Potion))
     {
+      GetComponent<Inventory>().AddItem(item);
       potions.Push((Potion)item);
       if (potions.Count > 0)
       {
@@ -55,22 +55,22 @@ public class Player : Agent
     }
     else if (item.GetType() == typeof(Weapon))
     {
+      GetComponent<Inventory>().AddItem(item);
       weapons.Add((Weapon)item);
     }
     else if (item.GetType() == typeof(Key))
     {
+      GetComponent<Inventory>().AddItem(item);
       Keys.Push((Key)item);
       if (Keys.Count > 0)
       {
         GetComponent<BlackBoard>().HasKey = true;
-
       }
     }
   }
 
   public void EquipWeapon(Weapon weapon)
   {
-
     switch (weapon.Type)
     {
       case WeaponType.Melee:
@@ -87,10 +87,12 @@ public class Player : Agent
     equipedWeapon = weapon;
   }
 
+  //TODO Denna funktionaliteten ska in Inventory.cs
   public void UseItem(string itemType)
   {
     if (itemType == "Key")
       Keys.Pop().Use();
+    GetComponent<Inventory>().TryGetItem(typeof(Key));
     if (Keys.Count == 0)
     {
       GetComponent<BlackBoard>().HasKey = false;
@@ -98,10 +100,13 @@ public class Player : Agent
 
     if (itemType == "Potion")
     {
-      Health += potions.Peek().value;
+      //Health += potions.Peek().value;
+      ModifyHealth(potions.Peek().value);
+      GetComponent<Inventory>().TryGetItem(typeof(Potion));
       potions.Pop().Use();
-      if (Health > MaxHealth / 2)
-        GetComponent<BlackBoard>().IsHealthy = true;
+
+      //if (Health > (MaxHealth / 2) + 1)
+      //GetComponent<BlackBoard>().IsHealthy = true;
       if (potions.Count == 0)
       {
         GetComponent<BlackBoard>().HasPotion = false;
@@ -115,14 +120,14 @@ public class Player : Agent
   public override void TakeDamage(GameObject attacker, int amount)
   {
     base.TakeDamage(attacker, amount);
-    if (Health <= MaxHealth / 2)
-      GetComponent<BlackBoard>().IsHealthy = false;
+    //if (Health <= MaxHealth / 2 -1)
+    //GetComponent<BlackBoard>().IsHealthy = false;
     InfoBox.hp = Health;
   }
 
   protected override void HandleDeath(GameObject attacker)
   {
-    //base.HandleDeath(attacker);
+    //TODO Göra något när spelaren dör.
   }
 }
 

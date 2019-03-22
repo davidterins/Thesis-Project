@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class Item : InteractableObject
 {
+  [SerializeField]
+  Sprite itemSprite;
+
+  public Sprite ItemSprite { get { return itemSprite; } }
+
   // TODO put this in use somehow
   protected int importance = 0;
   public int Importance { get { return importance; } }

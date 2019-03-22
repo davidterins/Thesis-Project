@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5749715552451439655}
   - component: {fileID: 5670900340842679014}
   - component: {fileID: 6042485085041341505}
+  - component: {fileID: 1067687552160210592}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -195,8 +196,6 @@ MonoBehaviour:
   weapons:
   - {fileID: 3328724598527210975, guid: f69e3a6f94f0b4448a4d50b8b3eccc72, type: 3}
   - {fileID: 3328724598527210975, guid: fb9be3461d10e4d6d9e17f499848fe72, type: 3}
-  potions: []
-  Keys: []
   Coins: 0
 --- !u!114 &6042485085041341505
 MonoBehaviour:
@@ -211,3 +210,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDistanceRange: 0
+--- !u!114 &1067687552160210592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410479370439878666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1140c7cf00f413ba1d6474a538faea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

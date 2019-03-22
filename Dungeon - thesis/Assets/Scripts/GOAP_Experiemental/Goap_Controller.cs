@@ -33,7 +33,7 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.LootableItem, false},
     {WorldStateSymbol.AvailableChest, false },
     {WorldStateSymbol.HasPotion, false},
-    {WorldStateSymbol.IsHealthy, true},
+    {WorldStateSymbol.IsHealthy, false},
     {WorldStateSymbol.RoomExplored, false },
     {WorldStateSymbol.HasKey, false},
     {WorldStateSymbol.ImportantLoot, false},
@@ -207,8 +207,10 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
+    Debug.Log("Most Relevant goal: " + relevantGoal.GetType());
     return relevantGoal;
   }
+
 
 
   /// <summary>

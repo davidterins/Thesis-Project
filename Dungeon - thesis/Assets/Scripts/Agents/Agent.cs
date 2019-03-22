@@ -29,24 +29,30 @@ public class Agent : MonoBehaviour
     {
       HandleDeath(attacker);
     }
-    Health -= amount;
-    float healthPct = (float)Health / (float)maxHealth;
-    OnHealthChanged(healthPct);
+    ModifyHealth(-amount);
 
     if (Health < 0)
       Health = 0;
-
-    Debug.Log(gameObject.name + " Health: " + Health);
+      
   }
 
   protected virtual void HandleDeath(GameObject attacker)
   {
+    OnIsDisabled(this);
     Destroy(gameObject);
   }
 
   private void OnEnable()
   {
     OnIsEnabled(this);
+  }
+
+  protected void ModifyHealth(int amount)
+  {
+    Health += amount;
+    float healthPct = (float)Health / (float)maxHealth;
+    OnHealthChanged(healthPct);
+   
   }
 
 

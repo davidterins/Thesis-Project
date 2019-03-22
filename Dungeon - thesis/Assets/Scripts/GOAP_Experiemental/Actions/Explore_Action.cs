@@ -12,7 +12,7 @@ public class Explore_Action : MovingAction_Goap
 
     PreConditions = new WorldStateSymbol[]
     {
-      //WorldStateSymbol.MeleeEquiped
+     
      };
 
     Effects = new WorldStateSymbol[]

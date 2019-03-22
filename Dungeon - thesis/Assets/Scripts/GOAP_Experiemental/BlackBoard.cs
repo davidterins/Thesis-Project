@@ -21,11 +21,9 @@ public class BlackBoard : MonoBehaviour
 
   public void Start()
   {
-    //TargetLoot = new List<GameObject>();
+
     targetingService = new TargetingService(gameObject);
     InvokeRepeating("UpdateTargets", 0, 1.0f);
-    //if (!currentPersona)
-    //gameObject.AddComponent<DefaultPersona>();
 
     Memory = new Dictionary<TileType, List<GameObject>>() {
             { TileType.ENEMY, new List<GameObject>() },

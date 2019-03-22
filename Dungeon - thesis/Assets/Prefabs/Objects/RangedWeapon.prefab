@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486533de56f944608bb9e79d623ef3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 40e58fbe0c0954590bc8289ccb60897f, type: 3}
   Type: 1
   Range: 0.5
   Damage: 30
