@@ -26,6 +26,8 @@ public class TreasureChest : InteractableObject
 
     GetComponent<SpriteRenderer>().sprite = ChestOpen;
     isClosed = false;
+
+    interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, gameObject);
     //try
     //{
     //  interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, gameObject);

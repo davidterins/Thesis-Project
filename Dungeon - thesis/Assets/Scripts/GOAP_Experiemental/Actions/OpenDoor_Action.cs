@@ -49,7 +49,7 @@ public class OpenDoor_Action : MovingAction_Goap
   {
     if (InRange)
     {
-      base.Execute();
+      owner.GetComponent<Player>().UseItem("Key");
       targetDoor.GetComponent<InteractableObject>().Interact(owner);
       Successfull();
     }

@@ -20,5 +20,6 @@ public enum WorldStateSymbol
   RoomExplored,
   ImportantLoot,
   Progress,
+  HasAmmo,
 
 }

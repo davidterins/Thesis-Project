@@ -33,11 +33,14 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.LootableItem, false},
     {WorldStateSymbol.AvailableChest, false },
     {WorldStateSymbol.HasPotion, false},
-    {WorldStateSymbol.IsHealthy, false},
+    {WorldStateSymbol.IsHealthy, true},
     {WorldStateSymbol.RoomExplored, false },
     {WorldStateSymbol.HasKey, false},
     {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.Progress, false},
+    {WorldStateSymbol.HasAmmo, false},
+
+
   };
 
   void Awake()
@@ -76,8 +79,6 @@ public class Goap_Controller : MonoBehaviour
       playerActionLookup.Add(action.ID, action);
       action.OnActionFinished += Action_ActionCallback;
     }
-
-
 
     viewControl.UpdateWSVariables(playerWorldState);
   }

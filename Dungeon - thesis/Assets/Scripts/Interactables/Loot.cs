@@ -34,18 +34,8 @@ public class Loot : MonoBehaviour
         if(itemScript.GetImportance() == 1f)
         {//Keys and potions
           looter.GetComponent<BlackBoard>().ImportantItemDrop = lootObj;
-          //tempLootList.Add(lootObj);
         }
-
-
       }
-
-
-      //if (item.GetComponent<Key>()|| item.GetComponent<Potion>())
-      //{
-      //  var lootObj = Instantiate(item, dropPosition, Quaternion.identity);
-      
-      //}
 
     }
 

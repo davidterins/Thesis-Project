@@ -91,12 +91,18 @@ public class Player : Agent
   {
     if (itemType == "Key")
       Keys.Pop().Use();
+    if (Keys.Count == 0)
+    {
+      GetComponent<BlackBoard>().HasKey = false;
+    }
 
     if (itemType == "Potion")
     {
       Health += potions.Peek().value;
       potions.Pop().Use();
-      if(potions.Count == 0)
+      if (Health > MaxHealth / 2)
+        GetComponent<BlackBoard>().IsHealthy = true;
+      if (potions.Count == 0)
       {
         GetComponent<BlackBoard>().HasPotion = false;
       }
@@ -109,6 +115,8 @@ public class Player : Agent
   public override void TakeDamage(GameObject attacker, int amount)
   {
     base.TakeDamage(attacker, amount);
+    if (Health <= MaxHealth / 2)
+      GetComponent<BlackBoard>().IsHealthy = false;
     InfoBox.hp = Health;
   }
 

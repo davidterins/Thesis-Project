@@ -14,6 +14,7 @@ public abstract class Item : InteractableObject
   public override void Interact(GameObject player)
   {
     player.GetComponent<Agent>().HandlePickup(this);
+
     Destroy(gameObject, 1);
   }
 

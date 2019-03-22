@@ -17,7 +17,7 @@ public class Enemy : Agent
     loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
     loot.GetComponent<Loot>().Drop(attacker, transform.position);
 
-
+    attacker.GetComponent<BlackBoard>().RemovePOI(TileType.ENEMY, gameObject);
 
     base.HandleDeath(attacker);
   }

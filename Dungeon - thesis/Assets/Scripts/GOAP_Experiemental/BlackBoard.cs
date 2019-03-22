@@ -171,6 +171,22 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
+  bool isHealthy;
+  public bool IsHealthy
+  {
+    get { return isHealthy; }
+    set
+    {
+      var s = value;
+      if (isHealthy != value)
+      {
+        isHealthy = value;
+
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.IsHealthy, isHealthy));
+      }
+    }
+  }
+
 
   public int Health { get { return GetComponent<Player>().Health; } }
 
