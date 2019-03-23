@@ -29,15 +29,7 @@ public class Explore_Action : MovingAction_Goap
       Failed();
       return;
     }
-
-
     base.Enter();
-    //if (!IsInRange())
-    //{
-    //movement = owner.GetComponent<Movement>();
-    // TODO: Call on graph.GetUnexploredPosition() and move to that location.
-    //tilePosition = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.RoomGraph.GetUnexploredPosition();
-    //}
   }
 
   public override void Execute()

@@ -14,17 +14,12 @@ public class Key : Item
 
   public override void Interact(GameObject player)
   {
-    player.GetComponent<Agent>().HandlePickup(this);
+    player.GetComponent<Player>().PickupItem(this);
     player.GetComponent<BlackBoard>().ImportantItemDrop = null;
     Destroy(gameObject, 1);
   }
 
   public KeyInfo KeyData {get; set;}
-
-  public override void Use()
-  {
-    base.Use();
-  }
 
   public override float GetDropRate()
   {
@@ -34,6 +29,17 @@ public class Key : Item
   public override float GetImportance()
   {
     return 1;
+  }
+
+  protected override WorldStateSymbol GetItemWSEffector()
+  {
+    return WorldStateSymbol.HasKey;
+  }
+
+  public void Unlock(Door door)
+  {
+    door.IsOpen = true;
+    Used();
   }
 }
 

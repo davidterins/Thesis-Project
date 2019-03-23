@@ -21,5 +21,7 @@ public enum WorldStateSymbol
   ImportantLoot,
   Progress,
   HasAmmo,
+  HasRangedWeapon,
+  HasMeleeWeapon,
 
 }

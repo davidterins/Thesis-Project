@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Item : InteractableObject
 {
   [SerializeField]
   Sprite itemSprite;
 
+  public event Action<Item> OnItemUse = delegate { };
+
   public Sprite ItemSprite { get { return itemSprite; } }
+  public WorldStateSymbol ItemWSEffector { get { return GetItemWSEffector(); } }
 
   // TODO put this in use somehow
   protected int importance = 0;
@@ -18,7 +22,7 @@ public abstract class Item : InteractableObject
 
   public override void Interact(GameObject player)
   {
-    player.GetComponent<Agent>().HandlePickup(this);
+    player.GetComponent<Player>().PickupItem(this);
 
     Destroy(gameObject, 1);
   }
@@ -33,10 +37,15 @@ public abstract class Item : InteractableObject
     return importance;
   }
 
-
-  public virtual void Use()
+  protected virtual WorldStateSymbol GetItemWSEffector()
   {
+    return WorldStateSymbol.HasItem;
+  }
 
+
+  protected void Used()
+  {
+    OnItemUse.Invoke(this);
   }
 }
 

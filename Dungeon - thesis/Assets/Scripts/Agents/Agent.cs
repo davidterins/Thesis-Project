@@ -21,7 +21,7 @@ public class Agent : MonoBehaviour
 
   public int MaxHealth { get { return maxHealth; } }
 
-  public virtual void HandlePickup(Item item) { }
+  //public virtual void PickupItem(Item item) { }
 
   public virtual void TakeDamage(GameObject attacker, int amount)
   {
@@ -42,12 +42,17 @@ public class Agent : MonoBehaviour
     Destroy(gameObject);
   }
 
+  //private void OnDisable()
+  //{
+  //  OnIsDisabled(this);
+  //}
+
   private void OnEnable()
   {
     OnIsEnabled(this);
   }
 
-  protected void ModifyHealth(int amount)
+  public void ModifyHealth(int amount)
   {
     Health += amount;
     float healthPct = (float)Health / (float)maxHealth;

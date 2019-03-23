@@ -10,4 +10,17 @@ public class Weapon : Item
   public float Range = 0.5f;
   public float Damage = 1;
 
+  protected override WorldStateSymbol GetItemWSEffector()
+  {
+    switch (Type)
+    {
+      case WeaponType.Melee:
+        return WorldStateSymbol.HasMeleeWeapon;
+      
+      case WeaponType.Range:
+        return WorldStateSymbol.HasRangedWeapon;
+    }
+    return WorldStateSymbol.HasMeleeWeapon;
+  }
+
 }

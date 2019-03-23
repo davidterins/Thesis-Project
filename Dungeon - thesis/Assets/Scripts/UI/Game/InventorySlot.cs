@@ -11,7 +11,8 @@ public class InventorySlot : MonoBehaviour
   [SerializeField]
   Image ItemImage = null;
 
-  Stack<Item> items;
+  [SerializeField]
+  Sprite DefaultSlot = null;
 
   public void SetItem(Item item, int itemCount)
   {
@@ -24,6 +25,7 @@ public class InventorySlot : MonoBehaviour
     if (itemCount == 0)
     {
       StackText.text = string.Empty;
+      ItemImage.sprite = DefaultSlot;
     }
     else
       StackText.text = itemCount.ToString();

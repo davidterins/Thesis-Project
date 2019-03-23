@@ -6,7 +6,7 @@ using System;
 public class Potion : Item
 {
   [SerializeField]
-  public readonly int value = 25;
+  private int value = 25;
 
   private void Start()
   {
@@ -23,5 +23,14 @@ public class Potion : Item
     return 1;
   }
 
+  protected override WorldStateSymbol GetItemWSEffector()
+  {
+    return WorldStateSymbol.HasPotion;
+  }
 
+  public void Drink(GameObject player)
+  {
+    player.GetComponent<Player>().ModifyHealth(value);
+    Used();
+  }
 }

@@ -10,7 +10,7 @@ public class Door : InteractableObject
 
   public int TargetRoomID { get; set; }
 
-  public bool IsOpen { get; private set; }
+  public bool IsOpen { get; set; }
 
   //private void OnTriggerEnter2D(Collision2D collision)
   //{
@@ -26,8 +26,6 @@ public class Door : InteractableObject
 
     player.transform.position = new Vector2(TargetDoorPosition.x + 0.5f, TargetDoorPosition.y + 0.5f);
 
-
-    Debug.Log("Collided with Exit Door");
   }
 
   public override void Interact(GameObject player)

@@ -18,12 +18,15 @@ public class BlackBoard : MonoBehaviour
   //Persona currentPersona;
 
   public Dictionary<TileType, List<GameObject>> Memory { get; private set; }
+  Dictionary<WorldStateSymbol, InventoryItemStatus> HasItemLookup;
 
   public void Start()
   {
 
     targetingService = new TargetingService(gameObject);
     InvokeRepeating("UpdateTargets", 0, 1.0f);
+
+    HasItemLookup = new Dictionary<WorldStateSymbol, InventoryItemStatus>();
 
     Memory = new Dictionary<TileType, List<GameObject>>() {
             { TileType.ENEMY, new List<GameObject>() },
@@ -137,53 +140,95 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  bool hasKey;
-  public bool HasKey
-  {
-    get { return hasKey; }
-    set
-    {
-      var s = value;
-      if (hasKey != value)
-      {
-        hasKey = value;
 
-        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasKey, hasKey));
+
+  public void AddToItemKnowledge(WorldStateSymbol symbol)
+  {
+    if (!HasItemLookup.ContainsKey(symbol))
+    {
+      HasItemLookup.Add(symbol, new InventoryItemStatus(0));
+    }
+    if (HasItemLookup[symbol].ItemCount == 0)
+    {
+      WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(symbol, true));
+    }
+    HasItemLookup[symbol].ItemCount++;
+  }
+
+  public void RemoveFromItemKnowledge(WorldStateSymbol symbol)
+  {
+    if (HasItemLookup.ContainsKey(symbol))
+    {
+      HasItemLookup[symbol].ItemCount--;
+
+      if (HasItemLookup[symbol].ItemCount <= 0)
+      {
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(symbol, false));
       }
     }
   }
 
-  bool hasPotion;
-  public bool HasPotion
+  public bool CheckItemKnowledge(WorldStateSymbol symbol)
   {
-    get { return hasPotion; }
-    set
+    if (HasItemLookup.ContainsKey(symbol))
     {
-      var s = value;
-      if (hasPotion != value)
+      if (HasItemLookup[symbol].ItemCount > 0)
       {
-        hasPotion = value;
-
-        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasPotion, hasPotion));
+        return true;
       }
     }
+    return false;
   }
 
-  bool isHealthy;
-  public bool IsHealthy
-  {
-    get { return isHealthy; }
-    set
-    {
-      var s = value;
-      if (isHealthy != value)
-      {
-        isHealthy = value;
 
-        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.IsHealthy, isHealthy));
-      }
-    }
-  }
+
+  //bool hasKey;
+  //public bool HasKey
+  //{
+  //  get { return hasKey; }
+  //  set
+  //  {
+  //    var s = value;
+  //    if (hasKey != value)
+  //    {
+  //      hasKey = value;
+
+  //     // WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasKey, hasKey));
+  //    }
+  //  }
+  //}
+
+  //bool hasPotion;
+  //public bool HasPotion
+  //{
+  //  get { return hasPotion; }
+  //  set
+  //  {
+  //    var s = value;
+  //    if (hasPotion != value)
+  //    {
+  //      hasPotion = value;
+
+  //      //WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasPotion, hasPotion));
+  //    }
+  //  }
+  //}
+
+  //bool isHealthy;
+  //public bool IsHealthy
+  //{
+  //  get { return isHealthy; }
+  //  set
+  //  {
+  //    var s = value;
+  //    if (isHealthy != value)
+  //    {
+  //      isHealthy = value;
+
+  //     // WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.IsHealthy, isHealthy));
+  //    }
+  //  }
+  //}
 
 
   public int Health { get { return GetComponent<Player>().Health; } }

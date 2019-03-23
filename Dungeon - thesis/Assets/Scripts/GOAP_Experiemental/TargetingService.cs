@@ -57,13 +57,16 @@ public class TargetingService
 
       foreach (GameObject treasure in blackBoard.Memory[TileType.TREASURE])
       {
-        if (treasure != null && treasure.GetComponent<TreasureChest>().IsClosed)
+        if (treasure)
         {
-          float distance = Vector2.Distance(ownPos, treasure.transform.position);
-          if (distance < closestDistance)
+          if (treasure.GetComponent<TreasureChest>().IsClosed)
           {
-            closestTarget = treasure;
-            closestDistance = distance;
+            float distance = Vector2.Distance(ownPos, treasure.transform.position);
+            if (distance < closestDistance)
+            {
+              closestTarget = treasure;
+              closestDistance = distance;
+            }
           }
         }
       }

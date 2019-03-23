@@ -40,7 +40,6 @@ public class Action_Goap
 
   protected virtual bool CanExecute()
   {
-   // PreconditionsMet = PreconditionsSatisfied();
     if (!PreconditionsSatisfied())
     {
       Debug.Log("All preconditions was not satisfied on entering " + ID);
@@ -51,7 +50,7 @@ public class Action_Goap
     return true;
   }
 
-  public virtual void Execute() { }
+  public virtual void Execute() { Debug.Log("Executing " + ID); }
 
   protected virtual void Exit() { }
 

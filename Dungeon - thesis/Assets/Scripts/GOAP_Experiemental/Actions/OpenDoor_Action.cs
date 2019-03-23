@@ -6,6 +6,7 @@ public class OpenDoor_Action : MovingAction_Goap
 {
 
   GameObject targetDoor;
+  Key key;
 
   public OpenDoor_Action(GameObject owner) : base(owner)
   {
@@ -24,32 +25,39 @@ public class OpenDoor_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    //TODO Behöver få in så att en Key har en referens till end dörr. Nu går den 
-    // till en kista:9
-    if (!PreconditionsSatisfied())
+    Item item;
+    if (owner.GetComponent<Inventory>().TryGetItem(typeof(Key), out item))
     {
-      Failed();
-      return;
-    }
-   
-    targetDoor = owner.GetComponent<Player>().Key.KeyData.TargetDoor.gameObject;// .TargetDoor.gameObject;
-    //targetDoor = owner.GetComponent<BlackBoard>().TreasureObject;
-    if (!targetDoor)
-    {
-      Failed();
-    }
-    else
-    {
+      key = (Key)item;
+      targetDoor = key.KeyData.TargetDoor.gameObject;
       target = targetDoor.transform.position;
       base.Enter();
     }
+    else
+    {
+      Failed();
+    }
+   // targetDoor = owner.GetComponent<Player>().Key.KeyData.TargetDoor.gameObject;// .TargetDoor.gameObject;
+    //targetDoor = owner.GetComponent<BlackBoard>().TreasureObject;
+    //if (!targetDoor)
+    //{
+    //  Failed();
+    //}
+    //else
+    //{
+    //  target = targetDoor.transform.position;
+    //  base.Enter();
+    //}
   }
 
   public override void Execute()
   {
     if (InRange)
     {
-      owner.GetComponent<Player>().UseItem("Key");
+      //owner.GetComponent<Player>().UseItem("Key");
+      //targetDoor.GetComponent<InteractableObject>().Interact(owner);
+      key.Unlock(targetDoor.GetComponent<Door>());
+      //TODO fixa denna sen.
       targetDoor.GetComponent<InteractableObject>().Interact(owner);
       Successfull();
     }

@@ -8,7 +8,7 @@ public class Progress_Goal : Goal_Goap
 
   public Progress_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner)
   {
-    GoalWorldstates.Add(WorldStateSymbol.Progress, true);  
+    GoalWorldstates.Add(WorldStateSymbol.Progress, true);
   }
 
   /// <summary>
@@ -18,9 +18,9 @@ public class Progress_Goal : Goal_Goap
   /// <returns></returns>
   public override float CalculateRelevancy(BlackBoard blackBoard)
   {
-    //return 1;
+    return 1;
     // TODO: See below pls.
-    if(blackBoard.HasKey)
+    if (blackBoard.CheckItemKnowledge(WorldStateSymbol.HasKey))
       relevancy = persona.personalityModifer[Personality.PROGRESSION] + baseValue;
     else
       return 0f;
