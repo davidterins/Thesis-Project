@@ -13,12 +13,12 @@ public class TreasureChest : InteractableObject
   Sprite ChestOpen = null;
 
  
-
   void Start() { }
 
   void Open(GameObject interactingAgent)
   {
-    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+    var s = RoomID;
+    var dungeon = Dungeon.Singleton;
     var loot = transform.GetChild(0);
     loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
     loot.GetComponent<Loot>().Drop(interactingAgent, transform.position);

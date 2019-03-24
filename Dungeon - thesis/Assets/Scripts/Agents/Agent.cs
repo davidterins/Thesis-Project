@@ -8,7 +8,7 @@ public class Agent : MonoBehaviour
   public static event Action<Agent> OnIsEnabled = delegate { };
   public static event Action<Agent> OnIsDisabled = delegate { };
 
-  public static int maxHealth = 100;
+  public static readonly int maxHealth = 100;
   public int Health = maxHealth;
   protected float attackSpeed = 1.0f;
 
@@ -20,8 +20,6 @@ public class Agent : MonoBehaviour
   public int Damage { get { return damagePower; } }
 
   public int MaxHealth { get { return maxHealth; } }
-
-  //public virtual void PickupItem(Item item) { }
 
   public virtual void TakeDamage(GameObject attacker, int amount)
   {

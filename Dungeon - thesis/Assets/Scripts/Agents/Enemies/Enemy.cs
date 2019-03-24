@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : Agent
 {
@@ -12,7 +13,7 @@ public class Enemy : Agent
 
   protected override void HandleDeath(GameObject attacker)
   {
-    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+    var dungeon = Dungeon.Singleton;
     var loot = transform.GetChild(0);
     loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
     loot.GetComponent<Loot>().Drop(attacker, transform.position);

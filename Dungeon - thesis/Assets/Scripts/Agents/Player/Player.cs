@@ -27,7 +27,6 @@ public class Player : Agent
   }
 
 
-  //TODO Denna funktionaliteten ska in Inventory.cs
   public void PickupItem(Item item)
   {
     if (item.GetType() == typeof(Coin))
@@ -63,8 +62,6 @@ public class Player : Agent
   public override void TakeDamage(GameObject attacker, int amount)
   {
     base.TakeDamage(attacker, amount);
-    //if (Health <= MaxHealth / 2 -1)
-    //GetComponent<BlackBoard>().IsHealthy = false;
     InfoBox.hp = Health;
   }
 

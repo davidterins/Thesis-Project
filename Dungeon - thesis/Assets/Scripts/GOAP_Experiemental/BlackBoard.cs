@@ -14,15 +14,12 @@ public class BlackBoard : MonoBehaviour
   public event EventHandler<WsSymbolChangedEventArgs> WorldStateVariableChanged;
 
   TargetingService targetingService;
-  //[SerializeField]
-  //Persona currentPersona;
 
   public Dictionary<TileType, List<GameObject>> Memory { get; private set; }
   Dictionary<WorldStateSymbol, InventoryItemStatus> HasItemLookup;
 
   public void Start()
   {
-
     targetingService = new TargetingService(gameObject);
     InvokeRepeating("UpdateTargets", 0, 1.0f);
 
@@ -97,9 +94,7 @@ public class BlackBoard : MonoBehaviour
       if (value != null)
         wsValue = true;
 
-      //Debug.Log("Closest chest is at " + value.transform.position.x + ", " + value.transform.position.y);
       WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableChest, wsValue));
-      //}
     }
   }
 
@@ -180,56 +175,14 @@ public class BlackBoard : MonoBehaviour
     return false;
   }
 
-
-
-  //bool hasKey;
-  //public bool HasKey
-  //{
-  //  get { return hasKey; }
-  //  set
-  //  {
-  //    var s = value;
-  //    if (hasKey != value)
-  //    {
-  //      hasKey = value;
-
-  //     // WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasKey, hasKey));
-  //    }
-  //  }
-  //}
-
-  //bool hasPotion;
-  //public bool HasPotion
-  //{
-  //  get { return hasPotion; }
-  //  set
-  //  {
-  //    var s = value;
-  //    if (hasPotion != value)
-  //    {
-  //      hasPotion = value;
-
-  //      //WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.HasPotion, hasPotion));
-  //    }
-  //  }
-  //}
-
-  //bool isHealthy;
-  //public bool IsHealthy
-  //{
-  //  get { return isHealthy; }
-  //  set
-  //  {
-  //    var s = value;
-  //    if (isHealthy != value)
-  //    {
-  //      isHealthy = value;
-
-  //     // WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.IsHealthy, isHealthy));
-  //    }
-  //  }
-  //}
-
+  public int CheckItemKnowledgeCount(WorldStateSymbol symbol)
+  {
+    if (HasItemLookup.ContainsKey(symbol))
+    {
+      return HasItemLookup[symbol].ItemCount;
+    }
+    return 0;
+  }
 
   public int Health { get { return GetComponent<Player>().Health; } }
 

@@ -10,6 +10,9 @@ public class GoapViewController : MonoBehaviour
   private Text GoalText = null;
 
   [SerializeField]
+  private Text GoalRelevancyText = null;
+
+  [SerializeField]
   GameObject PlanList = null;
 
   [SerializeField]
@@ -21,9 +24,23 @@ public class GoapViewController : MonoBehaviour
 
   int actionIndex = 0;
 
+  public void SetGoalRelevancies(List<Goal_Goap> goals)
+  {
+    GoalRelevancyText.text = "Goal Relevancies:\n";
+    foreach (Goal_Goap goal in goals)
+    {
+      string relevancy = goal.Relevancy.ToString();
+      if(relevancy.Length > 4)
+      {
+        relevancy = goal.Relevancy.ToString().Substring(0, 3);
+      }
+      GoalRelevancyText.text += goal.GetType() + " " + relevancy + "\n";
+    }
+  }
+
   public void SetGoal(Goal_Goap goal)
   {
-    GoalText.text = "Goal:\n" + goal.GetType() + " " + goal.Relevancy;
+    GoalText.text = "Selected Goal:\n" + goal.GetType() + " " + goal.Relevancy;
 
   }
 
@@ -44,8 +61,6 @@ public class GoapViewController : MonoBehaviour
         planStep.text += index++ + ". " + action;
       }
     }
-   
-
   }
 
   public void UpdateActionStatus(ActionCallback actionResult)

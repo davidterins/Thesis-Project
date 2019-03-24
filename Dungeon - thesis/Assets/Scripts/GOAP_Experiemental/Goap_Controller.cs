@@ -207,6 +207,7 @@ public class Goap_Controller : MonoBehaviour
         relevantGoal = goal;
       }
     }
+    viewControl.SetGoalRelevancies(playerGoals);
     Debug.Log("Most Relevant goal: " + relevantGoal.GetType());
     return relevantGoal;
   }

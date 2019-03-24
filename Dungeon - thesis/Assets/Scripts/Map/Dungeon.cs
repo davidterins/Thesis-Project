@@ -33,7 +33,6 @@ public class Dungeon : MonoBehaviour
   {
     CreateFromModel(DungeonImporter.Dungeon);
     BuildFirstRoom();
-    //BuildAllRooms();
   }
 
   public int InitialRoomID { get; private set; }

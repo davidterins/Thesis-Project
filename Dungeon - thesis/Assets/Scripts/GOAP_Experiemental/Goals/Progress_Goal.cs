@@ -18,7 +18,7 @@ public class Progress_Goal : Goal_Goap
   /// <returns></returns>
   public override float CalculateRelevancy(BlackBoard blackBoard)
   {
-    return 1;
+    //return 1;
     // TODO: See below pls.
     if (blackBoard.CheckItemKnowledge(WorldStateSymbol.HasKey))
       relevancy = persona.personalityModifer[Personality.PROGRESSION] + baseValue;
