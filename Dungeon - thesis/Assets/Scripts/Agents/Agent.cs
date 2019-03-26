@@ -26,6 +26,7 @@ public class Agent : MonoBehaviour
     if (Health - amount < 0)
     {
       HandleDeath(attacker);
+      return;
     }
     ModifyHealth(-amount);
 
@@ -40,10 +41,10 @@ public class Agent : MonoBehaviour
     Destroy(gameObject);
   }
 
-  //private void OnDisable()
-  //{
-  //  OnIsDisabled(this);
-  //}
+  private void OnDisable()
+  {
+    OnIsDisabled(this);
+  }
 
   private void OnEnable()
   {

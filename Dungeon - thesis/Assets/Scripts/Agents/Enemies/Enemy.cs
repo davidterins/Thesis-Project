@@ -5,6 +5,13 @@ using System;
 
 public class Enemy : Agent
 {
+  private void Awake()
+  {
+    RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
+  }
+
+  public int RoomID { get; private set; }
+
   public override void TakeDamage(GameObject attacker, int amount)
   {
     base.TakeDamage(attacker, amount);

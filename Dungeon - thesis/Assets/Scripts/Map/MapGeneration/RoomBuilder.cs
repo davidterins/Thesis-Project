@@ -15,9 +15,6 @@ public class RoomBuilder : MonoBehaviour
   Tilemap CollideLayer = null;
 
   [SerializeField]
-  Grid WorldGrid = null;
-
-  [SerializeField]
   UnityEngine.Tilemaps.Tile FloorTile = null;
 
   [SerializeField]
@@ -110,15 +107,13 @@ public class RoomBuilder : MonoBehaviour
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
 
           var center = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
-          //Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform);
-          //room.InitialLootableItems.Add(Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform));
+
           lootableObjects.Add(Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform));
           break;
         case TileType.ENEMY:
 
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-          //Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform);
-          //room.InitialLootableItems.Add(Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform));
+         
           lootableObjects.Add(Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform));
           break;
         case TileType.DOOR:
@@ -205,7 +200,6 @@ public class RoomBuilder : MonoBehaviour
         case TileType.DOORENTER:
 
           BaseTileLayer.SetTile(tilePos, Instantiate(DoorEnterTile));
-
 
           break;
         case TileType.NONE:

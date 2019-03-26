@@ -84,14 +84,18 @@ public class Inventory : MonoBehaviour
   {
     foreach (Stack<Item> itemStack in items)
     {
-      if (itemStack.Peek().GetType() == item.GetType())
+      if(itemStack.Count > 0)
       {
-        itemStack.Pop();
-        blackBoard.RemoveFromItemKnowledge(item.ItemWSEffector);
-        OnItemRemoved(items.IndexOf(itemStack), itemStack.Count);
-        item.OnItemUse -= Handle_OnItemUse;
-        break;
+        if (itemStack.Peek().GetType() == item.GetType())
+        {
+          itemStack.Pop();
+          blackBoard.RemoveFromItemKnowledge(item.ItemWSEffector);
+          OnItemRemoved(items.IndexOf(itemStack), itemStack.Count);
+          item.OnItemUse -= Handle_OnItemUse;
+          break;
+        }
       }
+
     }
   }
 }

@@ -21,7 +21,7 @@ public class MeeleAttack_Action : MovingAction_Goap
     {
      WorldStateSymbol.EnemyDead,
      WorldStateSymbol.LootableItem
-     
+
      };
   }
 

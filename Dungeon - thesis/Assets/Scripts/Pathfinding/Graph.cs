@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Graph : MonoBehaviour
 {
+ 
   private int distance;
   private Node[,] nodes;
   private List<Node> unexploredNodes;
@@ -14,13 +15,14 @@ public class Graph : MonoBehaviour
   private int gridSizeX, gridSizeY;
   private int TotalUnexplored = 0;
 
-  public float UnexploredCount
+  private float unexploredPercentage;
+  public float UnexploredPercentage
   {
     get
     {
-      var asdasd = 1;
       return (float)unexploredNodes.Count / (float)TotalUnexplored;
     }
+
   }
 
   /// <summary>
@@ -63,6 +65,7 @@ public class Graph : MonoBehaviour
           //nodes[x, y].explored = true;
           //if (unexploredNodes.Contains(nodes[x, y]))
           unexploredNodes.Remove(nodes[x, y]);
+         
         }
       }
     }

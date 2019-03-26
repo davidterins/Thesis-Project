@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 /// <summary>
 /// The actual game dungeon built from its model.
 /// </summary>
 public class Dungeon : MonoBehaviour
 {
+
   [SerializeField]
   DungeonImporter DungeonImporter = null;
 
@@ -43,7 +45,8 @@ public class Dungeon : MonoBehaviour
 
   public Dictionary<int, Room> RoomLookup { get; private set; }
 
-  public Room CurrentRoom { get; set; }
+  Room currentRoom;
+  public Room CurrentRoom { get { return currentRoom; } set { currentRoom = value; } }
 
   //Grid can be used to convert world positions to cellpositions and the other way around.
   public Grid WorldGrid { get { return worldGrid; } }

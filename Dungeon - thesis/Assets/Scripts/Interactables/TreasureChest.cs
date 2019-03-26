@@ -25,15 +25,11 @@ public class TreasureChest : InteractableObject
 
 
     GetComponent<SpriteRenderer>().sprite = ChestOpen;
+
     isClosed = false;
 
     interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, gameObject);
-    //try
-    //{
-    //  interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, gameObject);
-    //  //this.GetComponent<BoxCollider2D>().enabled = false;
-    //}
-    //catch { Debug.Log("Agent has no memory applied."); }
+
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

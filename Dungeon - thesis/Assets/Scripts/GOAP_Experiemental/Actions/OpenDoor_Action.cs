@@ -19,7 +19,10 @@ public class OpenDoor_Action : MovingAction_Goap
 
     Effects = new WorldStateSymbol[]
     {
-     WorldStateSymbol.Progress
+     WorldStateSymbol.Progress,
+     WorldStateSymbol.AvailableChest,
+     WorldStateSymbol.AvailableEnemy,
+     
      };
   }
 
@@ -37,25 +40,12 @@ public class OpenDoor_Action : MovingAction_Goap
     {
       Failed();
     }
-   // targetDoor = owner.GetComponent<Player>().Key.KeyData.TargetDoor.gameObject;// .TargetDoor.gameObject;
-    //targetDoor = owner.GetComponent<BlackBoard>().TreasureObject;
-    //if (!targetDoor)
-    //{
-    //  Failed();
-    //}
-    //else
-    //{
-    //  target = targetDoor.transform.position;
-    //  base.Enter();
-    //}
   }
 
   public override void Execute()
   {
     if (InRange)
     {
-      //owner.GetComponent<Player>().UseItem("Key");
-      //targetDoor.GetComponent<InteractableObject>().Interact(owner);
       key.Unlock(targetDoor.GetComponent<Door>());
       //TODO fixa denna sen.
       targetDoor.GetComponent<InteractableObject>().Interact(owner);

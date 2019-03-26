@@ -23,7 +23,7 @@ public class Explore_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    target = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.RoomGraph.GetUnexploredPosition();
+    target = Dungeon.Singleton.CurrentRoom.RoomGraph.GetUnexploredPosition();
     if(target == Vector2.zero)
     {
       Failed();
@@ -34,7 +34,6 @@ public class Explore_Action : MovingAction_Goap
 
   public override void Execute()
   {
-    //base.Execute();
     Successfull();
   }
 

@@ -33,13 +33,18 @@ public class TargetingService
       foreach (GameObject enemy in blackBoard.Memory[TileType.ENEMY])
       {
         if (enemy != null)
-        {
-          float distance = Vector2.Distance(ownPos, enemy.transform.position);
-          if (distance < closestDistance)
+        {//TODO Kolla först efter enemies i samma rum.s
+          var enemyScript = enemy.GetComponent<Enemy>();
+          if (enemyScript.RoomID == Dungeon.Singleton.CurrentRoom.RoomID)
           {
-            closestTarget = enemy;
-            closestDistance = distance;
+            float distance = Vector2.Distance(ownPos, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+              closestTarget = enemy;
+              closestDistance = distance;
+            }
           }
+
         }
       }
     }

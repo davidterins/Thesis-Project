@@ -22,8 +22,9 @@ public class Room : MonoBehaviour
 
   public double EntranceSafety { get; private set; }
 
-  public Queue<KeyInfo> requiredKeys = new Queue<KeyInfo>();
+  public bool IsExplored { get { return RoomGraph.UnexploredPercentage < 0.1f; } }
 
+  public Queue<KeyInfo> requiredKeys = new Queue<KeyInfo>();
 
   /// <summary>
   /// Used as a contructor to build the acutal room from its model.
@@ -50,9 +51,7 @@ public class Room : MonoBehaviour
     {
       ConnectionLookup[edge.StartDoorPosition] = edge;
     }
-
   }
-
 
 
 }

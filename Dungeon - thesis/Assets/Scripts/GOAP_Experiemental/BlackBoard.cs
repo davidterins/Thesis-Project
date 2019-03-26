@@ -33,6 +33,7 @@ public class BlackBoard : MonoBehaviour
         };
   }
 
+
   public void AddPOI(TileType type, GameObject go)
   {
     if (type != TileType.FLOOR)
@@ -40,6 +41,13 @@ public class BlackBoard : MonoBehaviour
       {
         if (!Memory[type].Contains(go))
         {
+          if (go.GetComponent<TreasureChest>())
+          {
+            if (!go.GetComponent<TreasureChest>().IsClosed)
+            {
+              return;
+            }
+          }
           Memory[type].Add(go);
           InfoBox.UpdateMemory(Memory);
           // Debug.Log("Added " + type + " count: " + Memory[type].Count);
@@ -76,8 +84,6 @@ public class BlackBoard : MonoBehaviour
         wsValue = true;
 
       WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.AvailableEnemy, wsValue));
-      //}
-
     }
   }
 
@@ -135,7 +141,12 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-
+  //private bool currentRoomExplored = fase;
+  //public bool CurrentRoomExplored
+  //{
+  //  get { return currentRoomExplored; }
+  //  set { }
+  //}
 
   public void AddToItemKnowledge(WorldStateSymbol symbol)
   {
@@ -184,6 +195,20 @@ public class BlackBoard : MonoBehaviour
     return 0;
   }
 
+  bool roomExplored;
+  public bool RoomExplored
+  {
+    get { return roomExplored; }
+    set
+    {
+      if (roomExplored != value)
+      {
+        roomExplored = value;
+        WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.RoomExplored, roomExplored));
+      }
+    }
+  }
+
   public int Health { get { return GetComponent<Player>().Health; } }
 
   public int Coins { get { return GetComponent<Player>().Coins; } }
@@ -191,7 +216,12 @@ public class BlackBoard : MonoBehaviour
   /// <summary>
   /// Updated every second by the InvokeRepeating function in Start().
   /// </summary>
-  public void UpdateTargets() { targetingService.Refresh(); }
+  public void UpdateTargets()
+  {
+
+    targetingService.Refresh();
+    RoomExplored = Dungeon.Singleton.CurrentRoom.IsExplored;
+  }
 }
 
 public class WsSymbolChangedEventArgs : EventArgs

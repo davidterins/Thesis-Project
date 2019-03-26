@@ -39,8 +39,6 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.Progress, false},
     {WorldStateSymbol.HasAmmo, false},
-
-
   };
 
   void Awake()
