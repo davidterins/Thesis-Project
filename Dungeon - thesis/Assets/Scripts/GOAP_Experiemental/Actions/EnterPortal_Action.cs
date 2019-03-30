@@ -23,15 +23,16 @@ public class EnterPortal_Action : MovingAction_Goap
 
   public override void Enter()
   {
-
-    portal = owner.GetComponent<BlackBoard>().Memory[typeof(Portal)][0];
-    target = portal.transform.position;
-    base.Enter();
-  
-    //else
-    //{
-    //  Failed();
-    //}
+    if (owner.GetComponent<BlackBoard>().Memory.ContainsKey(typeof(Portal)))
+    {
+      portal = owner.GetComponent<BlackBoard>().Memory[typeof(Portal)][0];
+      target = portal.transform.position;
+      base.Enter();
+    }
+    else
+    {
+      Failed();
+    }
   }
 
   public override void Execute()

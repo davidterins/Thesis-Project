@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Win_Goal : Goal_Goap
 {
-  private static float baseValue = 0.05f;
-  private static float factor = 0.1f;
 
   public Win_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner)
   {
-    GoalWorldstates.Add(WorldStateSymbol.RoomExplored, true);
+    GoalWorldstates.Add(WorldStateSymbol.CanWin, true);
   }
 
   /// <summary>
@@ -23,7 +21,7 @@ public class Win_Goal : Goal_Goap
     // är explorade osv och basera relvancen olika per persona.
     if(blackBoard.Memory.ContainsKey(typeof(Portal)))
     {
-      relevancy = 0.4f;
+      relevancy = 0.5f;
     }
     relevancy = Mathf.Clamp(relevancy, 0f, 1f);
     return relevancy;

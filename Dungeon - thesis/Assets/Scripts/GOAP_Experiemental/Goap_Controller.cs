@@ -45,9 +45,6 @@ public class Goap_Controller : MonoBehaviour
 
     {WorldStateSymbol.CanWin, false },
     {WorldStateSymbol.PortalLocated, false },
-
-
-    ////{WorldStateSymbol.HasAmmo, false},
   };
 
   void Awake()
@@ -64,8 +61,6 @@ public class Goap_Controller : MonoBehaviour
           new PickupItem_Action(gameObject),
           new MeeleAttack_Action(gameObject),
           new EnterPortal_Action(gameObject),
-          //new RangedAttack_Action(gameObject),
-          //new ChangeWeapon_Action(gameObject),
           new OpenChest_Action(gameObject),
           new Drink_Action(gameObject),
           new OpenDoor_Action(gameObject),
@@ -80,6 +75,7 @@ public class Goap_Controller : MonoBehaviour
       new Heal_Goal(gameObject, planner),
       new Explore_Goal(gameObject, planner),
       new Progress_Goal(gameObject, planner),
+      new Win_Goal(gameObject, planner),
     };
 
     foreach (Action_Goap action in playerActions)

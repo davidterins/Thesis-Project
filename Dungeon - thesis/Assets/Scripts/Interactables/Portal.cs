@@ -21,6 +21,7 @@ public class Portal : InteractableObject, IMemorizable
   void Enter(GameObject player)
   {
     //TODO WIN stuff
+    Debug.Log("GAME WON!");
   }
 
   public override void Interact(GameObject player)
