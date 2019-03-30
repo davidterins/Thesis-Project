@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Net.Sockets;
+﻿using UnityEngine;
 using System;
 
 public class TreasureChest : InteractableObject, IMemorizable
@@ -31,7 +28,6 @@ public class TreasureChest : InteractableObject, IMemorizable
 
     isClosed = false;
 
-    //interactingAgent.GetComponent<BlackBoard>().RemovePOI(TileType.TREASURE, gameObject);
     interactingAgent.GetComponent<BlackBoard>().RemoveTypePOI(GetType(), gameObject);
 
   }

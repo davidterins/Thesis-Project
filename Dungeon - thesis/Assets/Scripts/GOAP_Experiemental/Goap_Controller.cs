@@ -43,6 +43,9 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.HasKey, false},
     {WorldStateSymbol.HasMeleeWeapon, true },
 
+    {WorldStateSymbol.CanWin, false },
+    {WorldStateSymbol.PortalLocated, false },
+
 
     ////{WorldStateSymbol.HasAmmo, false},
   };
@@ -60,6 +63,7 @@ public class Goap_Controller : MonoBehaviour
     playerActions = new List<Action_Goap>{
           new PickupItem_Action(gameObject),
           new MeeleAttack_Action(gameObject),
+          new EnterPortal_Action(gameObject),
           //new RangedAttack_Action(gameObject),
           //new ChangeWeapon_Action(gameObject),
           new OpenChest_Action(gameObject),

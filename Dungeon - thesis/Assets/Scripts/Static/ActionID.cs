@@ -12,7 +12,8 @@ public enum ActionID
   OpenChest,
   Drink,
   OpenDoor,
-  Explore
+  Explore,
+  EnterPortal,
 }
 
 public enum ActionCallback

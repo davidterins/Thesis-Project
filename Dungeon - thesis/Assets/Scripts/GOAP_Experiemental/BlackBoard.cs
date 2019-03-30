@@ -37,6 +37,10 @@ public class BlackBoard : MonoBehaviour
     }
     Memory[type].Add(go);
     InfoBox.UpdateMemory(Memory);
+    if(type == typeof(Portal))
+    {
+      WorldStateVariableChanged.Invoke(this, new WsSymbolChangedEventArgs(WorldStateSymbol.PortalLocated, true));
+    }
   }
 
   public void RemoveTypePOI(Type type, GameObject go)

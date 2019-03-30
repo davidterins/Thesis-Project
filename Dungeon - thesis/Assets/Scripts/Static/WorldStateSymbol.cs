@@ -20,6 +20,9 @@ public enum WorldStateSymbol
   HasKey,
   RoomExplored,
 
+  PortalLocated,
+  CanWin,
+
  
 
 }

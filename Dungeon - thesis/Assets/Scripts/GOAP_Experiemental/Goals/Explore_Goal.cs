@@ -20,7 +20,7 @@ public class Explore_Goal : Goal_Goap
   public override float CalculateRelevancy(BlackBoard blackBoard)
   {
 
-    float unexploredPercentage = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>().CurrentRoom.RoomGraph.UnexploredPercentage;
+    float unexploredPercentage = Dungeon.Singleton.CurrentRoom.RoomGraph.UnexploredPercentage;
 
     // TODO: Right now, the will to explore is always constant depending on personality. 
     //       This could be dynamic in the future depending on how much the agent has explored or memorized.
