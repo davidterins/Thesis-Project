@@ -15,7 +15,7 @@ public class Agent : MonoBehaviour
   [SerializeField]
   protected int damagePower = 25;
 
-  public event Action<float> OnHealthChanged = delegate { };
+  public virtual event Action<float> OnHealthChanged = delegate { };
 
   public int Damage { get { return damagePower; } }
 
@@ -30,9 +30,10 @@ public class Agent : MonoBehaviour
     }
     ModifyHealth(-amount);
 
+
     if (Health < 0)
       Health = 0;
-      
+
   }
 
   protected virtual void HandleDeath(GameObject attacker)
@@ -51,13 +52,19 @@ public class Agent : MonoBehaviour
     OnIsEnabled(this);
   }
 
-  public void ModifyHealth(int amount)
+  public virtual void ModifyHealth(int amount)
   {
     Health += amount;
+    NotifyHealthChange();
+  
+  }
+
+  private void NotifyHealthChange()
+  {
     float healthPct = (float)Health / (float)maxHealth;
     OnHealthChanged(healthPct);
-   
   }
+
 
 
 }

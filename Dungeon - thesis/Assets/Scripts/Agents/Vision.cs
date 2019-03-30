@@ -26,8 +26,18 @@ public class Vision : MonoBehaviour
     {
       if (collision)
       {
-        var cellPos = dungeon.WorldGrid.WorldToCell(collision.gameObject.transform.position);
-        GetComponent<BlackBoard>().AddPOI(dungeon.CurrentRoom.Tiles2D[cellPos.y, cellPos.x].Type, collision.gameObject);
+        IMemorizable memorizableObject = collision.GetComponent<IMemorizable>();
+        if (memorizableObject != null)
+        {
+          if(memorizableObject.OfInterest)
+          {
+            GetComponent<BlackBoard>().AddTypePOI(memorizableObject.MemorizableType, collision.gameObject);
+            memorizableObject.OfInterest = false;
+          }
+         
+        }
+        //var cellPos = dungeon.WorldGrid.WorldToCell(collision.gameObject.transform.position);
+        //GetComponent<BlackBoard>().AddPOI(dungeon.CurrentRoom.Tiles2D[cellPos.y, cellPos.x].Type, collision.gameObject);
         //Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
       }
     }

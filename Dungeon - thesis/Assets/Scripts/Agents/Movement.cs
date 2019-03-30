@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
   //TODO Lägga till så att man kan hitta en path till en target i ett annat rum.
   public bool TryMoveToTarget(Vector2 targetPosition, float targetOffsetDistance = 0.001f)
   {
-    var dungeon = GameObject.FindWithTag("Dungeon").GetComponent<Dungeon>();
+    var dungeon = Dungeon.Singleton;
     interruptPath = true;
 
     if (!hasTarget || interruptPath)

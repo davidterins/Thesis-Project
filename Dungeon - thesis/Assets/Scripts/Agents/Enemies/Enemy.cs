@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Enemy : Agent
+public class Enemy : Agent, IMemorizable
 {
   private void Awake()
   {
@@ -11,6 +11,11 @@ public class Enemy : Agent
   }
 
   public int RoomID { get; private set; }
+
+  public Type MemorizableType { get { return GetType(); } }
+
+  bool ofInterest = true;
+  public bool OfInterest { get { return ofInterest; } set { ofInterest = value; } }
 
   public override void TakeDamage(GameObject attacker, int amount)
   {
@@ -25,7 +30,7 @@ public class Enemy : Agent
     loot.transform.SetParent(dungeon.GetRoomObject(dungeon.CurrentRoom.RoomID).transform);
     loot.GetComponent<Loot>().Drop(attacker, transform.position);
 
-    attacker.GetComponent<BlackBoard>().RemovePOI(TileType.ENEMY, gameObject);
+    attacker.GetComponent<BlackBoard>().RemoveTypePOI(GetType(), gameObject);
 
     base.HandleDeath(attacker);
   }

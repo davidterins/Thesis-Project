@@ -17,8 +17,8 @@ public class Weapon : Item
       case WeaponType.Melee:
         return WorldStateSymbol.HasMeleeWeapon;
       
-      case WeaponType.Range:
-        return WorldStateSymbol.HasRangedWeapon;
+      //case WeaponType.Range:
+        //return WorldStateSymbol.HasRangedWeapon;
     }
     return WorldStateSymbol.HasMeleeWeapon;
   }

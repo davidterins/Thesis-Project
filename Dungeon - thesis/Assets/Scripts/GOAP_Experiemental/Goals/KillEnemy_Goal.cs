@@ -13,11 +13,11 @@ public class KillEnemy_Goal : Goal_Goap {
     /// <param name="blackBoard">The blackboard</param>
     /// <returns></returns>
     public override float CalculateRelevancy(BlackBoard blackBoard) {
-        if (!blackBoard.EnemyObject)
+        if (!blackBoard.TargetEnemyObject)
             return 0f;
         relevancy = persona.personalityModifer[Personality.BLOODLUST] +
                        persona.personalityModifer[Personality.BRAVERY] -
-                       (Vector2.Distance(blackBoard.EnemyObject.transform.position, owner.transform.position) / 10);
+                       (Vector2.Distance(blackBoard.TargetEnemyObject.transform.position, owner.transform.position) / 10);
 
     // For multiple enemies. Irrelevant with static enemies though.
     //foreach (GameObject enemy in blackBoard.Memory[TileType.ENEMY]) {

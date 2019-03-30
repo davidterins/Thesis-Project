@@ -21,9 +21,7 @@ public class PickupItem_Action : MovingAction_Goap
      WorldStateSymbol.HasItem,
      WorldStateSymbol.HasPotion,
      WorldStateSymbol.HasKey,
-     WorldStateSymbol.HasAmmo,
-     WorldStateSymbol.HasMeleeWeapon,
-     WorldStateSymbol.HasRangedWeapon,
+     WorldStateSymbol.HasMeleeWeapon
      };
   }
 

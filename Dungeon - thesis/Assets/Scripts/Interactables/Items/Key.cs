@@ -36,9 +36,10 @@ public class Key : Item
     return WorldStateSymbol.HasKey;
   }
 
-  public void Unlock(Door door)
+  public void Use(Door door)
   {
-    door.IsOpen = true;
+    //door.IsOpen = true;
+    door.Unlock();
     Used();
   }
 }

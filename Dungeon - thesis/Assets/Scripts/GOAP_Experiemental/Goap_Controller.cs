@@ -24,21 +24,27 @@ public class Goap_Controller : MonoBehaviour
   public WorldStateSet PlayerWorldState { get { return playerWorldState; } }
   WorldStateSet playerWorldState = new WorldStateSet()
   {
-    {WorldStateSymbol.HasItem, false},
+
     {WorldStateSymbol.EnemyDead, false},
-    {WorldStateSymbol.SecondaryWeapon, false},
+    //{WorldStateSymbol.SecondaryWeapon, false},
     {WorldStateSymbol.MeleeEquiped, true },
     {WorldStateSymbol.AvailableEnemy, false },
-    {WorldStateSymbol.RangedEquiped, false },
+    ////{WorldStateSymbol.RangedEquiped, false },
     {WorldStateSymbol.LootableItem, false},
+    {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.AvailableChest, false },
-    {WorldStateSymbol.HasPotion, false},
+
     {WorldStateSymbol.IsHealthy, false},
     {WorldStateSymbol.RoomExplored, false },
-    {WorldStateSymbol.HasKey, false},
-    {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.Progress, false},
-    {WorldStateSymbol.HasAmmo, false},
+
+    {WorldStateSymbol.HasItem, false},
+    {WorldStateSymbol.HasPotion, false},
+    {WorldStateSymbol.HasKey, false},
+    {WorldStateSymbol.HasMeleeWeapon, true },
+
+
+    ////{WorldStateSymbol.HasAmmo, false},
   };
 
   void Awake()
@@ -54,8 +60,8 @@ public class Goap_Controller : MonoBehaviour
     playerActions = new List<Action_Goap>{
           new PickupItem_Action(gameObject),
           new MeeleAttack_Action(gameObject),
-          new RangedAttack_Action(gameObject),
-          new ChangeWeapon_Action(gameObject),
+          //new RangedAttack_Action(gameObject),
+          //new ChangeWeapon_Action(gameObject),
           new OpenChest_Action(gameObject),
           new Drink_Action(gameObject),
           new OpenDoor_Action(gameObject),

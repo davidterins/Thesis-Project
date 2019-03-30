@@ -25,12 +25,12 @@ public class TargetingService
   public void TrySetEnemyTarget()
   { //Look through memory facts
     GameObject closestTarget = null;
-    if (blackBoard.Memory[TileType.ENEMY].Count > 0)
+    if (blackBoard.Memory.ContainsKey(typeof(Enemy)))
     {
       Vector2 ownPos = owner.transform.position;
       float closestDistance = float.MaxValue;
 
-      foreach (GameObject enemy in blackBoard.Memory[TileType.ENEMY])
+      foreach (GameObject enemy in blackBoard.Memory[typeof(Enemy)])
       {
         if (enemy != null)
         {//TODO Kolla först efter enemies i samma rum.s
@@ -40,27 +40,38 @@ public class TargetingService
             float distance = Vector2.Distance(ownPos, enemy.transform.position);
             if (distance < closestDistance)
             {
-              closestTarget = enemy;
-              closestDistance = distance;
+              if (closestTarget)
+              {
+                if (enemy.GetComponent<Agent>().Health < closestTarget.GetComponent<Agent>().Health)
+                {
+                  closestTarget = enemy;
+                  closestDistance = distance;
+                }
+              }
+              else
+              {
+                closestTarget = enemy;
+                closestDistance = distance;
+              }
             }
           }
 
         }
       }
     }
-    blackBoard.EnemyObject = closestTarget;
+    blackBoard.TargetEnemyObject = closestTarget;
   }
 
 
   public void TrySetTreasureChest()
   {
     GameObject closestTarget = null;
-    if (blackBoard.Memory[TileType.TREASURE].Count > 0)
+    if (blackBoard.Memory.ContainsKey(typeof(TreasureChest)))
     {
       Vector2 ownPos = owner.transform.position;
       float closestDistance = float.MaxValue;
 
-      foreach (GameObject treasure in blackBoard.Memory[TileType.TREASURE])
+      foreach (GameObject treasure in blackBoard.Memory[typeof(TreasureChest)])
       {
         if (treasure)
         {
@@ -76,7 +87,7 @@ public class TargetingService
         }
       }
     }
-    blackBoard.TreasureObject = closestTarget;
+    blackBoard.TargetTreasureChest = closestTarget;
   }
 
 }

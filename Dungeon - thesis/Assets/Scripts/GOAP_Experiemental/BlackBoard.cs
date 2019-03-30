@@ -15,7 +15,7 @@ public class BlackBoard : MonoBehaviour
 
   TargetingService targetingService;
 
-  public Dictionary<TileType, List<GameObject>> Memory { get; private set; }
+  public Dictionary<Type, List<GameObject>> Memory { get; private set; }
   Dictionary<WorldStateSymbol, InventoryItemStatus> HasItemLookup;
 
   public void Start()
@@ -24,61 +24,42 @@ public class BlackBoard : MonoBehaviour
     InvokeRepeating("UpdateTargets", 0, 1.0f);
 
     HasItemLookup = new Dictionary<WorldStateSymbol, InventoryItemStatus>();
-
-    Memory = new Dictionary<TileType, List<GameObject>>() {
-            { TileType.ENEMY, new List<GameObject>() },
-            { TileType.TREASURE, new List<GameObject>() },
-            { TileType.DOOR, new List<GameObject>() },
-            { TileType.DOORENTER, new List<GameObject>() }
-        };
+    Memory = new Dictionary<Type, List<GameObject>>();
   }
 
 
-  public void AddPOI(TileType type, GameObject go)
+  public void AddTypePOI(Type type, GameObject go)
   {
-    if (type != TileType.FLOOR)
-      try
-      {
-        if (!Memory[type].Contains(go))
-        {
-          if (go.GetComponent<TreasureChest>())
-          {
-            if (!go.GetComponent<TreasureChest>().IsClosed)
-            {
-              return;
-            }
-          }
-          Memory[type].Add(go);
-          InfoBox.UpdateMemory(Memory);
-          // Debug.Log("Added " + type + " count: " + Memory[type].Count);
-        }
-      }
-      catch (System.Exception ex)
-      {
-        Debug.Log(ex.Message + "Type = " + type);
-      }
+    if(!Memory.ContainsKey(type))
+    {
+      Memory[type] = new List<GameObject>();
+      Debug.Log("BLACKBOARD ADDED TYPE: " + type);
+    }
+    Memory[type].Add(go);
+    InfoBox.UpdateMemory(Memory);
   }
 
-  public void RemovePOI(TileType type, GameObject go)
+  public void RemoveTypePOI(Type type, GameObject go)
   {
-    if (Memory[type].Contains(go))
+    if (Memory.ContainsKey(type))
     {
       Memory[type].Remove(go);
-      InfoBox.UpdateMemory(Memory);
+      Debug.Log("REMOVED FROM TYPE: " + type);
     }
+    InfoBox.UpdateMemory(Memory);
   }
 
-  private GameObject enemyObject;
-  public GameObject EnemyObject
+  private GameObject targetEnemyObject;
+  public GameObject TargetEnemyObject
   {
     get
     {
-      return enemyObject;
+      return targetEnemyObject;
     }
     set
     {
       //if (enemyObject != value) {
-      enemyObject = value;
+      targetEnemyObject = value;
       bool wsValue = false;
       if (value != null)
         wsValue = true;
@@ -87,15 +68,15 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
-  private GameObject treasureTarget;
-  public GameObject TreasureObject
+  private GameObject targetTreasureChest;
+  public GameObject TargetTreasureChest
   {
-    get { return treasureTarget; }
+    get { return targetTreasureChest; }
     set
     {
       //if (!treasureTarget == value)
       //{
-      treasureTarget = value;
+      targetTreasureChest = value;
       bool wsValue = false;
       if (value != null)
         wsValue = true;
@@ -140,13 +121,6 @@ public class BlackBoard : MonoBehaviour
       }
     }
   }
-
-  //private bool currentRoomExplored = fase;
-  //public bool CurrentRoomExplored
-  //{
-  //  get { return currentRoomExplored; }
-  //  set { }
-  //}
 
   public void AddToItemKnowledge(WorldStateSymbol symbol)
   {
@@ -209,6 +183,7 @@ public class BlackBoard : MonoBehaviour
     }
   }
 
+
   public int Health { get { return GetComponent<Player>().Health; } }
 
   public int Coins { get { return GetComponent<Player>().Coins; } }
@@ -218,7 +193,6 @@ public class BlackBoard : MonoBehaviour
   /// </summary>
   public void UpdateTargets()
   {
-
     targetingService.Refresh();
     RoomExplored = Dungeon.Singleton.CurrentRoom.IsExplored;
   }

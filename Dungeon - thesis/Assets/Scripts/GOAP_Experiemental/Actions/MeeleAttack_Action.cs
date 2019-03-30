@@ -15,6 +15,7 @@ public class MeeleAttack_Action : MovingAction_Goap
     {
       WorldStateSymbol.MeleeEquiped,
       WorldStateSymbol.AvailableEnemy,
+
      };
 
     Effects = new WorldStateSymbol[]
@@ -27,7 +28,7 @@ public class MeeleAttack_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    attackTarget = owner.GetComponent<BlackBoard>().EnemyObject;
+    attackTarget = owner.GetComponent<BlackBoard>().TargetEnemyObject;
     if (!attackTarget)
     {
       Failed();
@@ -64,7 +65,7 @@ public class MeeleAttack_Action : MovingAction_Goap
 
   public override float GetCost()
   {
-    attackTarget = owner.GetComponent<BlackBoard>().EnemyObject;
+    attackTarget = owner.GetComponent<BlackBoard>().TargetEnemyObject;
     if (attackTarget)
       if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5f)
       {

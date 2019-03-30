@@ -19,7 +19,7 @@ public class Loot_Goal : Goal_Goap {
     public override float CalculateRelevancy(BlackBoard blackBoard) {
         if (blackBoard.ImportantItemDrop)
             return 1f;
-        else if (!blackBoard.TreasureObject)
+        else if (!blackBoard.TargetTreasureChest)
             return 0f;
 
         // TODO: Right now coins are set to the value 10. This value is hardcoded and needs to be x10 the value of 1 coin.

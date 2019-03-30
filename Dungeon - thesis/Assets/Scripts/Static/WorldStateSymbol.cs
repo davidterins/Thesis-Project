@@ -4,24 +4,22 @@ using UnityEngine;
 
 public enum WorldStateSymbol
 {
-  AtTarget,
-  TargetInRange,
   HasItem,
   EnemyDead,
   MeleeEquiped,
-  RangedEquiped,
   AvailableChest,
   AvailableEnemy,
   LootableItem,
-  SecondaryWeapon,
   IsHealthy,
   HasPotion,
-  HasKey,
-  RoomExplored,
+ 
   ImportantLoot,
   Progress,
-  HasAmmo,
-  HasRangedWeapon,
   HasMeleeWeapon,
+
+  HasKey,
+  RoomExplored,
+
+ 
 
 }

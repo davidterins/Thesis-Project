@@ -51,7 +51,7 @@ public class Dungeon : MonoBehaviour
   //Grid can be used to convert world positions to cellpositions and the other way around.
   public Grid WorldGrid { get { return worldGrid; } }
 
-  public void ChangeRoom(int roomID)
+  public void ChangeRoom(int roomID, Vector2 targetDoorPosition)
   {
     try
     {
@@ -64,7 +64,7 @@ public class Dungeon : MonoBehaviour
     }
     catch (System.Exception ex)
     {
-      BuildNewRoom(roomID);
+      BuildNewRoom(roomID, targetDoorPosition);
     }
   }
 
@@ -76,14 +76,14 @@ public class Dungeon : MonoBehaviour
   public void BuildFirstRoom()
   {
     CurrentRoom = RoomLookup[InitialRoomID];
-    RoomBuilder.Singleton.BuildRoom(CurrentRoom);
+    RoomBuilder.Singleton.BuildRoom(CurrentRoom, Vector2.left);
   }
 
-  public void BuildNewRoom(int roomID)
+  public void BuildNewRoom(int roomID, Vector2 targetDoorPosition)
   {
     var prevRoom = transform.Find("Room " + CurrentRoom.RoomID).gameObject;
     CurrentRoom = RoomLookup[roomID];
-    RoomBuilder.Singleton.BuildRoom(RoomLookup[roomID]);
+    RoomBuilder.Singleton.BuildRoom(RoomLookup[roomID], targetDoorPosition);
     prevRoom.SetActive(false);
   }
 

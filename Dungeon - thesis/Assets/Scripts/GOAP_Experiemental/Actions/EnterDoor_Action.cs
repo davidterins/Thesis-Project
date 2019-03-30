@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoor_Action : MovingAction_Goap
+public class EnterDoor_Action : MovingAction_Goap
 {
 
   GameObject targetDoor;
   Key key;
 
-  public OpenDoor_Action(GameObject owner) : base(owner)
+  public EnterDoor_Action(GameObject owner) : base(owner)
   {
     ID = ActionID.OpenDoor;
 
     PreConditions = new WorldStateSymbol[]
    {
-      WorldStateSymbol.HasKey
+      
    };
 
     Effects = new WorldStateSymbol[]
     {
-     WorldStateSymbol.Progress,
-     WorldStateSymbol.AvailableChest,
-     WorldStateSymbol.AvailableEnemy,
-     
+
      };
   }
 
@@ -46,7 +43,7 @@ public class OpenDoor_Action : MovingAction_Goap
   {
     if (InRange)
     {
-      key.Unlock(targetDoor.GetComponent<Door>());
+      key.Use(targetDoor.GetComponent<Door>());
       //TODO fixa denna sen.
       targetDoor.GetComponent<InteractableObject>().Interact(owner);
       Successfull();

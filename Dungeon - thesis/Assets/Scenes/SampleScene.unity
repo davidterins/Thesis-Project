@@ -223,16 +223,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseTileLayer: {fileID: 656876107}
   CollideLayer: {fileID: 1378491194}
-  WorldGrid: {fileID: 0}
   FloorTile: {fileID: 11400000, guid: 09294dcba7c6e42c7b8a4c64db44a725, type: 2}
   WallTile: {fileID: 11400000, guid: d1e73dbdde28242909560091032f5b4a, type: 2}
-  DoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
-  DoorEnterTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015, type: 2}
+  ConnectionDoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
+  DungeonEntranceDoorTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015,
+    type: 2}
   player: {fileID: 4410479370439878666, guid: 918f3df9c798a469bb52394c9cfae611, type: 3}
   Enemy: {fileID: 6941359811901229572, guid: 08689aa7fe9d2451a92d9c1916ffa8fa, type: 3}
   TreasureChest: {fileID: 230931681438736116, guid: 86d25563fcc1840f1b65a2a2c0b7b14d,
     type: 3}
-  ExitDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
+  ConnectionDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
+    type: 3}
+  ExitDoor: {fileID: 8239667652090520178, guid: 956a3e5cb2f884ef6ab26748280d423a,
     type: 3}
   Room: {fileID: 2130253542598192886, guid: 07d7c14dbcc2d4094b88395303fbeb60, type: 3}
   KeyPrefab: {fileID: 328438026115366100, guid: 5159b7dd8eb574318bc000af070056e8,

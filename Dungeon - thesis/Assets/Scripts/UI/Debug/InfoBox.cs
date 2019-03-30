@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public static class InfoBox
   /// Add to memory and trim the "(Clone)"-part
   /// </summary>
   /// <param name="container">Item to add</param>
-  public static void UpdateMemory(Dictionary<TileType, List<GameObject>> container)
+  public static void UpdateMemory(Dictionary<Type, List<GameObject>> container)
   {
     memory = "";
     foreach (var items in container.Values)

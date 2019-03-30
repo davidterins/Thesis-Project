@@ -23,7 +23,7 @@ public class OpenChest_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    targetItem = owner.GetComponent<BlackBoard>().TreasureObject;
+    targetItem = owner.GetComponent<BlackBoard>().TargetTreasureChest;
     if (!targetItem)
     {
       Failed();
