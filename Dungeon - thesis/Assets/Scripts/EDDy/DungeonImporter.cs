@@ -10,7 +10,6 @@ public class DungeonImporter : MonoBehaviour
 
   public DungeonModel Dungeon { get { return ImportDungeon(); } }
 
-
   /// <summary>
   /// Returns a Dungeon created from speciefied map/xml file
   /// </summary>
@@ -18,8 +17,17 @@ public class DungeonImporter : MonoBehaviour
   /// <param name="filePath">File path to map/xml file.</param>
   private DungeonModel ImportDungeon()
   {
-    string fullMapFilePath = Path.Combine(Application.dataPath, "Maps/"+ mapFileName);
-  
+    //string fullMapFilePath = Path.Combine(Application.dataPath, "Maps/"+ mapFileName);
+    string fullMapFilePath;
+    try
+    {
+      fullMapFilePath = FindObjectOfType<ImportInfo>().DungeonFilePath;
+    }
+    catch
+    {
+      fullMapFilePath = Path.Combine(Application.dataPath, "Maps/" + mapFileName);
+    }
+
 
     FileInfo fileInfo = new FileInfo(fullMapFilePath);
 
