@@ -19,6 +19,8 @@ public class Goap_Controller : MonoBehaviour
   Planner_Goap planner;
   Persona persona;
 
+  private readonly float ActionDelay = 0.8f;
+
   GoapViewController viewControl;
 
   public WorldStateSet PlayerWorldState { get { return playerWorldState; } }
@@ -135,7 +137,7 @@ public class Goap_Controller : MonoBehaviour
   /// <returns>The action.</returns>
   private IEnumerator NextAction()
   {
-    yield return new WaitForSecondsRealtime(0.8f);
+    yield return new WaitForSecondsRealtime(ActionDelay);
     if (plan.Count > 0)
     {
       currentAction = playerActionLookup[plan.Dequeue()];
@@ -151,7 +153,7 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
 
-    yield return new WaitForSecondsRealtime(0.8f);
+    yield return new WaitForSecondsRealtime(ActionDelay);
 
     viewControl.SetPlan(plan);
     if (plan.Count > 0)

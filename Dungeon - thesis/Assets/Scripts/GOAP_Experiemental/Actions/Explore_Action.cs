@@ -12,7 +12,7 @@ public class Explore_Action : MovingAction_Goap
 
     PreConditions = new WorldStateSymbol[]
     {
-     
+
      };
 
     Effects = new WorldStateSymbol[]
@@ -24,7 +24,7 @@ public class Explore_Action : MovingAction_Goap
   public override void Enter()
   {
     target = Dungeon.Singleton.CurrentRoom.RoomGraph.GetUnexploredPosition();
-    if(target == Vector2.zero)
+    if (target == Vector2.zero)
     {
       Failed();
       return;
@@ -34,7 +34,11 @@ public class Explore_Action : MovingAction_Goap
 
   public override void Execute()
   {
-    Successfull();
+    if (InRange)
+    {
+      Successfull();
+    }
+
   }
 
   public override bool IsInRange()

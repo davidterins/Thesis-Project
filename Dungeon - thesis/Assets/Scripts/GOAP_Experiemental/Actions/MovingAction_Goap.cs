@@ -20,12 +20,6 @@ public abstract class MovingAction_Goap : Action_Goap
     base.Enter();
   }
 
-  void HandleAtDestination(object sender, EventArgs e)
-  {
-    movement.AtDestination -= HandleAtDestination;
-    Enter();
-  }
-
   protected override bool CanExecute()
   {
     if (base.CanExecute())
@@ -36,6 +30,7 @@ public abstract class MovingAction_Goap : Action_Goap
         Debug.Log("Target was not in range, walk to target");
         if (movement.TryMoveToTarget(target, interactionRange))
         {
+          Debug.LogWarning(ID + "Signed up for AtDestination event");
           movement.AtDestination += HandleAtDestination;
         }
         else
@@ -49,11 +44,26 @@ public abstract class MovingAction_Goap : Action_Goap
     return true;
   }
 
+  void HandleAtDestination(object sender, EventArgs e)
+  {
+    movement.PrintAtTargetInvocationList();
+    movement.AtDestination -= HandleAtDestination;
+    Debug.LogWarning(ID + "Removed from AtDestination event");
+   
+    Enter();
+  }
+
   public abstract bool IsInRange();
 
   public override void Execute()
   {
     base.Execute();
+  }
+
+  protected override void Successfull()
+  {
+
+    base.Successfull();
   }
 
 }

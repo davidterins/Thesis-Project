@@ -54,13 +54,13 @@ public class Action_Goap
 
   protected virtual void Exit() { }
 
-  protected void Failed()
+  protected virtual void Failed()
   {
     Debug.Log(ID + " was a failure");
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Failed));
   }
 
-  protected void Successfull()
+  protected virtual void Successfull()
   {
     Debug.Log(ID + " was sucessful");
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Successfull));

@@ -76,7 +76,11 @@ public class Movement : MonoBehaviour
           hasTarget = false;
           targetOffsetDistance = 0;
           if (AtDestination != null)
+          {
+            //PrintAtTargetInvocationList();
             AtDestination.Invoke(this, new EventArgs());
+          }
+         
         }
         GetComponent<Vision>().Scan();
       }
@@ -121,6 +125,12 @@ public class Movement : MonoBehaviour
       }
     }
   }
+  
 
+
+  public void PrintAtTargetInvocationList()
+  {
+    Debug.LogWarning("Invocation count movement: " + AtDestination.GetInvocationList().Length);
+  }
 }
 

@@ -26,11 +26,6 @@ public class Vision : MonoBehaviour
     {
       if (collision)
       {
-        if(collision.gameObject.GetComponent<Door>())
-        {
-          IMemorizable memorizableObjects = collision.GetComponent<IMemorizable>();
-          Debug.Log("LOL!");
-        }
         IMemorizable memorizableObject = collision.GetComponent<IMemorizable>();
         if (memorizableObject != null)
         {
@@ -38,7 +33,7 @@ public class Vision : MonoBehaviour
           {
             if(memorizableObject.MemorizableType == typeof(Portal))
             {
-              Debug.Log("LOL!");
+            
             }
             GetComponent<BlackBoard>().AddTypePOI(memorizableObject.MemorizableType, collision.gameObject);
             memorizableObject.OfInterest = false;

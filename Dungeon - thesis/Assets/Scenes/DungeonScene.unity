@@ -200,7 +200,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131168174}
-  - component: {fileID: 131168173}
   - component: {fileID: 131168172}
   m_Layer: 0
   m_Name: MapBuilder
@@ -239,19 +238,6 @@ MonoBehaviour:
   Room: {fileID: 2130253542598192886, guid: 07d7c14dbcc2d4094b88395303fbeb60, type: 3}
   KeyPrefab: {fileID: 328438026115366100, guid: 5159b7dd8eb574318bc000af070056e8,
     type: 3}
---- !u!114 &131168173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131168171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b36601f8d8c4f5bb77ac1c036c5b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapFileName: DungeonTest.map
 --- !u!4 &131168174
 Transform:
   m_ObjectHideFlags: 0
