@@ -72,15 +72,20 @@ public class TargetingService
       {
         if (treasure)
         {
-          if (treasure.GetComponent<TreasureChest>().IsClosed)
+          var treasureScript = treasure.GetComponent<TreasureChest>();
+          if (treasureScript.RoomID == Dungeon.Singleton.CurrentRoom.RoomID)
           {
-            float distance = Vector2.Distance(ownPos, treasure.transform.position);
-            if (distance < closestDistance)
+            if (treasureScript.IsClosed)
             {
-              closestTarget = treasure;
-              closestDistance = distance;
+              float distance = Vector2.Distance(ownPos, treasure.transform.position);
+              if (distance < closestDistance)
+              {
+                closestTarget = treasure;
+                closestDistance = distance;
+              }
             }
           }
+
         }
       }
     }

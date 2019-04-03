@@ -26,7 +26,8 @@ public static class InfoBox
       {
         if(go)
         {
-          memory += "\n" + go.name.Substring(0, go.name.Length - 7);
+          IMemorizable memorizableObject = go.GetComponent<IMemorizable>();
+          memory += "\n" + go.name.Substring(0, go.name.Length - 7) + " Room: " + memorizableObject.RoomID;
         }
       }
     }

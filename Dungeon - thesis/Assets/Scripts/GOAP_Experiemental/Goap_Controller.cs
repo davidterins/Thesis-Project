@@ -28,10 +28,9 @@ public class Goap_Controller : MonoBehaviour
   {
 
     {WorldStateSymbol.EnemyDead, false},
-    //{WorldStateSymbol.SecondaryWeapon, false},
     {WorldStateSymbol.MeleeEquiped, true },
     {WorldStateSymbol.AvailableEnemy, false },
-    ////{WorldStateSymbol.RangedEquiped, false },
+
     {WorldStateSymbol.LootableItem, false},
     {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.AvailableChest, false },

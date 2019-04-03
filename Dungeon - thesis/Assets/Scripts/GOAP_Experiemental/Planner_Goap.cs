@@ -46,7 +46,7 @@ public class Planner_Goap
       iteration++;
       if (iteration >= maxIterations)
       {
-        Debug.LogError("To many iterations");
+        Debug.LogError("To many iterations returning [Plan = null]");
         return null;
       }
       Node_Goap currentNode = openSet[0];

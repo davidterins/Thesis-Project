@@ -9,5 +9,6 @@ public interface IMemorizable
 
   bool OfInterest { get; set; }
 
-
+  int RoomID { get; }
 }
+

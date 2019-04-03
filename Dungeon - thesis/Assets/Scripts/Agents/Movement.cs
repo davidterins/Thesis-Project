@@ -40,7 +40,18 @@ public class Movement : MonoBehaviour
       var room = dungeon.CurrentRoom;
       var cellPos = dungeon.WorldGrid.WorldToCell(transform.position);
 
-      path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[(int)targetPosition.y, (int)targetPosition.x]);
+      try
+      {
+        path = room.RoomGraph.FindPath(room.Tiles2D[cellPos.y, cellPos.x], room.Tiles2D[(int)targetPosition.y, (int)targetPosition.x]);
+      }
+      catch (Exception ex)
+      {
+        //TODO Detta händer ibland.. behövs kollas in.
+        Debug.LogError(
+        "Could not find path from: " + cellPos.y + ", " + cellPos.x + " to " + (int)targetPosition.y + ", " + (int)targetPosition.x);
+        throw ex;
+      }
+     
       pathIndex = 0;
       if (path != null && path.Count <= 0)
       {
