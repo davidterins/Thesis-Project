@@ -34,6 +34,7 @@ public class Dungeon : MonoBehaviour
   void Start()
   {
     CreateFromModel(DungeonImporter.Dungeon);
+
     BuildFirstRoom();
   }
  

@@ -6,6 +6,7 @@ public enum Personality { BRAVERY, BLOODLUST, GREED, EXPLORATION, PROGRESSION, }
 
 public abstract class Persona : MonoBehaviour
 {
+  protected float finalOpinion = 0f;
   protected BlackBoard blackBoard;
   public Dictionary<Personality, float> personalityModifer = new Dictionary<Personality, float>
     {
@@ -36,4 +37,6 @@ public abstract class Persona : MonoBehaviour
     //  { Personality.PROGRESSION, 0f }
     //};
   }
+
+
 }

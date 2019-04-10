@@ -3,6 +3,7 @@ using System;
 
 public class TreasureChest : InteractableObject, IMemorizable
 {
+  public static event Action OnTreasureLoot = delegate { };
   bool isClosed = true;
   public bool IsClosed { get { return isClosed; } private set { isClosed = value; } }
 
@@ -30,6 +31,7 @@ public class TreasureChest : InteractableObject, IMemorizable
 
     interactingAgent.GetComponent<BlackBoard>().RemoveTypePOI(GetType(), gameObject);
 
+    OnTreasureLoot.Invoke();
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

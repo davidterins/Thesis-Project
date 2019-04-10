@@ -6,6 +6,7 @@ using System;
 
 public class Door : InteractableObject, IMemorizable
 {
+  public static event Action OnRoomEnter = delegate { };
 
   [SerializeField]
   Sprite OpenSprite = null;
@@ -21,6 +22,8 @@ public class Door : InteractableObject, IMemorizable
   public int TargetRoomID { get; set; }
 
   public bool IsOpen { get; set; }
+
+  public int AgentHealthOnEnter { get; set; }
 
   //private void OnTriggerEnter2D(Collision2D collision)
   //{
@@ -41,11 +44,11 @@ public class Door : InteractableObject, IMemorizable
     dungeon.ChangeRoom(TargetRoomID, TargetDoorPosition);
 
     player.transform.position = new Vector2(TargetDoorPosition.x + 0.5f, TargetDoorPosition.y + 0.5f);
-
   }
 
   public override void Interact(GameObject player)
   {
     Enter(player);
+    OnRoomEnter.Invoke();
   }
 }

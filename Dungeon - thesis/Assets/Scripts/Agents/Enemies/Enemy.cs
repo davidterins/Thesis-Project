@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class Enemy : Agent, IMemorizable
 {
+  public static event Action OnEnemyDeath = delegate { };
+
   private void Awake()
   {
     RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
@@ -32,6 +35,7 @@ public class Enemy : Agent, IMemorizable
 
     attacker.GetComponent<BlackBoard>().RemoveTypePOI(GetType(), gameObject);
 
+    OnEnemyDeath.Invoke();
     base.HandleDeath(attacker);
   }
 }

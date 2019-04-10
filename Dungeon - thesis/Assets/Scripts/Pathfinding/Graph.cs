@@ -13,14 +13,15 @@ public class Graph : MonoBehaviour
   private List<Node> unexploredNodes;
   private List<Node> finalPath;
   private int gridSizeX, gridSizeY;
-  private int TotalUnexplored = 0;
+  private int totalUnexplored = 0;
+  public int TotalTraversableTiles { get { return totalUnexplored; } }
 
   private float unexploredPercentage;
   public float UnexploredPercentage
   {
     get
     {
-      return (float)unexploredNodes.Count / (float)TotalUnexplored;
+      return (float)unexploredNodes.Count / (float)totalUnexplored;
     }
 
   }
@@ -92,8 +93,9 @@ public class Graph : MonoBehaviour
       Node node = new Node(position, tileType);
       nodes[position.x, position.y] = node;
       unexploredNodes.Add(node);
-      TotalUnexplored++;
+      totalUnexplored++;
     }
+
   }
 
   /// <summary>
