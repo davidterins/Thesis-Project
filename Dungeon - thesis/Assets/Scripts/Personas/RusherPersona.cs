@@ -25,8 +25,9 @@ public class RusherPersona : Persona
 
     personalityModifer[Personality.BRAVERY] = 0.4f;
     personalityModifer[Personality.BLOODLUST] = 0.4f;
-    personalityModifer[Personality.GREED] = 0.1f;
-    personalityModifer[Personality.EXPLORATION] = 0.3f;
+    personalityModifer[Personality.GREED] = 0.5f;
+    personalityModifer[Personality.EXPLORATION] = 0f; //Exploration bör vara 0 tycker jag, antagligen tas bort.
+    // iom att den alltid har värdet 1 när rummet är helt unexplored.
     personalityModifer[Personality.PROGRESSION] = 0.9f;
 
     Enemy.OnEnemyDeath += Enemy_OnEnemyDeath;

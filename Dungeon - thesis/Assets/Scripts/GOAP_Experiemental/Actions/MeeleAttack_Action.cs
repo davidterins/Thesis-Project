@@ -24,6 +24,8 @@ public class MeeleAttack_Action : MovingAction_Goap
      WorldStateSymbol.LootableItem
 
      };
+
+    interactionRange = 1;
   }
 
   public override void Enter()
@@ -36,7 +38,7 @@ public class MeeleAttack_Action : MovingAction_Goap
     else
     {
       target = attackTarget.transform.position;
-      interactionRange = 1;
+
       base.Enter();
     }
   }

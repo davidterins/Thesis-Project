@@ -32,6 +32,7 @@ public abstract class MovingAction_Goap : Action_Goap
         {
           Debug.LogWarning(ID + "Signed up for AtDestination event");
           movement.AtDestination += HandleAtDestination;
+          SafetyCheck();
         }
         else
         {
@@ -44,13 +45,23 @@ public abstract class MovingAction_Goap : Action_Goap
     return true;
   }
 
+  /// <summary>
+  /// Enter the action again but keeps the same target
+  /// </summary>
+  protected void ReEnter()
+  {
+    base.Enter();
+  }
+
   void HandleAtDestination(object sender, EventArgs e)
   {
+    SafetyCheck();
     movement.PrintAtTargetInvocationList();
     movement.AtDestination -= HandleAtDestination;
     Debug.LogWarning(ID + "Removed from AtDestination event");
-   
-    Enter();
+
+    ReEnter();
+    //Enter();
   }
 
   public abstract bool IsInRange();
@@ -66,4 +77,23 @@ public abstract class MovingAction_Goap : Action_Goap
     base.Successfull();
   }
 
+
+  /// <summary>
+  /// Händer detta så har något falerat miserabelt och måste tittas närmare på!
+  /// </summary>
+  private void SafetyCheck()
+  {
+    try
+    {
+      if(movement.GetTargetInvocationCount() > 1)
+      {
+        throw (new Exception("To many Actions have signed up on " +
+        	"Movement callback event. Must be fixed!"));
+      }
+    }
+    catch (Exception ex)
+    {
+      Debug.LogError(ex.Message);
+    }
+  }
 }

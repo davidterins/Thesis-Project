@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Explore_Action : MovingAction_Goap
 {
-  Vector2 tilePosition = Vector2.zero;
 
   public Explore_Action(GameObject owner) : base(owner)
   {
@@ -19,6 +18,7 @@ public class Explore_Action : MovingAction_Goap
     {
       WorldStateSymbol.RoomExplored,
      };
+    //interactionRange = 0.5f;
   }
 
   public override void Enter()
@@ -43,7 +43,8 @@ public class Explore_Action : MovingAction_Goap
 
   public override bool IsInRange()
   {
-    InRange = Vector2.Distance(owner.transform.position, tilePosition) <= 0.5f;
+    float distance = Vector2.Distance(owner.transform.position, target);
+    InRange = distance <=  0.5f;
     return InRange;
   }
 }

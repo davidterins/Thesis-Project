@@ -117,11 +117,18 @@ public class Movement : MonoBehaviour {
             }
         }
     }
-
-
-
+    
     public void PrintAtTargetInvocationList() {
         Debug.LogWarning("Invocation count movement: " + AtDestination.GetInvocationList().Length);
     }
+
+  public int GetTargetInvocationCount()
+  {
+    if(AtDestination != null)
+    {
+      return AtDestination.GetInvocationList().Length;
+    }
+    return -1;
+  }
 }
 

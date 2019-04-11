@@ -21,7 +21,7 @@ public class Win_Goal : Goal_Goap
     // är explorade osv och basera relvancen olika per persona.
     if(blackBoard.Memory.ContainsKey(typeof(Portal)))
     {
-      relevancy = 0.5f;
+      relevancy = 0.1f + persona.personalityModifer[Personality.PROGRESSION];
     }
     relevancy = Mathf.Clamp(relevancy, 0f, 1f);
     return relevancy;
