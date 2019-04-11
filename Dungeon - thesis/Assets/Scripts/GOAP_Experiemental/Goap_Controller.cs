@@ -18,6 +18,7 @@ public class Goap_Controller : MonoBehaviour
   BlackBoard blackBoard;
   Planner_Goap planner;
   Persona persona;
+  public Persona Persona { get { return persona; }}
 
   private readonly float ActionDelay = Settings.FetchSpeed();
 
@@ -269,9 +270,5 @@ public class Goap_Controller : MonoBehaviour
         InfoBox.persona = "Default";
         break;
     };
-
-   
   }
-
-
 }
