@@ -25,34 +25,7 @@ public class Player : Agent {
 
 
     private void Start() {
-        Destroy(GetComponent<DefaultPersona>());
-        switch (Settings.FetchPersona()) {
-            case Settings.Persona.Custom:
-                gameObject.AddComponent<CustomPersona>();
-                gameObject.GetComponent<CustomPersona>().SetValues(Settings.FetchCustomModifiers());
-                InfoBox.persona = "Custom";
-                break;
-            case Settings.Persona.Explorer:
-                //gameObject.AddComponent<ExplorerPersona>();
-                InfoBox.persona = "Explorer";
-                break;
-            case Settings.Persona.MonsterSlayer:
-                gameObject.AddComponent<MonsterSlayerPersona>();
-                InfoBox.persona = "Monster Slayer";
-                break;
-            case Settings.Persona.Rusher:
-                gameObject.AddComponent<RusherPersona>();
-                InfoBox.persona = "Rusher";
-                break;
-            case Settings.Persona.TreasureHunter:
-                gameObject.AddComponent<TreasureHunterPersona>();
-                InfoBox.persona = "Treasure Hunter";
-                break;
-            default:
-                gameObject.AddComponent<DefaultPersona>();
-                InfoBox.persona = "Default";
-                break;
-        }
+       
         weapons = new List<Weapon>();
         EquipWeapon(currentWeapon.GetComponent<Weapon>());
 

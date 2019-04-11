@@ -18,10 +18,11 @@ public class RusherPersona : Persona
 
   Card currentCard;
 
-  public override void Awake()
+
+  private void Awake()
   {
-    base.Awake();
     enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
+
     personalityModifer[Personality.BRAVERY] = 0.4f;
     personalityModifer[Personality.BLOODLUST] = 0.4f;
     personalityModifer[Personality.GREED] = 0.1f;
@@ -36,7 +37,6 @@ public class RusherPersona : Persona
     startHP = GetComponent<Player>().Health;
     forcedCombatWeight = 4f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
     forcedTreasureWeight = 3f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
-
   }
 
   void Door_OnRoomEnter()

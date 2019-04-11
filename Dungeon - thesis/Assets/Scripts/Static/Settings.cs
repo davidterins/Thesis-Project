@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Settings {
-    public enum Persona { TreasureHunter, Rusher, Explorer, MonsterSlayer, Custom, Default, }
+    public enum Persona { Rusher, TreasureHunter, Explorer, MonsterSlayer, Custom, Default, }
     static Persona currentPersona;
     static float[] customModifiers;
     static float agentSpeed = 0.8f, walkSpeed = 0.08f;

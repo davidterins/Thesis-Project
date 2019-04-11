@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public class CustomPersona : Persona {
 
-    public override void Awake() {
-        base.Awake();
+    private void Awake() {
         enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
         personalityModifer[Personality.BRAVERY] = 0.5f;
         personalityModifer[Personality.BLOODLUST] = 0.4f;
