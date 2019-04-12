@@ -9,9 +9,8 @@ using System;
 /// </summary>
 public class Dungeon : MonoBehaviour
 {
-
   [SerializeField]
-  DungeonImporter DungeonImporter = null;
+  RoomBuilder roomBuilder = null;
 
   [SerializeField]
   Grid worldGrid = null;
@@ -30,14 +29,11 @@ public class Dungeon : MonoBehaviour
     Instance = this;
   }
 
-  // Start is called before the first frame update
-  void Start()
+  public void CreateDungeon(DungeonModel dungeonModel)
   {
-    CreateFromModel(DungeonImporter.Dungeon);
-
+    CreateFromModel(dungeonModel);
     BuildFirstRoom();
   }
- 
 
   public int InitialRoomID { get; private set; }
 
@@ -61,7 +57,7 @@ public class Dungeon : MonoBehaviour
       var prevRoom = transform.Find("Room " + CurrentRoom.RoomID).gameObject;
       prevRoom.SetActive(false);
       CurrentRoom = RoomLookup[roomID];
-      RoomBuilder.Singleton.CreateTileLayersOnRoomChange(CurrentRoom);
+      roomBuilder.CreateTileLayersOnRoomChange(CurrentRoom);
       targetRoom.SetActive(true);
     }
     catch (System.Exception ex)
@@ -77,15 +73,15 @@ public class Dungeon : MonoBehaviour
 
   public void BuildFirstRoom()
   {
-    CurrentRoom = RoomLookup[InitialRoomID];
-    RoomBuilder.Singleton.BuildRoom(CurrentRoom, Vector2.left);
+    currentRoom = RoomLookup[InitialRoomID];
+    roomBuilder.BuildRoom(CurrentRoom, Vector2.left);
   }
 
   public void BuildNewRoom(int roomID, Vector2 targetDoorPosition)
   {
     var prevRoom = transform.Find("Room " + CurrentRoom.RoomID).gameObject;
     CurrentRoom = RoomLookup[roomID];
-    RoomBuilder.Singleton.BuildRoom(RoomLookup[roomID], targetDoorPosition);
+    roomBuilder.BuildRoom(RoomLookup[roomID], targetDoorPosition);
     prevRoom.SetActive(false);
   }
 

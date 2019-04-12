@@ -56,9 +56,8 @@ public class Goap_Controller : MonoBehaviour
 
     blackBoard = GetComponent<BlackBoard>();
     blackBoard.WorldStateVariableChanged += BlackBoard_WorldStateVariableChanged;
-    //persona = GetComponent<Persona>();
+
     SetPersona();
-    Debug.LogError("PRog val: " + persona.personalityModifer[Personality.PROGRESSION]);
     planner = new Planner_Goap();
 
     playerActions = new List<Action_Goap>{

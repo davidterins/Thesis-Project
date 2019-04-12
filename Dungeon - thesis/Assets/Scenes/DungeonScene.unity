@@ -191,111 +191,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15017973}
   m_CullTransparentMesh: 0
---- !u!1 &131168171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 131168174}
-  - component: {fileID: 131168172}
-  m_Layer: 0
-  m_Name: MapBuilder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &131168172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131168171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d015256bfc841fe90e8b48d654346e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseTileLayer: {fileID: 656876107}
-  CollideLayer: {fileID: 1378491194}
-  FloorTile: {fileID: 11400000, guid: 09294dcba7c6e42c7b8a4c64db44a725, type: 2}
-  WallTile: {fileID: 11400000, guid: d1e73dbdde28242909560091032f5b4a, type: 2}
-  ConnectionDoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
-  DungeonEntranceDoorTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015,
-    type: 2}
-  player: {fileID: 4410479370439878666, guid: 918f3df9c798a469bb52394c9cfae611, type: 3}
-  Enemy: {fileID: 6941359811901229572, guid: 08689aa7fe9d2451a92d9c1916ffa8fa, type: 3}
-  TreasureChest: {fileID: 230931681438736116, guid: 86d25563fcc1840f1b65a2a2c0b7b14d,
-    type: 3}
-  ConnectionDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
-    type: 3}
-  ExitDoor: {fileID: 8239667652090520178, guid: 956a3e5cb2f884ef6ab26748280d423a,
-    type: 3}
-  Room: {fileID: 2130253542598192886, guid: 07d7c14dbcc2d4094b88395303fbeb60, type: 3}
-  KeyPrefab: {fileID: 328438026115366100, guid: 5159b7dd8eb574318bc000af070056e8,
-    type: 3}
---- !u!4 &131168174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131168171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &419876738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 419876740}
-  - component: {fileID: 419876739}
-  m_Layer: 0
-  m_Name: DungeonImporter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &419876739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419876738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b36601f8d8c4f5bb77ac1c036c5b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapFileName: DungeonTest.map
---- !u!4 &419876740
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419876738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35603145, y: 0.07595156, z: -0.021626102}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507127542
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +401,7 @@ Transform:
   - {fileID: 1641235303}
   - {fileID: 1291583900}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &656876107 stripped
 Tilemap:
@@ -732,6 +627,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186613715}
   m_CullTransparentMesh: 0
+--- !u!1 &1275143872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7240405267535533123, guid: 992d8de451d84463eb7806181c1ff3c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5599129753149512235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1275143875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275143872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d015256bfc841fe90e8b48d654346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseTileLayer: {fileID: 656876107}
+  CollideLayer: {fileID: 1378491194}
+  FloorTile: {fileID: 11400000, guid: 09294dcba7c6e42c7b8a4c64db44a725, type: 2}
+  WallTile: {fileID: 11400000, guid: d1e73dbdde28242909560091032f5b4a, type: 2}
+  ConnectionDoorTile: {fileID: 11400000, guid: d14ea4bc0dc284d698b4aa21c34eef5e, type: 2}
+  DungeonEntranceDoorTile: {fileID: 11400000, guid: 7eb591b2d02a34165a4dab7c3edcb015,
+    type: 2}
+  player: {fileID: 4410479370439878666, guid: 918f3df9c798a469bb52394c9cfae611, type: 3}
+  Enemy: {fileID: 6941359811901229572, guid: 08689aa7fe9d2451a92d9c1916ffa8fa, type: 3}
+  TreasureChest: {fileID: 230931681438736116, guid: 86d25563fcc1840f1b65a2a2c0b7b14d,
+    type: 3}
+  ConnectionDoor: {fileID: 4218988094181946312, guid: 77a5f1b59c2724f81a3b61021a286a91,
+    type: 3}
+  ExitDoor: {fileID: 8239667652090520178, guid: 956a3e5cb2f884ef6ab26748280d423a,
+    type: 3}
+  Room: {fileID: 2130253542598192886, guid: 07d7c14dbcc2d4094b88395303fbeb60, type: 3}
+  KeyPrefab: {fileID: 328438026115366100, guid: 5159b7dd8eb574318bc000af070056e8,
+    type: 3}
 --- !u!1 &1291583897
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +729,80 @@ Transform:
   m_Father: {fileID: 522258362}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1313366249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3799537031058935477, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_Name
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.844666
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.025521
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.14512223
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935474, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799537031058935476, guid: c838bb417bb3c4a258234996ae9dc12d,
+        type: 3}
+      propertyPath: FallBackPersona
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c838bb417bb3c4a258234996ae9dc12d, type: 3}
 --- !u!1839735485 &1378491194 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 5599129751775478033, guid: 992d8de451d84463eb7806181c1ff3c4,
@@ -1395,7 +1400,7 @@ PrefabInstance:
     - target: {fileID: 1735256197163533581, guid: 992d8de451d84463eb7806181c1ff3c4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1735256197163533581, guid: 992d8de451d84463eb7806181c1ff3c4,
         type: 3}
@@ -1416,12 +1421,17 @@ PrefabInstance:
         type: 3}
       propertyPath: DungeonImporter
       value: 
-      objectReference: {fileID: 419876739}
+      objectReference: {fileID: 0}
     - target: {fileID: 8560288142746792608, guid: 992d8de451d84463eb7806181c1ff3c4,
         type: 3}
       propertyPath: worldGrid
       value: 
       objectReference: {fileID: 1510127287}
+    - target: {fileID: 8560288142746792608, guid: 992d8de451d84463eb7806181c1ff3c4,
+        type: 3}
+      propertyPath: roomBuilder
+      value: 
+      objectReference: {fileID: 1275143875}
     - target: {fileID: 5599129753705199713, guid: 992d8de451d84463eb7806181c1ff3c4,
         type: 3}
       propertyPath: m_MaskInteraction
