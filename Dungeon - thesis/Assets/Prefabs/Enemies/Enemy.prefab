@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  damagePower: 15
+  damagePower: 25
 --- !u!1001 &2875371298930081539
 PrefabInstance:
   m_ObjectHideFlags: 0

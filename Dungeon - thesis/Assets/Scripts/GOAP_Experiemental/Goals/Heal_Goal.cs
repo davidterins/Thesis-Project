@@ -8,7 +8,7 @@ public class Heal_Goal : Goal_Goap
 
   public Heal_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner)
   {
-    GoalWorldstates.Add(WorldStateSymbol.IsHealthy, true);
+    GoalWorldstates.Add(WorldStateSymbol.IsHealed, true);
     healthScale = owner.GetComponent<Player>().MaxHealth;
   }
 
@@ -21,14 +21,19 @@ public class Heal_Goal : Goal_Goap
   {
     relevancy = 0;
     int currentHealth = blackBoard.Health;
-    float healthPct = 1 - (float)currentHealth / (float)Agent.maxHealth;
-    // (owner.GetComponent<Player>().MaxHealth - currentHealth) / healthScale;
-    // TODO: Also, add the amount of health pots the agent has divided by 10 to the below formula.
-    //       A lot of potions should allow agent to be less conservative.
+    float healthPercentage = 1 - (float)currentHealth / (float)Agent.maxHealth;
 
+    relevancy = healthPercentage;
+
+    if (owner.GetComponent<Goap_Controller>().PlayerWorldState[WorldStateSymbol.RoomExplored] &&
+    blackBoard.TargetEnemyObject == null)
+    {
+
+      relevancy = 0;
+    }
     //TODO amount of health pots kan kallas via blackboard.checkItemKnowledgeCount.
 
-    relevancy = healthPct;
+
 
     if (relevancy == 1)
       relevancy = 0;

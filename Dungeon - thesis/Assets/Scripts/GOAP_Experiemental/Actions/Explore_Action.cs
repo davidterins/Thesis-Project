@@ -11,12 +11,14 @@ public class Explore_Action : MovingAction_Goap
 
     PreConditions = new WorldStateSymbol[]
     {
-
+      WorldStateSymbol.RoomUnexplored
      };
 
     Effects = new WorldStateSymbol[]
     {
       WorldStateSymbol.RoomExplored,
+      WorldStateSymbol.AvailableChest,
+      WorldStateSymbol.AvailableEnemy,
      };
     //interactionRange = 0.5f;
   }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Explore_Goal : Goal_Goap
 {
-  private static float baseValue = 0.05f;
+  private static float baseValue = 0.00f;
   private static float factor = 0.1f;
 
   public Explore_Goal(GameObject owner, Planner_Goap planner) : base(owner, planner)

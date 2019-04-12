@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour
     }
 
     Instance = this;
-   
+
+    Player.OnPlayerDeath += GameOver;
   }
 
   private void Start()
@@ -45,6 +46,8 @@ public class GameController : MonoBehaviour
   public void GameOver()
   {
     //TODO Visa output
+    Debug.LogError("GAMEOVER!");
+
   }
 
   public void Restart()

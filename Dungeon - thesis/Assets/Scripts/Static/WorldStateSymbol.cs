@@ -10,7 +10,7 @@ public enum WorldStateSymbol
   AvailableChest,
   AvailableEnemy,
   LootableItem,
-  IsHealthy,
+  IsHealed,
   HasPotion,
  
   ImportantLoot,
@@ -19,6 +19,7 @@ public enum WorldStateSymbol
 
   HasKey,
   RoomExplored,
+  RoomUnexplored,
 
   PortalLocated,
   CanWin,

@@ -23,6 +23,8 @@ public class OpenDoor_Action : MovingAction_Goap
      WorldStateSymbol.AvailableChest,
      WorldStateSymbol.AvailableEnemy,
      };
+
+    cost = 11;
   }
 
   public override void Enter()

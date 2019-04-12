@@ -49,31 +49,30 @@ public class InputMenuController : MonoBehaviour
 
   void HandlePersonaDropDownChanged(int index)
   {
-    switch (PersonaDropDownText.text)
-    {
-      case "Rusher":
-        Settings.SetPersona(Settings.Persona.Rusher);
-        break;
-      case "Treasure Hunter":
-        Settings.SetPersona(Settings.Persona.TreasureHunter);
-        break;
-      case "Monster Slayer":
-        Settings.SetPersona(Settings.Persona.MonsterSlayer);
-        break;
-      case "Custom":
-        Transform customModifiersPanel = transform.parent.transform.Find("CustomPersonaPanel").transform.Find("SliderPanel");
-        float[] modifiers = new float[customModifiersPanel.childCount];
-        for (int i = 0; i < modifiers.Length; i++)
-        {
-          modifiers[i] = customModifiersPanel.GetChild(i).Find("Slider").GetComponent<Slider>().value / 100f;
-        }
-        Settings.SetPersona(Settings.Persona.Custom);
-        break;
-      default:
-        Settings.SetPersona(Settings.Persona.Default);
-        break;
-    }
-    Settings.SetSpeed(Mathf.RoundToInt(transform.Find("SpeedInputRow").transform.Find("Slider").GetComponent<Slider>().value));
+    //switch (PersonaDropDownText.text)
+    //{
+    //  case "Rusher":
+    //    Settings.SetPersona(Settings.Persona.Rusher);
+    //    break;
+    //  case "Treasure Hunter":
+    //    Settings.SetPersona(Settings.Persona.TreasureHunter);
+    //    break;
+    //  case "Monster Slayer":
+    //    Settings.SetPersona(Settings.Persona.MonsterSlayer);
+    //    break;
+    //  case "Custom":
+    //    Transform customModifiersPanel = transform.parent.transform.Find("CustomPersonaPanel").transform.Find("SliderPanel");
+    //    float[] modifiers = new float[customModifiersPanel.childCount];
+    //    for (int i = 0; i < modifiers.Length; i++)
+    //    {
+    //      modifiers[i] = customModifiersPanel.GetChild(i).Find("Slider").GetComponent<Slider>().value / 100f;
+    //    }
+    //    Settings.SetPersona(Settings.Persona.Custom);
+    //    break;
+    //  default:
+    //    Settings.SetPersona(Settings.Persona.Default);
+    //    break;
+    //}  
   }
 
 
@@ -106,7 +105,33 @@ public class InputMenuController : MonoBehaviour
     {
       return;
     }
-   
+
+    switch (PersonaDropDownText.text)
+    {
+      case "Rusher":
+        Settings.SetPersona(Settings.Persona.Rusher);
+        break;
+      case "Treasure Hunter":
+        Settings.SetPersona(Settings.Persona.TreasureHunter);
+        break;
+      case "Monster Slayer":
+        Settings.SetPersona(Settings.Persona.MonsterSlayer);
+        break;
+      case "Custom":
+        Transform customModifiersPanel = transform.parent.transform.Find("CustomPersonaPanel").transform.Find("SliderPanel");
+        float[] modifiers = new float[customModifiersPanel.childCount];
+        for (int i = 0; i < modifiers.Length; i++)
+        {
+          modifiers[i] = customModifiersPanel.GetChild(i).Find("Slider").GetComponent<Slider>().value / 100f;
+        }
+        Settings.SetPersona(Settings.Persona.Custom);
+        break;
+      default:
+        Settings.SetPersona(Settings.Persona.Default);
+        break;
+    }
+
+    Settings.SetSpeed(Mathf.RoundToInt(transform.Find("SpeedInputRow").transform.Find("Slider").GetComponent<Slider>().value));
     Settings.SelectedMapFromMenu = selectedMapFile;
     Settings.GameStartedFromMenu = true;
     SceneManager.LoadScene("DungeonScene");

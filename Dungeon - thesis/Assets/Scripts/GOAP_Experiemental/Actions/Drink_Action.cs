@@ -18,7 +18,7 @@ public class Drink_Action : Action_Goap
 
     Effects = new WorldStateSymbol[]
     {
-     WorldStateSymbol.IsHealthy,
+     WorldStateSymbol.IsHealed,
      };
   }
 

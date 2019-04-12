@@ -9,7 +9,7 @@ public class TreasureHunterPersona : Persona {
         personalityModifer[Personality.BRAVERY] = 0.2f;
         personalityModifer[Personality.BLOODLUST] = 0.15f;
         personalityModifer[Personality.GREED] = 0.9f;
-        personalityModifer[Personality.EXPLORATION] = 0.6f;
+        personalityModifer[Personality.EXPLORATION] = 0.0f;
         personalityModifer[Personality.PROGRESSION] = 0.1f;
     }
 }

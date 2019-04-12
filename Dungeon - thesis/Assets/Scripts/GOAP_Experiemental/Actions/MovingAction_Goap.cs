@@ -61,7 +61,6 @@ public abstract class MovingAction_Goap : Action_Goap
     Debug.LogWarning(ID + "Removed from AtDestination event");
 
     ReEnter();
-    //Enter();
   }
 
   public abstract bool IsInRange();
@@ -73,10 +72,25 @@ public abstract class MovingAction_Goap : Action_Goap
 
   protected override void Successfull()
   {
-
+    if (movement)
+    {
+      if (movement.GetTargetInvocationCount() >= 1)
+        movement.AtDestination -= HandleAtDestination;
+    }
     base.Successfull();
   }
 
+
+  protected override void Failed()
+  {
+    if (movement)
+    {
+      if (movement.GetTargetInvocationCount() >= 1)
+        movement.AtDestination -= HandleAtDestination;
+    }
+
+    base.Failed();
+  }
 
   /// <summary>
   /// Händer detta så har något falerat miserabelt och måste tittas närmare på!
@@ -85,10 +99,10 @@ public abstract class MovingAction_Goap : Action_Goap
   {
     try
     {
-      if(movement.GetTargetInvocationCount() > 1)
+      if (movement.GetTargetInvocationCount() > 1)
       {
         throw (new Exception("To many Actions have signed up on " +
-        	"Movement callback event. Must be fixed!"));
+          "Movement callback event. Must be fixed!"));
       }
     }
     catch (Exception ex)

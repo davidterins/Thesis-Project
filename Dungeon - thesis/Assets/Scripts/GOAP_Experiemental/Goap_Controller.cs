@@ -36,8 +36,9 @@ public class Goap_Controller : MonoBehaviour
     {WorldStateSymbol.ImportantLoot, false},
     {WorldStateSymbol.AvailableChest, false },
 
-    {WorldStateSymbol.IsHealthy, false},
+    {WorldStateSymbol.IsHealed, false},
     {WorldStateSymbol.RoomExplored, false },
+    {WorldStateSymbol.RoomUnexplored, true },
     {WorldStateSymbol.Progress, false},
 
     {WorldStateSymbol.HasItem, false},

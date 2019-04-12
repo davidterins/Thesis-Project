@@ -23,16 +23,18 @@ public class Agent : MonoBehaviour
 
   public virtual void TakeDamage(GameObject attacker, int amount)
   {
-    if (Health - amount < 0)
-    {
-      HandleDeath(attacker);
-      return;
-    }
     ModifyHealth(-amount);
 
+    if (Health - amount <= 0)
+    {
 
-    if (Health < 0)
-      Health = 0;
+      HandleDeath(attacker);
+    }
+
+
+
+    //if (Health < 0)
+      //Health = 0;
 
   }
 
@@ -56,7 +58,7 @@ public class Agent : MonoBehaviour
   {
     Health += amount;
     NotifyHealthChange();
-  
+
   }
 
   private void NotifyHealthChange()

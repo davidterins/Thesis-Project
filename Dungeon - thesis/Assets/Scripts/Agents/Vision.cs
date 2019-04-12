@@ -35,10 +35,9 @@ public class Vision : MonoBehaviour
           }
 
         }
-        //Debug.DrawLine(transform.position, collision.gameObject.transform.position, Color.green);
       }
     }
-    dungeon.CurrentRoom.RoomGraph.ExploreNodes(transform.position, sightRange);
+    dungeon.CurrentRoom.RoomGraph.ExploreNodes(transform.position, sightRange -1);
   }
 
   public float GetSightRange()
