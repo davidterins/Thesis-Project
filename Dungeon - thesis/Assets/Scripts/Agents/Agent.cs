@@ -25,17 +25,10 @@ public class Agent : MonoBehaviour
   {
     ModifyHealth(-amount);
 
-    if (Health - amount <= 0)
+    if (Health <= 0)
     {
-
       HandleDeath(attacker);
     }
-
-
-
-    //if (Health < 0)
-      //Health = 0;
-
   }
 
   protected virtual void HandleDeath(GameObject attacker)

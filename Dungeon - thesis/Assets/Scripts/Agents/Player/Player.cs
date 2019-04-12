@@ -80,6 +80,7 @@ public class Player : Agent
   {
     //TODO Göra något när spelaren dör. Kanske visa statsen?
     OnPlayerDeath.Invoke();
+    Destroy(gameObject);
   }
 
   public override void ModifyHealth(int amount)

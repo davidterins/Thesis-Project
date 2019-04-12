@@ -32,7 +32,7 @@ public class BlackBoard : MonoBehaviour
     if (!Memory.ContainsKey(type))
     {
       Memory[type] = new List<GameObject>();
-      Debug.Log("BLACKBOARD ADDED TYPE: " + type);
+      //Debug.Log("BLACKBOARD ADDED TYPE: " + type);
     }
     Memory[type].Add(go);
     InfoBox.UpdateMemory(Memory);
@@ -47,7 +47,7 @@ public class BlackBoard : MonoBehaviour
     if (Memory.ContainsKey(type))
     {
       Memory[type].Remove(go);
-      Debug.Log("REMOVED FROM TYPE: " + type);
+      //Debug.Log("REMOVED FROM TYPE: " + type);
     }
     InfoBox.UpdateMemory(Memory);
   }

@@ -46,7 +46,7 @@ public class Explore_Action : MovingAction_Goap
   public override bool IsInRange()
   {
     float distance = Vector2.Distance(owner.transform.position, target);
-    InRange = distance <=  0.5f;
+    InRange = distance <=  0.8f;
     return InRange;
   }
 }

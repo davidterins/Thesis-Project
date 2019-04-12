@@ -12,6 +12,8 @@ public abstract class MovingAction_Goap : Action_Goap
   protected float interactionRange = 0.001f;
   protected Vector2 target;
   protected Movement movement;
+  protected float distanceFromTarget;
+  bool signedUpOnMovement;
 
   protected MovingAction_Goap(GameObject owner) : base(owner) { }
 
@@ -30,8 +32,10 @@ public abstract class MovingAction_Goap : Action_Goap
         Debug.Log("Target was not in range, walk to target");
         if (movement.TryMoveToTarget(target, interactionRange))
         {
-          Debug.LogWarning(ID + "Signed up for AtDestination event");
+
+          Debug.LogWarning(ID + " Signed up for AtDestination event");
           movement.AtDestination += HandleAtDestination;
+          signedUpOnMovement = true;
           SafetyCheck();
         }
         else
@@ -50,7 +54,12 @@ public abstract class MovingAction_Goap : Action_Goap
   /// </summary>
   protected void ReEnter()
   {
+    distanceFromTarget = Vector2.Distance(owner.transform.position, target);
+    Debug.LogWarning("ReEntered action: " + ID + " InRange = " + IsInRange() + " distance = " + distanceFromTarget);
+
     base.Enter();
+
+
   }
 
   void HandleAtDestination(object sender, EventArgs e)
@@ -58,7 +67,10 @@ public abstract class MovingAction_Goap : Action_Goap
     SafetyCheck();
     movement.PrintAtTargetInvocationList();
     movement.AtDestination -= HandleAtDestination;
-    Debug.LogWarning(ID + "Removed from AtDestination event");
+    signedUpOnMovement = false;
+
+
+    Debug.LogWarning(ID + " Removed from AtDestination event");
 
     ReEnter();
   }
@@ -72,10 +84,10 @@ public abstract class MovingAction_Goap : Action_Goap
 
   protected override void Successfull()
   {
-    if (movement)
+    if (signedUpOnMovement)
     {
-      if (movement.GetTargetInvocationCount() >= 1)
-        movement.AtDestination -= HandleAtDestination;
+      movement.AtDestination -= HandleAtDestination;
+      signedUpOnMovement = false;
     }
     base.Successfull();
   }
@@ -83,12 +95,12 @@ public abstract class MovingAction_Goap : Action_Goap
 
   protected override void Failed()
   {
-    if (movement)
-    {
-      if (movement.GetTargetInvocationCount() >= 1)
-        movement.AtDestination -= HandleAtDestination;
-    }
 
+    if (signedUpOnMovement)
+    {
+      movement.AtDestination -= HandleAtDestination;
+      signedUpOnMovement = false;
+    }
     base.Failed();
   }
 
@@ -108,6 +120,7 @@ public abstract class MovingAction_Goap : Action_Goap
     catch (Exception ex)
     {
       Debug.LogError(ex.Message);
+      throw;
     }
   }
 }

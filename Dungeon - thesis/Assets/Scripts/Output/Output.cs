@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Output
 {
-  static List<Card> Cards = new List<Card>();
+  public static List<Card> Cards = new List<Card>();
 
   public static void RegisterCard(Card card)
   {

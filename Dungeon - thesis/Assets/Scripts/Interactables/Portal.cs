@@ -6,6 +6,8 @@ using UnityEngine;
 public class Portal : InteractableObject, IMemorizable
 {
 
+  public static event Action OnPortalEnter = delegate {};
+
   public Type MemorizableType { get { return GetType(); } }
 
   bool ofInterest = true;
@@ -22,6 +24,8 @@ public class Portal : InteractableObject, IMemorizable
   {
     //TODO WIN stuff
     Debug.Log("GAME WON!");
+    OnPortalEnter.Invoke();
+    Destroy(player);
   }
 
   public override void Interact(GameObject player)

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameController : MonoBehaviour
 {
+  public static event Action OnShowOutput = delegate {};
+
   private static GameController Instance;
   public static GameController Singleton { get { return Instance; } }
 
@@ -19,17 +22,12 @@ public class GameController : MonoBehaviour
     Instance = this;
 
     Player.OnPlayerDeath += GameOver;
+    Portal.OnPortalEnter += Complete;
   }
 
   private void Start()
   {
     StartGame();
-  }
-
-
-  public void Initialize()
-  {
-
   }
 
   public void StartGame()
@@ -41,17 +39,19 @@ public class GameController : MonoBehaviour
   public void Complete()
   {
     //TODO Visa output
+    OnShowOutput.Invoke();
   }
 
   public void GameOver()
   {
     //TODO Visa output
     Debug.LogError("GAMEOVER!");
-
+    OnShowOutput.Invoke();
+    
   }
 
   public void Restart()
   {
-
+    StartGame();
   }
 }
