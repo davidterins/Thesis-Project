@@ -72,8 +72,9 @@ public class Graph : MonoBehaviour
     }
   }
 
-  // TODO: Prefer to explore a position close to the player?
-  public Vector2 GetUnexploredPosition()
+  // TODO: Prefer to explore a position close to the player? YE
+  // TODO använd position parametern för att kolla distance för närmaste nod.
+  public Vector2 GetUnexploredPosition(Vector2 position)
   {
     if (unexploredNodes.Count <= 0)
       return Vector2.zero;
@@ -91,6 +92,10 @@ public class Graph : MonoBehaviour
     if (tileType != TileType.WALL)
     {
       Node node = new Node(position, tileType);
+      if(tileType == TileType.ENEMY)
+      {
+        node.gCost = 30;
+      }
       nodes[position.x, position.y] = node;
       unexploredNodes.Add(node);
       totalUnexplored++;

@@ -13,7 +13,12 @@ public abstract class MovingAction_Goap : Action_Goap
   protected Vector2 target;
   protected Movement movement;
   protected float distanceFromTarget;
-  bool signedUpOnMovement;
+  //bool signedUpOnMovement;
+
+  //public static event Action<ActionID> OnActionSignedUpOnMovement = delegate { };
+
+  //public static event Action<ActionID> OnActionSignedOfFromMovement = delegate { };
+
 
   protected MovingAction_Goap(GameObject owner) : base(owner) { }
 
@@ -35,16 +40,21 @@ public abstract class MovingAction_Goap : Action_Goap
 
           Debug.LogWarning(ID + " Signed up for AtDestination event");
           movement.AtDestination += HandleAtDestination;
-          signedUpOnMovement = true;
+          //OnActionSignedUpOnMovement.Invoke(ID);
+          //signedUpOnMovement = true;
           SafetyCheck();
         }
         else
         {
           Debug.Log("No Path to target");
-          Failed();
+          //Failed();
           return false;
         }
       }
+    }
+    else
+    {
+      return false;
     }
     return true;
   }
@@ -67,7 +77,8 @@ public abstract class MovingAction_Goap : Action_Goap
     SafetyCheck();
     movement.PrintAtTargetInvocationList();
     movement.AtDestination -= HandleAtDestination;
-    signedUpOnMovement = false;
+    //OnActionSignedOfFromMovement.Invoke(ID);
+    //signedUpOnMovement = false;
 
 
     Debug.LogWarning(ID + " Removed from AtDestination event");
@@ -84,11 +95,12 @@ public abstract class MovingAction_Goap : Action_Goap
 
   protected override void Successfull()
   {
-    if (signedUpOnMovement)
-    {
-      movement.AtDestination -= HandleAtDestination;
-      signedUpOnMovement = false;
-    }
+    //if (signedUpOnMovement)
+    //{
+    //  movement.AtDestination -= HandleAtDestination;
+    //  OnActionSignedOfFromMovement.Invoke(ID);
+    //  signedUpOnMovement = false;
+    //}
     base.Successfull();
   }
 
@@ -96,11 +108,12 @@ public abstract class MovingAction_Goap : Action_Goap
   protected override void Failed()
   {
 
-    if (signedUpOnMovement)
-    {
-      movement.AtDestination -= HandleAtDestination;
-      signedUpOnMovement = false;
-    }
+    //if (signedUpOnMovement)
+    //{
+    //  movement.AtDestination -= HandleAtDestination;
+    //  OnActionSignedOfFromMovement.Invoke(ID);
+    //  signedUpOnMovement = false;
+    //}
     base.Failed();
   }
 

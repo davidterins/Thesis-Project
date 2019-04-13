@@ -28,6 +28,7 @@ public class Action_Goap
 
   public virtual void Enter()
   {
+
     Debug.Log("Entered: " + ID);
     if (CanExecute())
     {
@@ -43,7 +44,7 @@ public class Action_Goap
     if (!PreconditionsSatisfied())
     {
       Debug.Log("All preconditions was not satisfied on entering " + ID);
-      Failed();
+      //Failed();
       return false;
     }
 
@@ -56,6 +57,7 @@ public class Action_Goap
 
   protected virtual void Failed()
   {
+ 
     Debug.Log(ID + " was a failure");
     OnActionFinished.Invoke(this, new ActionFinishedEventArgs(ActionCallback.Failed));
   }

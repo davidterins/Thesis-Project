@@ -25,7 +25,7 @@ public class Explore_Action : MovingAction_Goap
 
   public override void Enter()
   {
-    target = Dungeon.Singleton.CurrentRoom.RoomGraph.GetUnexploredPosition();
+    target = Dungeon.Singleton.CurrentRoom.RoomGraph.GetUnexploredPosition(owner.transform.position);
     if (target == Vector2.zero)
     {
       Failed();
