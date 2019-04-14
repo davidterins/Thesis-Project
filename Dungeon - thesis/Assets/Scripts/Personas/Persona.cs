@@ -9,7 +9,7 @@ public abstract class Persona : MonoBehaviour
 {
   protected float finalOpinion = 0f;
   protected int HpEnteringRoom;
-  protected Card currentCard;
+  protected RoomCardModel currentCard;
   public Dictionary<Personality, float> personalityModifer = new Dictionary<Personality, float>
     {
       { Personality.BRAVERY, 0f },
@@ -22,7 +22,9 @@ public abstract class Persona : MonoBehaviour
 
   protected virtual void Awake()
   {
-    currentCard = new Card();
+    currentCard = new RoomCardModel();
+    currentCard.RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
+
     HpEnteringRoom = GetComponent<Player>().Health;
     enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
 
@@ -37,15 +39,22 @@ public abstract class Persona : MonoBehaviour
   /// </summary>
   void HandleOnRoomEnter()
   {
-    //Save card and register it to output
-    currentCard.Opinion = CalculateFinalOpinion();
-    Output.RegisterCard(currentCard);
-
-    Debug.LogError(GetType() + " OPINION: " + currentCard.Opinion);
-
+    WriteOutPutCard("Completed");
     //Create a card for the new room
     ResetValues();
-    currentCard = new Card();
+    currentCard = new RoomCardModel();
+    currentCard.RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
+  }
+
+  public void WriteOutPutCard(string roomStatus)
+  {
+    //Save card and register it to output
+    float opinion = CalculateFinalOpinion();
+
+    currentCard.WriteTo("Opinion", opinion);
+    currentCard.WriteTo("RoomStatus", roomStatus);
+    Debug.LogError(GetType() + " OPINION: " + opinion);
+    Output.RegisterCard(currentCard);
   }
 
   protected abstract void HandleOnTreasureLoot();

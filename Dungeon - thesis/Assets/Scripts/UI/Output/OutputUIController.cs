@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutputUIController : MonoBehaviour
 {
   [SerializeField]
-  GameObject CardPrefab = null;
+  GameObject UICardPrefab = null;
 
   [SerializeField]
   GameObject CardContainer = null;
@@ -19,11 +19,17 @@ public class OutputUIController : MonoBehaviour
   public void Show()
   {
     CardContainer.SetActive(true);
-
-    foreach(Card card in Output.Cards)
+    // Create cards for each room
+    foreach(RoomCardModel card in Output.Cards)
     {
-      Instantiate(CardPrefab, CardContainer.transform);
+      var UICard = Instantiate(UICardPrefab, CardContainer.transform);
+      UICard.GetComponent<UICard>().SetCardValues(card);
     }
+
+    // Create card for dungeon summary
+    var UISummaryCard = Instantiate(UICardPrefab, CardContainer.transform);
+    UISummaryCard.GetComponent<UICard>().SetCardValues(Output.DungeonSummaryCard());
+   
   }
 
 }

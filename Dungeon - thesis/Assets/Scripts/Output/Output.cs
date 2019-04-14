@@ -4,28 +4,36 @@ using UnityEngine;
 
 public static class Output
 {
-  public static List<Card> Cards = new List<Card>();
+  public static List<RoomCardModel> Cards = new List<RoomCardModel>();
 
-  public static void RegisterCard(Card card)
+  public static void RegisterCard(RoomCardModel card)
   {
     Cards.Add(card);
   }
 
-  public static void EvaluateCards()
+  private static float TotalOpinion()
   {
     float totalOpinion = 0;
-    foreach(Card card in Cards)
+
+    foreach(RoomCardModel card in Cards)
     {
-      totalOpinion += card.Opinion;
+      totalOpinion += (float)card.OutputValuePairs["Opinion"];
     }
     totalOpinion = totalOpinion / Cards.Count;
 
-    Debug.Log("Final dungeon opinion: " + totalOpinion);
+    return totalOpinion;
+  }
+
+  public static SummaryCardModel DungeonSummaryCard()
+  {
+    var cardModel = new SummaryCardModel();
+    //TODO ta fram alla värden som ett summary card ska ha och skriv ner dom här.
+    cardModel.WriteTo("Opinion", TotalOpinion());
+   
+    return cardModel;
   }
 }
 
-public struct Card
-{
-  public float Opinion { get; set; }
-}
+
+
 

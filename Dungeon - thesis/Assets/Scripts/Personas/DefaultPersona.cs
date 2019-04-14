@@ -8,7 +8,6 @@ public class DefaultPersona : Persona
   protected override void Awake()
   {
     base.Awake();
-    enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
     personalityModifer[Personality.BRAVERY] = 0.5f;
     personalityModifer[Personality.BLOODLUST] = 0.4f;
     personalityModifer[Personality.GREED] = 0.4f;

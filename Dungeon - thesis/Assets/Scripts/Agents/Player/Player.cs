@@ -79,6 +79,7 @@ public class Player : Agent
   protected override void HandleDeath(GameObject attacker)
   {
     //TODO Göra något när spelaren dör. Kanske visa statsen?
+    GetComponent<Persona>().WriteOutPutCard("Uncompleted");
     OnPlayerDeath.Invoke();
     Destroy(gameObject);
   }

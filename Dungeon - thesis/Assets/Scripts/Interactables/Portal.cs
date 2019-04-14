@@ -24,6 +24,7 @@ public class Portal : InteractableObject, IMemorizable
   {
     //TODO WIN stuff
     Debug.Log("GAME WON!");
+    player.GetComponent<Persona>().WriteOutPutCard("Completed");
     OnPortalEnter.Invoke();
     Destroy(player);
   }

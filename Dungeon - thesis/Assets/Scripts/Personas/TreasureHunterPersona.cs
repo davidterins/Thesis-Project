@@ -8,7 +8,7 @@ public class TreasureHunterPersona : Persona
   protected override void Awake()
   {
     base.Awake();
-    enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
+  
     personalityModifer[Personality.BRAVERY] = 0.2f;
     personalityModifer[Personality.BLOODLUST] = 0.15f;
     personalityModifer[Personality.GREED] = 0.9f;
