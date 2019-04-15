@@ -25,4 +25,10 @@ public class InventoryUI : MonoBehaviour
   {
     Slots[slotIndex].RemoveItem(itemCount);
   }
+
+  private void OnDestroy()
+  {
+    Inventory.OnItemAdded -= Inventory_OnItemAdded;
+    Inventory.OnItemRemoved -= Inventory_OnItemRemoved;
+  }
 }

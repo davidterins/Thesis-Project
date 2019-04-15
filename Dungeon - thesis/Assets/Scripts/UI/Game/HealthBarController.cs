@@ -35,9 +35,14 @@ public class HealthBarController : MonoBehaviour
       healthBars.Add(obj, healthBar);
       healthBar.SetHealth(obj);
     }
-
   }
 
- 
+  private void OnDestroy()
+  {
+    Agent.OnIsEnabled -= Agent_OnIsEnabled;
+    Agent.OnIsDisabled -= Agent_OnIsDisabled;
+  }
+
+
 
 }

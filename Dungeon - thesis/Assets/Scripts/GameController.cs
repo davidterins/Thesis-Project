@@ -51,6 +51,15 @@ public class GameController : MonoBehaviour
 
   public void Restart()
   {
-    StartGame();
+    Output.Cards = new List<RoomCardModel>();
+    SceneManager.LoadScene("DungeonScene");
+  }
+
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.I))
+    {
+      Restart();
+    }
   }
 }
