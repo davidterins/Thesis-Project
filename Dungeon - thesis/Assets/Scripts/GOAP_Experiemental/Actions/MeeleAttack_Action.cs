@@ -25,7 +25,7 @@ public class MeeleAttack_Action : MovingAction_Goap
 
      };
 
-    interactionRange = 1;
+    interactionRange = 1f;
   }
 
   public override void Enter()
@@ -45,7 +45,7 @@ public class MeeleAttack_Action : MovingAction_Goap
 
   public override bool IsInRange()
   {
-    if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange + 0.5)
+    if (Vector2.Distance(owner.transform.position, attackTarget.transform.position) <= interactionRange)
     {
       return InRange = true;
     }

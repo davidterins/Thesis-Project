@@ -5,9 +5,9 @@ using UnityEngine;
 public class TreasureHunterPersona : Persona
 {
 
-  protected override void Awake()
+  protected override void Start()
   {
-    base.Awake();
+    base.Start();
   
     personalityModifer[Personality.BRAVERY] = 0.2f;
     personalityModifer[Personality.BLOODLUST] = 0.15f;
@@ -32,8 +32,9 @@ public class TreasureHunterPersona : Persona
     //throw new System.NotImplementedException();
   }
 
-  protected override void ResetValues()
+  protected override void PrepareForNewRoom(RoomCardModel newCard)
   {
-    //throw new System.NotImplementedException();
+    base.PrepareForNewRoom(newCard);
+
   }
 }

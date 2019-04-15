@@ -10,6 +10,8 @@ public abstract class Persona : MonoBehaviour
   protected float finalOpinion = 0f;
   protected int HpEnteringRoom;
   protected RoomCardModel currentCard;
+  protected float minInteractionsToGetKeys;
+
   public Dictionary<Personality, float> personalityModifer = new Dictionary<Personality, float>
     {
       { Personality.BRAVERY, 0f },
@@ -18,15 +20,15 @@ public abstract class Persona : MonoBehaviour
       { Personality.EXPLORATION, 0f },
       { Personality.PROGRESSION, 0f }
     };
+
+  protected Dictionary<string, object> OutPutPairs = new Dictionary<string, object>();
   public float enemyDistanceRange; // The distance of even being interested in an enemy
 
-  protected virtual void Awake()
+  protected virtual void Start()
   {
-    currentCard = new RoomCardModel();
-    currentCard.RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
-
-    HpEnteringRoom = GetComponent<Player>().Health;
     enemyDistanceRange = GetComponent<Vision>().GetSightRange() - 1f;
+
+    PrepareForNewRoom(new RoomCardModel());
 
     Enemy.OnEnemyDeath += HandleOnEnemyDeath;
     TreasureChest.OnTreasureLoot += HandleOnTreasureLoot;
@@ -41,19 +43,22 @@ public abstract class Persona : MonoBehaviour
   {
     WriteOutPutCard("Completed");
     //Create a card for the new room
-    ResetValues();
-    currentCard = new RoomCardModel();
-    currentCard.RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
+    PrepareForNewRoom(new RoomCardModel());
   }
 
   public void WriteOutPutCard(string roomStatus)
   {
     //Save card and register it to output
-    float opinion = CalculateFinalOpinion();
+    //OutPutPairs["Opinion"] = CalculateFinalOpinion();
+    //OutPutPairs["RoomStatus"] = roomStatus;
 
-    currentCard.WriteTo("Opinion", opinion);
+    currentCard.WriteTo("Opinion", CalculateFinalOpinion());
     currentCard.WriteTo("RoomStatus", roomStatus);
-    Debug.LogError(GetType() + " OPINION: " + opinion);
+    foreach (var pair in OutPutPairs)
+    {
+      currentCard.WriteTo(pair.Key, pair.Value);
+    }
+
     Output.RegisterCard(currentCard);
   }
 
@@ -63,7 +68,16 @@ public abstract class Persona : MonoBehaviour
 
   protected abstract float CalculateFinalOpinion();
 
-  protected abstract void ResetValues();
+  // Prepare the agent values for a new room.
+  // Happens either in awake or when the agent has entered a door to a new room.
+  protected virtual void PrepareForNewRoom(RoomCardModel newCard)
+  {
+    currentCard = newCard;
+    currentCard.RoomID = Dungeon.Singleton.CurrentRoom.RoomID;
+
+    minInteractionsToGetKeys = Dungeon.Singleton.CurrentRoom.requiredKeys.Count;
+    HpEnteringRoom = GetComponent<Player>().Health;
+  }
 
   private void OnDestroy()
   {

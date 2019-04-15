@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonsterSlayerPersona : Persona
 {
-  protected override void Awake()
+  protected override void Start()
   {
-    base.Awake();
+    base.Start();
     personalityModifer[Personality.BRAVERY] = 0.9f;
     personalityModifer[Personality.BLOODLUST] = 0.9f;
     personalityModifer[Personality.GREED] = 0.0f;
@@ -16,23 +16,20 @@ public class MonsterSlayerPersona : Persona
 
   protected override void HandleOnTreasureLoot()
   {
-    //throw new System.NotImplementedException();
   }
 
   protected override void HandleOnEnemyDeath()
   {
-   //throw new System.NotImplementedException();
   }
 
   protected override float CalculateFinalOpinion()
   {
-    //throw new System.NotImplementedException();
     return -1;
   }
 
-  protected override void ResetValues()
+  protected override void PrepareForNewRoom(RoomCardModel newCard)
   {
-    //throw new System.NotImplementedException();
+    base.PrepareForNewRoom(newCard);
   }
 }
 

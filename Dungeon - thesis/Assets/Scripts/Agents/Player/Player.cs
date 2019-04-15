@@ -23,18 +23,10 @@ public class Player : Agent
 
   public int Coins = 0;
 
-  public static float LowHealthLimit = 0.4f;
-
-  // public static float HighHealthLimit = 0.8f;
-
-
   private void Start()
   {
-
     weapons = new List<Weapon>();
     EquipWeapon(currentWeapon.GetComponent<Weapon>());
-
-    //GetComponent<BlackBoard>().Health = Health;
   }
 
 
@@ -79,7 +71,7 @@ public class Player : Agent
   protected override void HandleDeath(GameObject attacker)
   {
     //TODO Göra något när spelaren dör. Kanske visa statsen?
-    GetComponent<Persona>().WriteOutPutCard("Uncompleted");
+    GetComponent<Persona>().WriteOutPutCard("Incomplete");
     OnPlayerDeath.Invoke();
     Destroy(gameObject);
   }
@@ -87,7 +79,7 @@ public class Player : Agent
   public override void ModifyHealth(int amount)
   {
     base.ModifyHealth(amount);
-    // GetComponent<BlackBoard>().Health = Health;
   }
+
 }
 

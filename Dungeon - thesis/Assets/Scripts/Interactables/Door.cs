@@ -42,7 +42,7 @@ public class Door : InteractableObject, IMemorizable
     var dungeon = Dungeon.Singleton;
     var room = dungeon.RoomLookup[TargetRoomID];
     dungeon.ChangeRoom(TargetRoomID, TargetDoorPosition);
-
+    Debug.Log("Entered room: " + TargetRoomID);
     player.transform.position = new Vector2(TargetDoorPosition.x + 0.5f, TargetDoorPosition.y + 0.5f);
   }
 

@@ -9,13 +9,13 @@ using UnityEngine.Experimental.PlayerLoop;
 /// </summary>
 public class RusherPersona : Persona
 {
-  private float forcedCombat = 1, hpLeft = 1, forcedLoot = 1;
+  private float forcedCombat = 1, hpChange = 1, forcedLoot = 1;
   private float forcedCombatWeight;
   private float forcedTreasureWeight;
 
-  protected override void Awake()
+  protected override void Start()
   {
-    base.Awake();
+    base.Start();
 
     personalityModifer[Personality.BRAVERY] = 0.4f;
     personalityModifer[Personality.BLOODLUST] = 0.4f;
@@ -23,34 +23,62 @@ public class RusherPersona : Persona
     personalityModifer[Personality.EXPLORATION] = 0f;
     personalityModifer[Personality.PROGRESSION] = 0.9f;
 
-    forcedCombatWeight = 4f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
-    forcedTreasureWeight = 3f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
+    forcedCombatWeight = 30f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
+    forcedTreasureWeight = 20f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
   }
 
   protected override float CalculateFinalOpinion()
   {
     forcedCombat = Mathf.Clamp(forcedCombat, 0, 1);
-    forcedLoot = Mathf.Clamp(forcedLoot, 0, 1);
-    hpLeft = Mathf.Clamp(1 - (GetComponent<Player>().Health / HpEnteringRoom), 0, 1);
+    OutPutPairs["ForcedCombat"] = forcedCombat;
 
-    return (forcedCombat + hpLeft + forcedLoot) / 3;
+    forcedLoot = Mathf.Clamp(forcedLoot, 0, 1);
+    OutPutPairs["ForcedLoot"] = forcedLoot;
+
+    float currentHealth = GetComponent<Player>().Health;
+    if (currentHealth < HpEnteringRoom)
+    {
+      hpChange = (1 - (currentHealth / HpEnteringRoom));
+      OutPutPairs["HPChange"] = "\n" +
+       " Enter: " + HpEnteringRoom + "\n" +
+       " Exit: " + currentHealth + "\n" +
+       " Change: " + hpChange * 100 + "%";
+    }
+    else
+    {
+      if (OutPutPairs.ContainsKey("HPChange"))
+      {
+        OutPutPairs.Remove("HPChange");
+      }
+    }
+
+    return (forcedCombat + hpChange + forcedLoot) / 3;
   }
 
-  protected override void ResetValues()
+  protected override void PrepareForNewRoom(RoomCardModel newCard)
   {
+    base.PrepareForNewRoom(newCard);
+
     forcedCombat = 1;
-    hpLeft = 1;
+    hpChange = 1;
     forcedLoot = 1;
-    HpEnteringRoom = GetComponent<Player>().Health;
   }
 
   protected override void HandleOnTreasureLoot()
   {
-    forcedLoot -= forcedTreasureWeight;
+    if (minInteractionsToGetKeys <= 0)
+    {
+      forcedLoot -= forcedTreasureWeight;
+    }
+    minInteractionsToGetKeys--;
   }
 
   protected override void HandleOnEnemyDeath()
   {
-    forcedCombat -= forcedCombatWeight;
+    if (minInteractionsToGetKeys <= 0)
+    {
+      forcedCombat -= forcedCombatWeight;
+    }
+    minInteractionsToGetKeys--;
   }
 }

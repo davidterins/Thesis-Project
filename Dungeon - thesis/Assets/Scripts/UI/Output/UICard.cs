@@ -2,23 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UICard : MonoBehaviour
 {
   [SerializeField]
-  Text HeaderText;
+  Text HeaderText = null;
 
   [SerializeField]
-  Text BodyText;
+  Text BodyText = null;
 
   public void SetCardValues(RoomCardModel card)
   {
     HeaderText.text += " " + card.RoomID;
 
-    BodyText.text += "\n";
+    BodyText.text = "";
     foreach (var keyval in card.OutputValuePairs)
     {
-      BodyText.text += keyval.Key + ": " + keyval.Value + "\n";
+      string value = keyval.Value.ToString();
+      if (keyval.Value is float)
+      {
+        if(value.Length > 4)
+        {
+          value = value.Substring(0, 4);
+        }
+      }
+      BodyText.text += keyval.Key + ": " + value + "\n";
     }
   }
 
@@ -26,10 +35,19 @@ public class UICard : MonoBehaviour
   {
     HeaderText.text = card.Header;
 
-    BodyText.text += "\n";
+    BodyText.text = "";
     foreach (var keyval in card.OutputValuePairs)
     {
-      BodyText.text += keyval.Key + ": " + keyval.Value + "\n";
+      string value = keyval.Value.ToString();
+      if (keyval.Value is float)
+      {
+        if (value.Length > 4)
+        {
+          value = value.Substring(0, 4);
+        }
+      }
+      BodyText.text += keyval.Key + ": " + value + "\n";
     }
   }
+
 }

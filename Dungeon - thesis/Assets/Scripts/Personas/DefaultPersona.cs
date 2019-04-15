@@ -5,9 +5,9 @@ using UnityEngine;
 public class DefaultPersona : Persona
 {
 
-  protected override void Awake()
+  protected override void Start()
   {
-    base.Awake();
+    base.Start();
     personalityModifer[Personality.BRAVERY] = 0.5f;
     personalityModifer[Personality.BLOODLUST] = 0.4f;
     personalityModifer[Personality.GREED] = 0.4f;
@@ -31,8 +31,9 @@ public class DefaultPersona : Persona
     //throw new System.NotImplementedException();
   }
 
-  protected override void ResetValues()
+  protected override void PrepareForNewRoom(RoomCardModel newCard)
   {
-    //throw new System.NotImplementedException();
+    base.PrepareForNewRoom(newCard);
+
   }
 }
