@@ -61,12 +61,9 @@ public class Graph : MonoBehaviour
     {
       for (int y = ymin; y < ymax; y++)
       {
-        if (nodes[x, y].tileType != TileType.WALL && unexploredNodes.Contains(nodes[x, y])/*!nodes[x, y].explored*/)
+        if (nodes[x, y].tileType != TileType.WALL && unexploredNodes.Contains(nodes[x, y]))
         {
-          //nodes[x, y].explored = true;
-          //if (unexploredNodes.Contains(nodes[x, y]))
           unexploredNodes.Remove(nodes[x, y]);
-         
         }
       }
     }
@@ -78,8 +75,24 @@ public class Graph : MonoBehaviour
   {
     if (unexploredNodes.Count <= 0)
       return Vector2.zero;
-    int index = Random.Range(0, unexploredNodes.Count);
-    return new Vector2(unexploredNodes[index].position.x, unexploredNodes[index].position.y);
+    //int index = Random.Range(0, unexploredNodes.Count);
+    //return new Vector2(unexploredNodes[index].position.x, unexploredNodes[index].position.y);
+    Node closestNode = new Node(1000);
+    float shortestDistance = float.MaxValue;
+
+    foreach(Node n in unexploredNodes)
+    {
+      if(n.gCost < closestNode.gCost)
+      {//Börjar med att räkna på nodes som inte är fiender.
+        float distanceToNode = Vector2.Distance(position, closestNode.GetFloatPosition());
+        if (distanceToNode < shortestDistance)
+        {
+          closestNode = n;
+          shortestDistance = distanceToNode;
+        }
+      }
+    }
+    return closestNode.GetFloatPosition();
   }
 
   /// <summary>
@@ -92,9 +105,13 @@ public class Graph : MonoBehaviour
     if (tileType != TileType.WALL)
     {
       Node node = new Node(position, tileType);
-      if(tileType == TileType.ENEMY)
+      if(tileType == TileType.ENEMY )
       {
         node.gCost = 30;
+      }
+      if(tileType == TileType.DOORENTER)
+      {
+        node.gCost = 5;
       }
       nodes[position.x, position.y] = node;
       unexploredNodes.Add(node);

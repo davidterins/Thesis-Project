@@ -45,7 +45,6 @@ public class GameController : MonoBehaviour
   public void GameOver()
   {
     //TODO Visa output
-    Debug.LogError("GAMEOVER!");
     OnShowOutput.Invoke();
     
   }
