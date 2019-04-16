@@ -15,7 +15,7 @@ public class Potion : Item
 
   public override float GetDropRate()
   {
-    return 0.4f;
+    return 1f;
   }
 
   public override float GetImportance()

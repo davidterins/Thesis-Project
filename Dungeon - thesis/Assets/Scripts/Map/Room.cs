@@ -26,6 +26,10 @@ public class Room : MonoBehaviour
 
   public Queue<KeyInfo> requiredKeys = new Queue<KeyInfo>();
 
+  public int StartingTreasureCount { get; private set; }
+
+  public int StartingEnemyCount { get; private set; }
+
   /// <summary>
   /// Used as a contructor to build the acutal room from its model.
   /// </summary>
@@ -42,6 +46,14 @@ public class Room : MonoBehaviour
     {
       for (int y = 0; y < Height; y++)
       {
+        if (model.Tiles[index].Type == TileType.ENEMY)
+        {
+          StartingEnemyCount++;
+        }
+        else if (model.Tiles[index].Type == TileType.TREASURE)
+        {
+          StartingTreasureCount++;
+        }
         Tiles2D[x, y] = model.Tiles[index++];
       }
     }

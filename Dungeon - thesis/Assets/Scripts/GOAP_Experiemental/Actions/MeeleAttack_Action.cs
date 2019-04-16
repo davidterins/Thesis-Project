@@ -67,8 +67,7 @@ public class MeeleAttack_Action : MovingAction_Goap
 
   public override float GetCost()
   {
-   
-        cost = 14;
+    cost = 14;
     return base.GetCost();
   }
 

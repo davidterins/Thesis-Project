@@ -50,7 +50,7 @@ public class PickupItem_Action : MovingAction_Goap
       }
       // Is set here for now, should probably the loot handle this when picked up.
       owner.GetComponent<BlackBoard>().TargetLoot = null;
-      //owner.GetComponent<BlackBoard>().ImportantItemDrop = null;
+      owner.GetComponent<BlackBoard>().ImportantItemDrop = null;
       Successfull();
     }
 
