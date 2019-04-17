@@ -12,8 +12,6 @@ public class MonsterSlayerPersona : Persona
   private float roomTotalEnemies;
   private float slainEnemies;
 
-
-
   protected override void Start()
   {
     base.Start();
@@ -45,7 +43,7 @@ public class MonsterSlayerPersona : Persona
       return 0;
     }
 
-    float slainEnemyPercentage = 1 - (slainEnemies / roomTotalEnemies);
+    float slainEnemyPercentage = slainEnemies / roomTotalEnemies;
     OutPutPairs["Eliminated enemies"] = slainEnemyPercentage * 100 + "%";
 
 
