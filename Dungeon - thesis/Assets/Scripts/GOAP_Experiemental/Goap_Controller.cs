@@ -18,7 +18,7 @@ public class Goap_Controller : MonoBehaviour
   BlackBoard blackBoard;
   Planner_Goap planner;
   Persona persona;
-  public Persona Persona { get { return persona; }}
+  public Persona Persona { get { return persona; } }
 
   private readonly float ActionDelay = Settings.FetchSpeed();
 
@@ -91,6 +91,11 @@ public class Goap_Controller : MonoBehaviour
     viewControl.UpdateWSVariables(playerWorldState);
   }
 
+  private void Start()
+  {
+    StartCoroutine(NewPlanfrst());
+  }
+
   void BlackBoard_WorldStateVariableChanged(object sender, WsSymbolChangedEventArgs e)
   {
     //   Debug.Log("WorlstateSymbol changed " + e.Symbol + " to value " + e.Value);
@@ -147,6 +152,12 @@ public class Goap_Controller : MonoBehaviour
     }
   }
 
+  private IEnumerator NewPlanfrst()
+  {
+    yield return new WaitForSecondsRealtime(2);
+   
+    CreateNewPlan();
+  }
 
   private IEnumerator NewPlan()
   {

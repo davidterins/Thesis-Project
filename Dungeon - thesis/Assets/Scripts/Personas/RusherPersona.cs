@@ -17,10 +17,8 @@ public class RusherPersona : Persona
   {
     base.Start();
 
-    personalityModifer[Personality.BRAVERY] = 0.4f;
-    personalityModifer[Personality.BLOODLUST] = 0.4f;
+    personalityModifer[Personality.BLOODLUST] = 0.53f;
     personalityModifer[Personality.GREED] = 0.5f;
-    personalityModifer[Personality.EXPLORATION] = 0f;
     personalityModifer[Personality.PROGRESSION] = 0.9f;
 
     forcedCombatWeight = 30f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;

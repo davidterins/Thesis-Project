@@ -13,40 +13,45 @@ public class TreasureHunterPersona : Persona
   private float roomTotalTreasures;
   private float lootedTreasures;
 
+  private float lootValue = 0;
+  private float lootWeight;
+
   private float forcedCombatWeight;
 
   protected override void Start()
   {
     base.Start();
 
-    personalityModifer[Personality.BRAVERY] = 0.2f;
-    personalityModifer[Personality.BLOODLUST] = 0.15f;
+    personalityModifer[Personality.BLOODLUST] = 0.23f;
     personalityModifer[Personality.GREED] = 0.9f;
-    personalityModifer[Personality.EXPLORATION] = 0.0f;
     personalityModifer[Personality.PROGRESSION] = 0.2f;
 
     forcedCombatWeight = 30f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
+    lootWeight = 30f / Dungeon.Singleton.CurrentRoom.RoomGraph.TotalTraversableTiles;
   }
 
   protected override float CalculateFinalOpinion()
   {
 
-    if (lootedTreasures <= 0)
-    {
-      if (OutPutPairs.ContainsKey("Looted treasures"))
-      {
-        OutPutPairs.Remove("Looted treasures");
-      }
-      return 0;
-    }
+    //if (lootedTreasures <= 0)
+    //{
+    //  if (OutPutPairs.ContainsKey("Looted treasures"))
+    //  {
+    //    OutPutPairs.Remove("Looted treasures");
+    //  }
+    //  return 0;
+    //}
 
     forcedCombat = Mathf.Clamp(forcedCombat, 0, 1);
     OutPutPairs["Forced combat"] = forcedCombat;
 
-    float lootedTreasurePercentage = lootedTreasures / roomTotalTreasures;
-    OutPutPairs["Looted treasures"] = lootedTreasurePercentage * 100 + "%";
+    lootValue = Mathf.Clamp(lootValue, 0, 1);
+    OutPutPairs["Loot value"] = lootValue;
 
-    return (forcedCombat + lootedTreasurePercentage) / 2;
+    //float lootedTreasurePercentage = lootedTreasures / roomTotalTreasures;
+    //OutPutPairs["Looted treasures"] = lootedTreasurePercentage * 100 + "%";
+
+    return (forcedCombat + lootValue) / 2;
   }
 
   protected override void HandleOnEnemyDeath()
@@ -56,7 +61,12 @@ public class TreasureHunterPersona : Persona
 
   protected override void HandleOnTreasureLoot()
   {
-    lootedTreasures++;
+    lootValue += lootWeight;
+    //if (minInteractionsToGetKeys <= 0)
+    //{
+    //  lootedTreasures++;
+    //}
+    minInteractionsToGetKeys--;
   }
 
   protected override void PrepareForNewRoom(RoomCardModel newCard)
@@ -66,5 +76,6 @@ public class TreasureHunterPersona : Persona
     roomTotalTreasures = Dungeon.Singleton.CurrentRoom.StartingTreasureCount;
     forcedCombat = 1;
     lootedTreasures = 0;
+    lootValue = 0;
   }
 }

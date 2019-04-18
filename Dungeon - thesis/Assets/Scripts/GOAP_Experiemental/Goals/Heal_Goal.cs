@@ -28,12 +28,9 @@ public class Heal_Goal : Goal_Goap
     if (owner.GetComponent<Goap_Controller>().PlayerWorldState[WorldStateSymbol.RoomExplored] &&
     blackBoard.TargetEnemyObject == null)
     {
-
       relevancy = 0;
     }
     //TODO amount of health pots kan kallas via blackboard.checkItemKnowledgeCount.
-
-
 
     if (relevancy == 1)
       relevancy = 0;

@@ -14,10 +14,10 @@ public abstract class Persona : MonoBehaviour
 
   public Dictionary<Personality, float> personalityModifer = new Dictionary<Personality, float>
     {
-      { Personality.BRAVERY, 0f },
+      //{ Personality.BRAVERY, 0f },
       { Personality.BLOODLUST, 0f },
       { Personality.GREED, 0f },
-      { Personality.EXPLORATION, 0f },
+      //{ Personality.EXPLORATION, 0f },
       { Personality.PROGRESSION, 0f }
     };
 

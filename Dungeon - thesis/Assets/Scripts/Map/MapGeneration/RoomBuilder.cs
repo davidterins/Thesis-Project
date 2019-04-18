@@ -88,7 +88,18 @@ public class RoomBuilder : MonoBehaviour
           BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
 
           //För att sätta exit dooren på en random position i sista rummet.
-          if (room.RoomID == dungeon.RoomLookup.Count - 1)
+
+          float highestRoomIdInDungeon = 0;
+
+          foreach (Room r in dungeon.RoomLookup.Values)
+          {
+            if(r.RoomID > highestRoomIdInDungeon)
+            {
+              highestRoomIdInDungeon = r.RoomID;
+            }
+          }
+         
+          if (room.RoomID >= highestRoomIdInDungeon)
           {
             floorPositions.Add(centerOfTile);
           }
@@ -154,9 +165,10 @@ public class RoomBuilder : MonoBehaviour
     //Place out keys too lootableItems
     foreach (KeyInfo keyInfo in room.requiredKeys)
     {
-      int randomKeyIndex = Random.Range(0, lootableObjects.Count - 1);
+      int randomKeyIndex = Random.Range(0, lootableObjects.Count);
+      var s = lootableObjects.Count;
       lootableObjects[randomKeyIndex].GetComponentInChildren<Loot>().Items.Add(KeyPrefab);
-      lootableObjects[randomKeyIndex].GetComponent<SpriteRenderer>().color = Color.green;
+      //lootableObjects[randomKeyIndex].GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     if (floorPositions.Count > 0)

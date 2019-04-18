@@ -6,7 +6,7 @@ using System;
 
 public class GameController : MonoBehaviour
 {
-  public static event Action OnShowOutput = delegate {};
+  public static event Action OnShowOutput = delegate { };
 
   private static GameController Instance;
   public static GameController Singleton { get { return Instance; } }
@@ -38,15 +38,31 @@ public class GameController : MonoBehaviour
 
   public void Complete()
   {
-    //TODO Visa output
-    OnShowOutput.Invoke();
+    if (Output.currentIteration > 0)
+    {
+      Output.DecreaseTotalRuns();
+      Restart();
+    }
+    else
+    {
+      OnShowOutput.Invoke();
+    }
+
   }
 
   public void GameOver()
   {
-    //TODO Visa output
-    OnShowOutput.Invoke();
-    
+    if (Output.currentIteration > 0)
+    {
+      Output.DecreaseTotalRuns();
+      Restart();
+    }
+    {
+      OnShowOutput.Invoke();
+    }
+
+   
+
   }
 
   public void Restart()

@@ -19,13 +19,14 @@ public class KillEnemy_Goal : Goal_Goap
     if (!blackBoard.TargetEnemyObject)
       return 0f;
 
-    float distanceToEnemyFactor = 0; //Vector2.Distance(blackBoard.TargetEnemyObject.transform.position, owner.transform.position) / 10;
+    //float distanceToEnemyFactor = 0; //Vector2.Distance(blackBoard.TargetEnemyObject.transform.position, owner.transform.position) / 10;
     float currentHealth = blackBoard.Health;
     float healthPercentage = 1 - (float)currentHealth / (float)Agent.maxHealth;
 
-    relevancy = ((persona.personalityModifer[Personality.BLOODLUST] +
-                   persona.personalityModifer[Personality.BRAVERY]) / 1.5f) -
-                   distanceToEnemyFactor - healthPercentage;
+    //relevancy = ((persona.personalityModifer[Personality.BLOODLUST] +
+    //persona.personalityModifer[Personality.BRAVERY]) / 1.5f) - healthPercentage;
+
+    relevancy = (persona.personalityModifer[Personality.BLOODLUST]) - healthPercentage;
 
 
     relevancy = Mathf.Clamp(relevancy, 0f, 1f);

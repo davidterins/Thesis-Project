@@ -6,7 +6,7 @@ using System;
 public class Potion : Item
 {
   [SerializeField]
-  private int value = 25;
+  private int value = 50;
 
   private void Start()
   {
@@ -15,7 +15,7 @@ public class Potion : Item
 
   public override float GetDropRate()
   {
-    return 1f;
+    return 0.5f;
   }
 
   public override float GetImportance()
