@@ -75,8 +75,20 @@ public class RoomBuilder : MonoBehaviour
 
     List<Vector2> floorPositions = new List<Vector2>(room.Width * room.Height);
 
+
+    int widthCount = 0;
+    int heightCount = room.Height;
     foreach (TileModel tile in room.Tiles2D)
     {
+      //widthCount++;
+
+      //if(widthCount >= room.Width )
+      //{
+      //  widthCount = 0;
+      //  heightCount--;
+      //}
+
+        //Vector3Int tilePos = new Vector3Int((int)tile.Position.x, heightCount, 0);
       Vector3Int tilePos = new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0);
 
       room.RoomGraph.InsertNode(tilePos, tile.Type);
@@ -85,7 +97,7 @@ public class RoomBuilder : MonoBehaviour
       switch (tile.Type)
       {
         case TileType.FLOOR:
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
 
           //För att sätta exit dooren på en random position i sista rummet.
 
@@ -107,26 +119,26 @@ public class RoomBuilder : MonoBehaviour
           break;
         case TileType.WALL:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-          CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
+          CollideLayer.SetTile(tilePos, Instantiate(WallTile));
 
           break;
         case TileType.TREASURE:
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
 
-          var center = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+          var center = BaseTileLayer.GetCellCenterWorld(tilePos);
 
           lootableObjects.Add(Instantiate(TreasureChest, center, Quaternion.identity, roomObj.transform));
           break;
         case TileType.ENEMY:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
 
           lootableObjects.Add(Instantiate(Enemy, centerOfTile, Quaternion.identity, roomObj.transform));
           break;
         case TileType.DOOR:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(ConnectionDoorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(ConnectionDoorTile));
           var doorObj = Instantiate(ConnectionDoor, centerOfTile, Quaternion.identity, roomObj.transform);
           var doorScript = doorObj.GetComponent<Door>();
 
@@ -193,30 +205,30 @@ public class RoomBuilder : MonoBehaviour
     {
       Vector3Int tilePos = new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0);
 
-      var centerOfTile = BaseTileLayer.GetCellCenterWorld(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0));
+      var centerOfTile = BaseTileLayer.GetCellCenterWorld(tilePos);
       switch (tile.Type)
       {
         case TileType.FLOOR:
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
           break;
         case TileType.WALL:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
-          CollideLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(WallTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
+          CollideLayer.SetTile(tilePos, Instantiate(WallTile));
 
           break;
         case TileType.TREASURE:
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
 
           break;
         case TileType.ENEMY:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(FloorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(FloorTile));
 
           break;
         case TileType.DOOR:
 
-          BaseTileLayer.SetTile(new Vector3Int((int)tile.Position.x, (int)tile.Position.y, 0), Instantiate(ConnectionDoorTile));
+          BaseTileLayer.SetTile(tilePos, Instantiate(ConnectionDoorTile));
 
 
           break;

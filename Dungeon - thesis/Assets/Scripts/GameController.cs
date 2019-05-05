@@ -38,31 +38,32 @@ public class GameController : MonoBehaviour
 
   public void Complete()
   {
-    if (Output.currentIteration > 0)
-    {
-      Output.DecreaseTotalRuns();
-      Restart();
-    }
-    else
-    {
-      OnShowOutput.Invoke();
-    }
+    // TODO Kommentera in för att att iterera en dungeon flera gånger
+    //if (Output.currentIteration > 0)
+    //{
+    //  Output.DecreaseTotalRuns();
+    //  Restart();
+    //}
+    //{
+    //  OnShowOutput.Invoke();
+    //}
 
+    OnShowOutput.Invoke();
   }
 
   public void GameOver()
   {
-    if (Output.currentIteration > 0)
-    {
-      Output.DecreaseTotalRuns();
-      Restart();
-    }
-    {
-      OnShowOutput.Invoke();
-    }
+    // TODO Kommentera in för att att iterera en dungeon flera gånger
+    //if (Output.currentIteration > 0)
+    //{
+    //  Output.DecreaseTotalRuns();
+    //  Restart();
+    //}
+    //{
+    //  OnShowOutput.Invoke();
+    //}
 
-   
-
+    OnShowOutput.Invoke();
   }
 
   public void Restart()
