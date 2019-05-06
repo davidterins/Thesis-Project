@@ -28,6 +28,9 @@ public class InputMenuController : MonoBehaviour
   [SerializeField]
   Dropdown DefaultMapDropDown = null;
 
+  [SerializeField]
+  Text IterationsText = null;
+
   private void Awake()
   {
     OpenFileButton.AssignAction(OpenFileMenu);
@@ -43,38 +46,9 @@ public class InputMenuController : MonoBehaviour
       DefaultMapDropDown.interactable = true;
     });
 
-    PersonaDropDown.onValueChanged.AddListener(HandlePersonaDropDownChanged);
+    //PersonaDropDown.onValueChanged.AddListener(HandlePersonaDropDownChanged);
 
   }
-
-  void HandlePersonaDropDownChanged(int index)
-  {
-    //switch (PersonaDropDownText.text)
-    //{
-    //  case "Rusher":
-    //    Settings.SetPersona(Settings.Persona.Rusher);
-    //    break;
-    //  case "Treasure Hunter":
-    //    Settings.SetPersona(Settings.Persona.TreasureHunter);
-    //    break;
-    //  case "Monster Slayer":
-    //    Settings.SetPersona(Settings.Persona.MonsterSlayer);
-    //    break;
-    //  case "Custom":
-    //    Transform customModifiersPanel = transform.parent.transform.Find("CustomPersonaPanel").transform.Find("SliderPanel");
-    //    float[] modifiers = new float[customModifiersPanel.childCount];
-    //    for (int i = 0; i < modifiers.Length; i++)
-    //    {
-    //      modifiers[i] = customModifiersPanel.GetChild(i).Find("Slider").GetComponent<Slider>().value / 100f;
-    //    }
-    //    Settings.SetPersona(Settings.Persona.Custom);
-    //    break;
-    //  default:
-    //    Settings.SetPersona(Settings.Persona.Default);
-    //    break;
-    //}  
-  }
-
 
   void OpenFileMenu()
   {
@@ -131,6 +105,12 @@ public class InputMenuController : MonoBehaviour
         break;
     }
 
+    int iterations = 1;
+    int.TryParse(IterationsText.text, out iterations);
+
+    GameController.GameCurrentIteration = iterations;
+    Settings.Iterations = iterations;
+    //Output.SetGameIterations(iterations);//.NumberIterations = iterations;
     Settings.SetSpeed(Mathf.RoundToInt(transform.Find("SpeedInputRow").transform.Find("Slider").GetComponent<Slider>().value));
     Settings.SelectedMapFromMenu = selectedMapFile;
     Settings.GameStartedFromMenu = true;

@@ -9,6 +9,7 @@ public static class Settings
   static float[] customModifiers;
   static float agentSpeed = 0.8f, walkSpeed = 0.08f;
   public static bool GameStartedFromMenu;
+  public static int Iterations = 1;
 
   public static string SelectedMapFromMenu;
 

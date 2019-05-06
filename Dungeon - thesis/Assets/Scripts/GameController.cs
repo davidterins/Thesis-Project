@@ -7,9 +7,13 @@ using System;
 public class GameController : MonoBehaviour
 {
   public static event Action OnShowOutput = delegate { };
+  public static event Action<int> OnIterationChanged = delegate { };
 
   private static GameController Instance;
   public static GameController Singleton { get { return Instance; } }
+
+  public static int GameCurrentIteration = 1;
+
 
   void Awake()
   {
@@ -25,6 +29,12 @@ public class GameController : MonoBehaviour
     Portal.OnPortalEnter += Complete;
   }
 
+  private void OnDestroy()
+  {
+    Player.OnPlayerDeath -= GameOver;
+    Portal.OnPortalEnter -= Complete;
+  }
+
   private void Start()
   {
     StartGame();
@@ -32,43 +42,37 @@ public class GameController : MonoBehaviour
 
   public void StartGame()
   {
-    //TODO do start game with correct map parameter
     Dungeon.Singleton.CreateDungeon(GetComponent<MapManager>().Dungeon);
   }
 
   public void Complete()
   {
-    // TODO Kommentera in för att att iterera en dungeon flera gånger
-    //if (Output.currentIteration > 0)
-    //{
-    //  Output.DecreaseTotalRuns();
-    //  Restart();
-    //}
-    //{
-    //  OnShowOutput.Invoke();
-    //}
-
-    OnShowOutput.Invoke();
+    StopOrIterate();
   }
 
   public void GameOver()
   {
-    // TODO Kommentera in för att att iterera en dungeon flera gånger
-    //if (Output.currentIteration > 0)
-    //{
-    //  Output.DecreaseTotalRuns();
-    //  Restart();
-    //}
-    //{
-    //  OnShowOutput.Invoke();
-    //}
+    StopOrIterate();
+  }
 
-    OnShowOutput.Invoke();
+  private void StopOrIterate()
+  {
+    if (GameCurrentIteration <= 1)
+    {
+      OnShowOutput.Invoke();
+    }
+    else
+    {
+      GameCurrentIteration--;
+      Restart();
+    }
   }
 
   public void Restart()
   {
-    Output.Cards = new List<RoomCardModel>();
+    //TotalGameIterations = Settings.Iterations;
+    //Output.Cards = new List<RoomCardModel>();
+
     SceneManager.LoadScene("DungeonScene");
   }
 

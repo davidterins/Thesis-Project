@@ -23,7 +23,7 @@ public class OutputUIController : MonoBehaviour
   
   private void Awake ()
   {
-    RestartButton.AssignAction(GameController.Singleton.Restart);
+    RestartButton.AssignAction(RestartDungeon);
     MainMenuButton.AssignAction(GoToMainMenu);
     GameController.OnShowOutput += Show;
   }
@@ -32,6 +32,13 @@ public class OutputUIController : MonoBehaviour
   {
     Output.Cards = new List<RoomCardModel>();
     SceneManager.LoadScene("StartupScene");
+  }
+
+  void RestartDungeon()
+  {
+    GameController.GameCurrentIteration = Settings.Iterations;
+    Output.Cards = new List<RoomCardModel>();
+    GameController.Singleton.Restart();
   }
 
   public void Show()
@@ -44,7 +51,7 @@ public class OutputUIController : MonoBehaviour
 
     OutputMenu.SetActive(true);
     // Create cards for each room
-    foreach(RoomCardModel card in Output.Cards)
+    foreach(RoomCardModel card in Output.GetSumarizedRoomCards())
     {
       var UICard = Instantiate(UICardPrefab, CardContainer.transform);
       UICard.GetComponent<UICard>().SetCardValues(card);
