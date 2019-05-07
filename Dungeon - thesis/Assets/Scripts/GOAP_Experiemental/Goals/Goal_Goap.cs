@@ -49,7 +49,7 @@ public abstract class Goal_Goap
   {
     var nodePlan = planner.FindPathFromGoal(currentState, this, actions);
     Queue<ActionID> actionPlan = new Queue<ActionID>(nodePlan.Count);
-
+    
     foreach (Node_Goap node in nodePlan)
       actionPlan.Enqueue(node.ID);
 

@@ -155,7 +155,7 @@ public class Goap_Controller : MonoBehaviour
   private IEnumerator NewPlanfrst()
   {
     yield return new WaitForSecondsRealtime(2);
-   
+
     CreateNewPlan();
   }
 
@@ -165,6 +165,8 @@ public class Goap_Controller : MonoBehaviour
     currentGoal = GetNewGoal();
     viewControl.SetGoal(currentGoal);
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+    if (plan == null)
+      Debug.LogWarning("Plan war null for: " + currentGoal.GetType());
 
     yield return new WaitForSecondsRealtime(ActionDelay);
 
@@ -196,6 +198,8 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
 
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
+  
+
     viewControl.SetPlan(plan);
 
     if (plan.Count > 0)

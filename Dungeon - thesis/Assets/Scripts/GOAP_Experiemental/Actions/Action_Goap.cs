@@ -30,13 +30,14 @@ public class Action_Goap
   {
 
     Debug.Log("Entered: " + ID);
+
     if (CanExecute())
     {
       Execute();
     }
     else
       Failed();
-      
+
   }
 
   protected virtual bool CanExecute()

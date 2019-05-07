@@ -31,6 +31,7 @@ public class OutputUIController : MonoBehaviour
   void GoToMainMenu()
   {
     Output.Cards = new List<RoomCardModel>();
+    Output.CardsPerRoom = new Dictionary<int, List<RoomCardModel>>();
     SceneManager.LoadScene("StartupScene");
   }
 
@@ -38,6 +39,7 @@ public class OutputUIController : MonoBehaviour
   {
     GameController.GameCurrentIteration = Settings.Iterations;
     Output.Cards = new List<RoomCardModel>();
+    Output.CardsPerRoom = new Dictionary<int, List<RoomCardModel>>();
     GameController.Singleton.Restart();
   }
 

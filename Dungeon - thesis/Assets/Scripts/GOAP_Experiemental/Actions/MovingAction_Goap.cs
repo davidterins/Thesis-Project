@@ -13,17 +13,15 @@ public abstract class MovingAction_Goap : Action_Goap
   protected Vector2 target;
   protected Movement movement;
   protected float distanceFromTarget;
-  //bool signedUpOnMovement;
-
-  //public static event Action<ActionID> OnActionSignedUpOnMovement = delegate { };
-
-  //public static event Action<ActionID> OnActionSignedOfFromMovement = delegate { };
-
 
   protected MovingAction_Goap(GameObject owner) : base(owner) { }
 
   public override void Enter()
   {
+    //if(movement)
+    //{
+    //  movement.AtDestination -= HandleAtDestination;
+    //}
     base.Enter();
   }
 
@@ -37,17 +35,13 @@ public abstract class MovingAction_Goap : Action_Goap
         Debug.Log("Target was not in range, walk to target");
         if (movement.TryMoveToTarget(target, interactionRange))
         {
-
-          Debug.LogWarning(ID + " Signed up for AtDestination event");
           movement.AtDestination += HandleAtDestination;
-          //OnActionSignedUpOnMovement.Invoke(ID);
-          //signedUpOnMovement = true;
+          Debug.LogWarning(ID + " Signed up for AtDestination event");
           SafetyCheck();
         }
         else
         {
-          Debug.Log("No Path to target");
-          //Failed();
+          Debug.Log(GetType() + " No Path to target: [" + target.x + "," + target.y +"]");
           return false;
         }
       }
@@ -58,6 +52,7 @@ public abstract class MovingAction_Goap : Action_Goap
     }
     return true;
   }
+
 
   /// <summary>
   /// Enter the action again but keeps the same target
@@ -77,8 +72,6 @@ public abstract class MovingAction_Goap : Action_Goap
     SafetyCheck();
     movement.PrintAtTargetInvocationList();
     movement.AtDestination -= HandleAtDestination;
-    //OnActionSignedOfFromMovement.Invoke(ID);
-    //signedUpOnMovement = false;
 
 
     Debug.LogWarning(ID + " Removed from AtDestination event");
