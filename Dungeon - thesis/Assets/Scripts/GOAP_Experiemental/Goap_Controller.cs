@@ -13,7 +13,7 @@ public class Goap_Controller : MonoBehaviour
   List<Goal_Goap> playerGoals;
 
   Goal_Goap currentGoal;
-  Action_Goap currentAction;
+  public Action_Goap currentAction;
 
   BlackBoard blackBoard;
   Planner_Goap planner;
@@ -147,6 +147,10 @@ public class Goap_Controller : MonoBehaviour
     yield return new WaitForSecondsRealtime(ActionDelay);
     if (plan.Count > 0)
     {
+      if (currentAction.GetType() == typeof(MovingAction_Goap))
+      {
+        ((MovingAction_Goap)currentAction).Unload();
+      };
       currentAction = playerActionLookup[plan.Dequeue()];
       currentAction.Enter();
     }
@@ -173,6 +177,10 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetPlan(plan);
     if (plan.Count > 0)
     {
+      if (currentAction.GetType() == typeof(MovingAction_Goap))
+      {
+        ((MovingAction_Goap)currentAction).Unload();
+      };
       currentAction = playerActionLookup[plan.Dequeue()];
       currentAction.Enter();
     }
@@ -198,7 +206,7 @@ public class Goap_Controller : MonoBehaviour
     viewControl.SetGoal(currentGoal);
 
     plan = currentGoal.TryGetPlan(playerWorldState, playerActions);
-  
+
 
     viewControl.SetPlan(plan);
 
@@ -246,6 +254,10 @@ public class Goap_Controller : MonoBehaviour
     foreach (var action in playerActions)
     {
       action.OnActionFinished -= Action_ActionCallback;
+      if (action.GetType() == typeof(MovingAction_Goap))
+      {
+        ((MovingAction_Goap)action).Unload();
+      }
     }
   }
 

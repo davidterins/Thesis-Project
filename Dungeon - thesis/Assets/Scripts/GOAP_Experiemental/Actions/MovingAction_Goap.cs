@@ -29,10 +29,10 @@ public abstract class MovingAction_Goap : Action_Goap
   {
     if (base.CanExecute())
     {
-      if (!IsInRange())
+      if (!IsInRange() && this == owner.GetComponent<Goap_Controller>().currentAction)
       {
         movement = owner.GetComponent<Movement>();
-        Debug.Log("Target was not in range, walk to target");
+        Debug.Log(GetType() + " Target was not in range, walk to target " + Vector2.Distance(owner.transform.position, target));
         if (movement.TryMoveToTarget(target, interactionRange))
         {
           movement.AtDestination += HandleAtDestination;
@@ -63,8 +63,11 @@ public abstract class MovingAction_Goap : Action_Goap
     Debug.LogWarning("ReEntered action: " + ID + " InRange = " + IsInRange() + " distance = " + distanceFromTarget);
 
     base.Enter();
+  }
 
-
+  public void Unload()
+  {
+    movement.AtDestination -= HandleAtDestination;
   }
 
   void HandleAtDestination(object sender, EventArgs e)
