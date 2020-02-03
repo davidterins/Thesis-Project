@@ -94,7 +94,6 @@ public class BlackBoard : MonoBehaviour
     get { return targetLoot; }
     set
     {
-      var s = value;
       if (targetLoot != value)
       {
         targetLoot = value;

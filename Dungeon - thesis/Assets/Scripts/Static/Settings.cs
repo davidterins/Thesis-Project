@@ -48,7 +48,7 @@ public static class Settings
         break;
       case 4:
         agentSpeed = 0.0f; // TODO: Make instant calculations without showing the scene itself.
-        walkSpeed = 0.2f;
+        walkSpeed = 3f;
         break;
       default:
         break;
